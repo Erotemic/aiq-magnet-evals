@@ -71,6 +71,47 @@ Useful upstream references:
 Do not treat those URLs as immutable protocol definitions. Pin exact source
 revisions in measurement identity and keep captured native artifacts.
 
+### Implementation-agent handoff
+
+This document is intended to be sufficient context for a capable autonomous agent
+working across the three repositories. To reduce rediscovery and context cost, use
+this execution order unless repository reality disproves a stated assumption:
+
+1. read this roadmap and the repository-local `AGENTS.md` files;
+2. inspect/reuse existing deterministic endpoint and infer-stack stub helpers;
+3. complete Phase 0 probes on the Docker VM and write only durable findings to
+   `docs/planning/harbor-evidence.md`;
+4. implement the generic Harbor backend in `aiq-magnet-evals`;
+5. implement infer-stack scientific serving provenance and its unit tests;
+6. propagate that provenance through MAGNET preflight/runtime verification;
+7. add SWE-bench Verified integration and official regrade plumbing;
+8. add Pro V2 VM protocol support, oracle/NOP, patch capture, and fresh replay;
+9. make `dev/ci/swebench_vm_acceptance.sh` pass from a clean Docker-capable VM;
+10. implement, but do not attempt to fully satisfy without a GPU,
+    `dev/ci/swebench_gpu_acceptance.sh`;
+11. leave a concise completion report listing commits, commands run, passing VM
+    gates, deferred GPU gates, and any protocol deviations.
+
+Do not spend time re-researching benchmark/model leaderboard state. Recheck upstream
+only when an API/layout/version assumption in this roadmap fails against the pinned
+source. Prefer a small compatibility shim plus recorded evidence over speculative
+redesign.
+
+Do not require user intervention between phases merely because a GPU is absent.
+Proceed until the VM acceptance script passes or a real Docker/network-policy
+capability blocks the protocol.
+
+The desired final handoff to the user is small:
+
+```text
+VM acceptance: PASS/FAIL, with command
+GPU acceptance: NOT RUN, with command
+Modified repos/commits: ...
+Pinned upstream revisions: ...
+Known protocol deviations: none / explicit list
+Remaining work requiring real model/GPU: explicit short list
+```
+
 ---
 
 ## 1. Executive architecture decision
@@ -195,6 +236,102 @@ Examples:
 - cleanup happens after cancellation.
 
 Infrastructure acceptance results must not be presented as benchmark scores.
+
+### 2.4 CPU-only implementation contract
+
+The primary implementation agent is expected to work on a Linux VM with Docker
+available and **no GPU**. Lack of CUDA or a real model server is not a blocker for
+core implementation. The agent should complete and prove as much of this roadmap
+as possible with deterministic local substitutes, then leave a small, explicit
+real-model acceptance pass for a GPU host.
+
+The implementation agent must not stop merely because an acceptance step mentions
+`infer-stack`, a leased endpoint, or a local model. Unless a step is explicitly
+marked **GPU acceptance**, substitute deterministic fixtures that preserve the
+same protocol boundary.
+
+The VM is expected to prove all of the following without a GPU:
+
+- generic Harbor backend resolution, execution, normalization, import, and
+  cancellation;
+- Docker sandbox creation and cleanup;
+- nested-container endpoint routing;
+- endpoint allowlisting and denial of unrelated LAN/Internet egress;
+- model/tool protocol behavior using a scripted OpenAI-compatible endpoint;
+- actual shell/file tool execution inside a Harbor task;
+- deterministic repository mutation and exact patch capture;
+- fresh-sandbox patch replay and verifier execution;
+- model failure versus infrastructure failure classification;
+- SWE-bench Verified smoke execution and official regrading plumbing;
+- SWE-bench Pro V2 oracle/NOP and local Docker protocol plumbing;
+- fake/stub infer-stack lease and endpoint-descriptor integration through
+  `aiq-magnet`;
+- scientific serving-provenance identity and invalidation tests;
+- result reuse and single-flight behavior.
+
+Only these checks inherently require the final GPU-host pass:
+
+1. acquire an actual infer-stack model lease;
+2. compare preflight serving provenance with the real lease descriptor;
+3. prove a Harbor sandbox reaches the actual leased LiteLLM endpoint through the
+   same bridge/policy used by the VM tests;
+4. execute one synthetic tool-using Harbor coding task with a real model;
+5. execute a small fixed SWE-bench Verified smoke set with a real model;
+6. execute a very small fixed Pro V2 generation + fresh-replay smoke set;
+7. release the lease and verify cleanup.
+
+Do not make a full Verified, HARD-51, or 642-task Pro V2 model run part of initial
+implementation acceptance. Those are campaign work after the real-model smoke
+passes.
+
+### 2.5 Deterministic substitutes for model-dependent tests
+
+Build two explicit test endpoints instead of scattering one-off mocks through
+tests. Reuse existing deterministic OpenAI-compatible test-server machinery where
+possible.
+
+**Deterministic transport endpoint**
+
+- OpenAI-compatible HTTP surface;
+- fixed model listing and response;
+- request capture;
+- optional artificial delay/error modes for cancellation and retry tests;
+- bound to a host address that exercises the same nested-container routing path
+  intended for infer-stack.
+
+**Scripted agent endpoint**
+
+- OpenAI-compatible chat/tool-call surface;
+- consumes an ordered script of expected requests and responses;
+- verifies enough preceding conversation state to catch protocol drift;
+- emits deterministic tool calls, not only final text;
+- can intentionally emit malformed responses or terminate early for failure tests.
+
+The scripted endpoint should drive a tiny checked-in synthetic repository task,
+for example:
+
+```text
+repository:
+    calc.py
+    test_calc.py
+
+issue:
+    division must reject a zero denominator
+
+scripted agent behavior:
+    inspect file -> edit file -> run pytest -> finish
+
+acceptance:
+    expected tool actions are present in the trajectory
+    exact expected git diff is captured
+    agent sandbox test passes
+    patch is replayed into a pristine checkout
+    pristine verifier passes
+```
+
+This synthetic task is the main VM proof of the complete Harbor path. It should
+exercise the same endpoint injection, tool execution, artifact collection, patch
+replay, normalization, and cleanup code used for real SWE-bench tasks.
 
 ---
 
@@ -499,8 +636,8 @@ At the selected Harbor pin, capture these probes.
 
 ### H0-01 deterministic local task
 
-Run a one-item local Harbor task using a deterministic/mock OpenAI-compatible
-endpoint. Capture:
+Run a one-item local Harbor task using the deterministic transport endpoint.
+Capture:
 
 - job config;
 - result;
@@ -510,16 +647,24 @@ endpoint. Capture:
 - reward file;
 - process exit behavior.
 
-### H0-02 real OpenAI-compatible local endpoint
+This entire probe is VM-only and must not require a GPU.
 
-Run a small model through infer-stack and prove Harbor can call it.
+### H0-02 nested-container local endpoint
 
-This is transport acceptance, not a coding score.
+Prove a Harbor task container can reach the deterministic OpenAI-compatible
+endpoint through the exact host/container routing mechanism intended for
+infer-stack, without granting broad host networking or general egress.
 
-### H0-03 agent tool execution
+This is the VM transport acceptance test. Do **not** block implementation waiting
+for a real model. The equivalent test against an actual leased infer-stack
+endpoint belongs to the final GPU acceptance pass.
 
-Use an agent that actually performs a shell/file/tool operation. Assert an
-executed action appears in the trajectory, not just a tool declaration.
+### H0-03 scripted agent tool execution
+
+Use the scripted agent endpoint to make an agent actually perform shell/file/tool
+operations against the synthetic repository. Assert executed actions appear in
+the trajectory, not just tool declarations. Assert the expected repository diff
+is captured and can be replayed successfully in a fresh sandbox.
 
 ### H0-04 cancellation
 
@@ -557,6 +702,18 @@ Record the exact Harbor environment capabilities reported by the pinned build.
 Harbor's Docker network-policy support is conditional on environment/kernel
 capability and has changed recently; documentation and implementation have
 not always moved in lockstep.
+
+The VM network-policy fixture must use at least three independently addressable
+targets so a false-positive allowlist implementation is hard to miss:
+
+1. the explicitly allowed deterministic model endpoint;
+2. an unlisted local/LAN HTTP endpoint;
+3. an external Internet target.
+
+The Harbor task must be able to reach (1) and must fail to reach (2) and (3). If
+the VM/runtime cannot enforce this distinction, report that as an environmental
+blocker. **Docker/network-policy capability is a valid blocker; lack of a GPU is
+not.**
 
 ---
 
@@ -1338,6 +1495,47 @@ pass@1, majority, any-pass, mean reward, etc. Do not change it after results.
 
 ---
 
+## 17.1 Implementation-agent execution rules
+
+These rules are intended to keep an autonomous implementation session focused
+and to avoid spending context on rediscovering the plan.
+
+1. **Assume Docker is available and no GPU is available.** Proceed with VM work.
+2. **Do not redesign the three-repository ownership split.** Harbor belongs in
+   `aiq-magnet-evals`; scheduling/reuse belongs in `aiq-magnet`; model serving and
+   serving provenance belong in `infer-stack`.
+3. **Do not build a second GPU scheduler or benchmark-specific Harbor backend.**
+4. **Prefer existing test helpers.** Reuse the deterministic OpenAI-compatible
+   server in `aiq-magnet-evals` and stub infer-stack patterns in `aiq-magnet`
+   before inventing new infrastructure.
+5. **Use native upstream benchmark code for grading.** Do not reimplement
+   SWE-bench patch grading.
+6. **Treat network-policy enforcement as code, not documentation.** Every claimed
+   restriction needs an executable negative test.
+7. **Keep operational endpoint data out of scientific identity.** Keep serving
+   provenance in scientific identity.
+8. **Preserve native artifacts before normalization.** Debugging should not depend
+   on rerunning an expensive agent task.
+9. **Classify infrastructure errors explicitly.** Do not coerce environment,
+   verifier, endpoint, or timeout failures into `reward=0`.
+10. **Make progress without upstream full-suite runs.** Use tiny fixtures and fixed
+    smoke IDs while developing; full benchmark campaigns are not implementation
+    tests.
+11. **If blocked, distinguish protocol blockers from campaign blockers.** A broken
+    Docker/network-isolation primitive can block implementation. Missing CUDA,
+    insufficient model VRAM, or unavailable real-model inference should only defer
+    the final GPU acceptance stage.
+12. **Leave the repository self-proving.** A fresh Docker-capable VM should be able
+    to run the VM acceptance command and understand any failure without access to
+    the original implementation conversation.
+
+The implementation agent should keep a short evidence ledger under
+`docs/planning/harbor-evidence.md` containing the pinned versions, commands, and
+observed native artifact layouts that justify adapter decisions. Do not turn the
+ledger into a diary. Record only decisions/facts needed to reproduce the adapter.
+
+---
+
 ## 18. Test plan
 
 ### `aiq-magnet-evals` unit tests
@@ -1373,9 +1571,45 @@ Add CI/local scripts analogous to current native engine scripts:
 dev/ci/native_harbor.sh
 dev/ci/swebench_verified.sh
 dev/ci/swebench_pro_v2_smoke.sh
+dev/ci/swebench_vm_acceptance.sh
+dev/ci/swebench_gpu_acceptance.sh
 ```
 
-Do not require a 642-task Pro run in ordinary hosted CI.
+`swebench_vm_acceptance.sh` is the implementation definition of done. It must run
+without CUDA and should aggregate the deterministic/native tests into one command.
+At minimum it should report independent PASS/FAIL status for:
+
+```text
+Harbor backend conformance
+Harbor import/re-normalization parity
+nested-container deterministic endpoint bridge
+scripted tool-using synthetic agent task
+unlisted local/LAN egress denial
+Internet egress denial
+endpoint allowlist success
+exact patch capture
+fresh patch replay
+model-failure / infrastructure-failure separation
+SWE-bench Verified smoke + regrade plumbing
+SWE-bench Pro V2 oracle smoke
+SWE-bench Pro V2 NOP smoke
+MAGNET fake-lease integration
+infer-stack serving-provenance identity
+Q4 -> Q5 provenance/measurement invalidation
+result reuse / single-flight behavior
+```
+
+The script may skip explicitly marked `external` image-pull tests when invoked in
+a no-network CI environment, but its normal Docker-capable VM mode should run the
+full list above. It must not silently convert skipped required checks to PASS.
+
+`swebench_gpu_acceptance.sh` must remain small. It should perform only the
+real-model checks enumerated in Section 2.4, using fixed tiny task sets, and should
+reuse the same bridge/policy code already proven by VM acceptance. It must not run
+HARD-51 or a full benchmark by default.
+
+Do not require a 500-task Verified, HARD-51, or 642-task Pro run in ordinary
+hosted CI or initial implementation acceptance.
 
 ### `aiq-magnet` tests
 
@@ -1402,20 +1636,29 @@ Do not require a 642-task Pro run in ordinary hosted CI.
 
 ## 19. Implementation phases and acceptance gates
 
-### Phase 0 - upstream capture and design probes
+### Phase 0 - upstream capture and VM design probes
 
 Owner: `aiq-magnet-evals`
 
+Environment: Docker-capable Linux VM; GPU explicitly not required.
+
 - [ ] Pin Harbor candidate version and revision.
 - [ ] Capture Harbor job/trial fixture.
-- [ ] Capture network-policy behavior on local Docker.
+- [ ] Build/reuse deterministic transport endpoint.
+- [ ] Build scripted tool-calling endpoint.
+- [ ] Add the tiny synthetic SWE-like repository task.
+- [ ] Prove nested Harbor sandbox -> deterministic endpoint reachability using
+      the intended infer-stack bridge design.
+- [ ] Prove allowlisted endpoint succeeds while unlisted local/LAN and Internet
+      targets fail.
+- [ ] Capture cancellation and partial-failure native artifacts.
 - [ ] Pin Inspect-Evals/SWE-bench versions for Verified.
 - [ ] Pin Pro V2 repository revision/checksums.
-- [ ] Prove local sandbox can reach infer-stack without broad internet access.
 - [ ] Decide Harbor Python API versus CLI worker implementation.
 
-Gate: no core implementation before result layout, cancellation, and network
-policy are evidenced.
+Gate: no core implementation before result layout, cancellation, nested-container
+routing, and network policy are evidenced on the VM. Absence of a GPU cannot fail
+this gate.
 
 ### Phase 1 - generic Harbor backend
 
@@ -1429,10 +1672,12 @@ Owner: `aiq-magnet-evals`
 - [ ] import;
 - [ ] cancellation/cleanup;
 - [ ] native conformance fixture;
+- [ ] scripted tool-using synthetic task;
 - [ ] engine-free result load.
 
-Gate: deterministic and real-endpoint Harbor tasks pass the same backend
-conformance expectations as Inspect/OLMo where applicable.
+Gate: deterministic transport and scripted tool-using Harbor tasks pass the same
+backend conformance expectations as Inspect/OLMo where applicable. The real-model
+endpoint check is intentionally deferred to GPU acceptance.
 
 ### Phase 2 - infer-stack provenance
 
@@ -1461,20 +1706,43 @@ Owner: `aiq-magnet-evals`
 Gate: per-instance Inspect verdict and official grader verdict agree on the
 acceptance fixture or every discrepancy is understood/documented.
 
-### Phase 4 - Pro V2 local protocol
+### Phase 4 - Pro V2 local protocol on the VM
 
 Owners: `aiq-magnet-evals`, `aiq-magnet`
 
 - [ ] oracle/NOP;
-- [ ] locked mini-SWE agent against leased local model;
+- [ ] locked mini-SWE agent against scripted OpenAI-compatible endpoint;
 - [ ] enforced agent allowlist;
 - [ ] exact patch capture;
 - [ ] fresh patch replay;
 - [ ] joined normalized samples;
-- [ ] HARD-51 profile;
-- [ ] infrastructure-error eligibility.
+- [ ] HARD-51 profile definition, without requiring a model run;
+- [ ] infrastructure-error eligibility;
+- [ ] fake infer-stack lease/descriptor path through MAGNET.
 
-Gate: HARD-51 end to end with no policy bypass.
+Gate: Pro V2 generation/replay plumbing, oracle/NOP, network policy, and normalized
+error semantics all pass on the Docker VM. HARD-51 model execution is not part of
+this gate.
+
+### Phase 4.5 - final real-model GPU acceptance
+
+Owners: all three repositories
+
+Run this only after `dev/ci/swebench_vm_acceptance.sh` passes.
+
+- [ ] acquire one actual infer-stack model lease;
+- [ ] verify runtime serving provenance matches preflight provenance;
+- [ ] prove Harbor sandbox reaches the actual leased endpoint through the VM-proven
+      bridge/policy;
+- [ ] run one synthetic scripted-equivalent coding task with the real model;
+- [ ] run the fixed tiny Verified real-model smoke set;
+- [ ] run the fixed tiny Pro V2 generation + fresh-replay smoke set;
+- [ ] release the lease and prove cleanup;
+- [ ] record any host-specific deviations from VM fixtures.
+
+Gate: `dev/ci/swebench_gpu_acceptance.sh` passes. Any failures should be narrow
+host/serving integration issues, not missing Harbor/SWE-bench architecture. Iterate
+only on the failing seam and rerun VM acceptance when shared code changes.
 
 ### Phase 5 - Pro V2 full and protocol parity
 
@@ -1554,7 +1822,8 @@ agent protocol.
 - Harbor recipes;
 - infer-stack serving provenance projection;
 - paired model comparison report/node;
-- real-GPU Harbor acceptance script.
+- VM acceptance integration;
+- small real-GPU Harbor acceptance script.
 
 ### `infer-stack`
 
@@ -1593,6 +1862,9 @@ A reviewer should be able to answer "yes" to each:
 - [ ] Verified can proceed independently through Inspect.
 - [ ] The exact patch graded is retained.
 - [ ] Network isolation is tested, not assumed.
+- [ ] Core implementation acceptance runs on a Docker-capable VM without a GPU.
+- [ ] A scripted OpenAI endpoint proves actual tool execution and patch replay.
+- [ ] Real-model checks are isolated in the small GPU acceptance stage.
 - [ ] Local nested containers have a narrowly scoped path to the leased model.
 - [ ] Serving quantization/configuration is part of measurement identity.
 - [ ] Endpoint URL and lease id are not part of measurement identity.
