@@ -1,5 +1,6 @@
 # Native captures preserve upstream whitespace byte for byte.
 tests/fixtures/harbor-native/** -whitespace
+tests/fixtures/harbor-hardkill-native/** -whitespace
 tests/fixtures/swebench-verified-native/** -whitespace
 tests/fixtures/swebench-pro-native/** -whitespace
 tests/fixtures/swebench-pro-agent-native/** -whitespace

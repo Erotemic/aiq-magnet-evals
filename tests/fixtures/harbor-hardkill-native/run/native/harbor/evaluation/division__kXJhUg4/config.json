@@ -1,0 +1,12 @@
+{
+    "task": {
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-139/test_harbor_hard_kill_cleans_o0/.aiq-evals-work-q9rn6umj/native/harbor/inputs/division"
+    },
+    "trial_name": "division__kXJhUg4",
+    "trials_dir": "/tmp/pytest-of-joncrall-agent/pytest-139/test_harbor_hard_kill_cleans_o0/.aiq-evals-work-q9rn6umj/native/harbor/evaluation",
+    "agent": {
+        "import_path": "tests.native.harbor_sleep_agent:StubbornSleepAgent",
+        "model_name": "openai/fixture-coding"
+    },
+    "job_id": "d158d1aa-052f-4c5c-8bf5-0412c12a23d8"
+}

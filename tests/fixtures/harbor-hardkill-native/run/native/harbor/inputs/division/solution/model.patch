@@ -1,0 +1,9 @@
+diff --git a/calc.py b/calc.py
+index c50d4f0..536a789 100644
+--- a/calc.py
++++ b/calc.py
+@@ -1,2 +1,4 @@
+ def divide(numerator, denominator):
++    if denominator == 0:
++        raise ValueError("zero denominator")
+     return numerator / denominator

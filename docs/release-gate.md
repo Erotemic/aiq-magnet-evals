@@ -112,3 +112,8 @@ tests. The VM command passed six gates and failed the unavailable MAGNET
 EvaluationNode integration gate; GPU acceptance
 is implemented but not run. These candidates remain experimental and establish
 neither full-benchmark support nor the release gates above.
+
+Supplemental Harbor hard-kill acceptance passed with a real agent ignoring
+SIGINT/SIGTERM: parent SIGKILL removed owned containers/networks and preserved
+an unrelated container. Updated Harbor conformance passed 13 tests; engine-free
+checks passed 229 tests. Raw cancelled evidence is recorded in the Harbor ledger.

@@ -1,0 +1,15 @@
+version = "1.0"
+
+[agent]
+timeout_sec = 120
+network_mode = "no-network"
+
+[verifier]
+timeout_sec = 60
+network_mode = "public"
+
+[environment]
+build_timeout_sec = 180
+cpus = 1
+memory_mb = 512
+storage_mb = 1024

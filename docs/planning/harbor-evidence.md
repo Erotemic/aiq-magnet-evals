@@ -83,7 +83,7 @@ fixture therefore uses task name `instance_division`. It selects the first
 matching source task, so multi-attempt joins must be made unambiguous by the
 benchmark profile rather than silently replaying the wrong trial.
 
-## Remaining gates
+## Open gates immediately after Phase 0
 
 - Hard-kill fallback cleanup and real-model bridge timing/streaming.
 - Pinned Inspect-Evals/official SWE-bench worker acceptance and patch export.
@@ -276,3 +276,32 @@ wheel retains Python >=3.11, only kwconf as its runtime dependency, and the
 frozen HARD-51 data; tests are excluded. After the recorded VM run, the driver
 was adjusted to create fresh per-run environments and raw captures were
 excluded from lint without modifying them.
+
+## Hard-kill fallback: 2026-10-05
+
+Harbor now journals each native Docker Compose project atomically at the public
+environment-start hook, before container creation. If a worker fails or is
+terminated, the parent reads that journal, validates that matching containers'
+Compose directories belong to the attempt, and removes those containers and
+unused project networks. It retains cleanup diagnostics and preserves the
+original cancellation/failure status. Foreign directories, incomplete records
+and networks with remaining containers are refused.
+
+A real stubborn native agent ignored SIGINT and SIGTERM. The parent escalated
+to **SIGKILL (return code -9)**, removed its owned containers/networks, and
+verified an unrelated live container survived. The terminal bundle is
+**cancelled**, has no reward and no RUN_COMPLETE marker. The initial witness
+inherited the built image's Compose project label, so the guard correctly
+refused that mixed project; the accepted probe assigns the unrelated witness
+its own label. No ownership check was relaxed.
+
+Raw evidence and checksum inventory are in
+`tests/fixtures/harbor-hardkill-native`; separate test observations accompany
+the unmodified bundle. Engine-free checks read the cancelled bundle and verify
+its inventory. `dev/ci/native_harbor.sh` passed **13 tests**, 12 other-engine
+deselections, in 187.50 seconds with ownership journaling enabled. This is
+supplemental evidence; the previously recorded full VM result remains FAIL for
+the missing MAGNET integration. The corrected retained capture independently
+passed in **12.05 seconds**. Final engine-free checks passed **229 tests**, 4
+absent-engine skips and 51 native deselections in 10.33 seconds; lint and core
+type checks passed. Real-model timing/GPU acceptance remains open.

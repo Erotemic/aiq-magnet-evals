@@ -1,0 +1,15 @@
+{
+  "diagnostics": {
+    "runner_error": "CancelledError: ",
+    "runner_failure_kind": "cancelled"
+  },
+  "execution_context": {
+    "env_keys": [],
+    "model_endpoint_roles": [],
+    "output_dir": "/tmp/pytest-of-joncrall-agent/pytest-139/test_harbor_hard_kill_cleans_o0/run",
+    "timeout_seconds": null,
+    "worker_python": "/tmp/aiq-harbor-roadmap/venv/bin/python"
+  },
+  "schema_version": 1,
+  "status": "cancelled"
+}

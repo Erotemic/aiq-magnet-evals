@@ -1,0 +1,20 @@
+{
+  "artifacts": [],
+  "diagnostics": {
+    "runner_error": "CancelledError: ",
+    "runner_failure_kind": "cancelled"
+  },
+  "engine": "harbor",
+  "identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "7d2b92856885633d5c12b4b6e5ce4cbac00ccea012a9994711451f057f51551a",
+    "reusable": false,
+    "unknown_reasons": [
+      "Harbor sandbox image/build runtime is not pinned: division"
+    ]
+  },
+  "records": [],
+  "samples": [],
+  "schema_version": 1,
+  "status": "cancelled"
+}

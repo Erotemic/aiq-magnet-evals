@@ -350,7 +350,20 @@ async def _execute_resolved(
             timeout_seconds=context.timeout_seconds,
             model_endpoints=context.model_endpoints,
         )
-        return await _execute_in_worker(resolved, worker_context, work_dir)
+        try:
+            return await _execute_in_worker(resolved, worker_context, work_dir)
+        except (asyncio.CancelledError, Exception):
+            cleanup = getattr(backend, 'cleanup_worker_resources', None)
+            if cleanup is not None:
+                try:
+                    await cleanup(work_dir)
+                except Exception as exc:
+                    # Preserve the original cancellation/failure and a separate
+                    # cleanup diagnostic if the Docker daemon is unavailable.
+                    path = work_dir / 'native/aiq_worker/cleanup-error.json'
+                    path.parent.mkdir(parents=True, exist_ok=True)
+                    path.write_text(json.dumps({'error': str(exc)}) + '\n')
+            raise
     direct_context = ExecutionContext(
         output_dir=work_dir,
         env=context.env,

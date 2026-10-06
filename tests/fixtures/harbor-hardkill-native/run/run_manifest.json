@@ -1,0 +1,147 @@
+{
+  "engine": "harbor",
+  "identity_algorithm": "aiq-evals-measurement-v3+sha256",
+  "identity_unknown_reasons": [
+    "Harbor sandbox image/build runtime is not pinned: division"
+  ],
+  "measurement_identity": "7d2b92856885633d5c12b4b6e5ce4cbac00ccea012a9994711451f057f51551a",
+  "metadata_checksums": {
+    "attempt.json": "80f513fe911c8a78480d9d077bf959c5e32eeb3d4f3303275efc9819566a4d4c",
+    "resolved_request.json": "30cecadd25f6968f3c7d57eccdc960bafc138acff59f299d0532652872b9b8af",
+    "results.json": "7b0e74e453b4016f6810dcf495ea83aebed3769bcc8c4b04e768b28dd8f6c191"
+  },
+  "native_artifact_identity": "df7d09cb72749e44fc17f73e404558ebe74481d1bffbfead821cf78fe7c58a37",
+  "native_artifacts": [
+    {
+      "path": "aiq_worker/harbor-cleanup.json",
+      "role": "native",
+      "sha256": "fbd34ac6811aae44a62e0e020c5f3521c48c364b68ff2a7705eaaffca2d94516",
+      "size_bytes": 89
+    },
+    {
+      "path": "aiq_worker/stderr.log",
+      "role": "native",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "aiq_worker/stdout.log",
+      "role": "native",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "harbor/evaluation/config.json",
+      "role": "native",
+      "sha256": "38ed4944d6193178bd8f793faedcbbbc05fa33afdc7c3501efdd33a1215f4547",
+      "size_bytes": 578
+    },
+    {
+      "path": "harbor/evaluation/division__kXJhUg4/agent/started",
+      "role": "native",
+      "sha256": "a4ecc5c87d811bbff7a118c17ef8cf83318cb623a103c15b8549089aa2a7f0ac",
+      "size_bytes": 8
+    },
+    {
+      "path": "harbor/evaluation/division__kXJhUg4/config.json",
+      "role": "native",
+      "sha256": "3dd0f6d760f70e786ad0b4e70f60812b6a5a52499708b826a82cfb3895a35f1f",
+      "size_bytes": 551
+    },
+    {
+      "path": "harbor/evaluation/division__kXJhUg4/lock.json",
+      "role": "native",
+      "sha256": "4b0e093c81b923be4df9b4121a27e2c7a30900493fd09e5913a68143530a0628",
+      "size_bytes": 1103
+    },
+    {
+      "path": "harbor/evaluation/division__kXJhUg4/trial.log",
+      "role": "native",
+      "sha256": "5401ccbe8e1b5d98ed67744f8e63fc987b4623f39b70df7d7433f1ed1b1e3f25",
+      "size_bytes": 97
+    },
+    {
+      "path": "harbor/evaluation/job.log",
+      "role": "native",
+      "sha256": "1af4323211ffd2a8f2b2abba3b6e8f6cb427793b7f4bd25b3065e2ffbfc77ace",
+      "size_bytes": 192
+    },
+    {
+      "path": "harbor/evaluation/lock.json",
+      "role": "native",
+      "sha256": "2bd6759ca74fecf8eabac426c2f9d341b770a454ada415fdd45a100e6cb1a20d",
+      "size_bytes": 2113
+    },
+    {
+      "path": "harbor/evaluation/result.json",
+      "role": "native",
+      "sha256": "a951472f7c4fca991661211f0e89616e40a537c0cef6023e88b3d42f8853097a",
+      "size_bytes": 547
+    },
+    {
+      "path": "harbor/inputs/division/environment/.gitignore",
+      "role": "native",
+      "sha256": "a51104264729e7b362ea8c739de0ada29ba6e4f6047580ec3a3fd330ad20fd47",
+      "size_bytes": 28
+    },
+    {
+      "path": "harbor/inputs/division/environment/Dockerfile",
+      "role": "native",
+      "sha256": "9c17f31302bbb50c531bce8f96796fddd8ff3f12bb965d57e990e0887883ced7",
+      "size_bytes": 385
+    },
+    {
+      "path": "harbor/inputs/division/environment/calc.py",
+      "role": "native",
+      "sha256": "2b1feebb68b3b5ca031f4bb7c11f9042a81653980f0c2d1f9137024a8c80d717",
+      "size_bytes": 71
+    },
+    {
+      "path": "harbor/inputs/division/environment/test_calc.py",
+      "role": "native",
+      "sha256": "6d8f2ada960540f9304f8aa92a89e8de5e1fe212d8deeb689a3683a9145fb94c",
+      "size_bytes": 216
+    },
+    {
+      "path": "harbor/inputs/division/instruction.md",
+      "role": "native",
+      "sha256": "706f9ddaaf5efe92982c094993ea25969b189b2ecfa98eeacfe7da767f730f50",
+      "size_bytes": 155
+    },
+    {
+      "path": "harbor/inputs/division/solution/model.patch",
+      "role": "native",
+      "sha256": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+      "size_bytes": 250
+    },
+    {
+      "path": "harbor/inputs/division/solution/solve.sh",
+      "role": "native",
+      "sha256": "6bb985d17d66b79e5b78d3b1e7fb87bcdf7faf2da667f3d9f2d546bef65cd49a",
+      "size_bytes": 126
+    },
+    {
+      "path": "harbor/inputs/division/task.toml",
+      "role": "native",
+      "sha256": "dfd0c2721379520fe851cc9a4ed010a54791178642e9baf2a28f5b2f09e348a2",
+      "size_bytes": 206
+    },
+    {
+      "path": "harbor/inputs/division/tests/test.sh",
+      "role": "native",
+      "sha256": "3a82f70f1130d7b31215bead86db08429f640b78bb94c6ccb68c62fe529fccd8",
+      "size_bytes": 326
+    },
+    {
+      "path": "harbor/owned-projects/division__kxjhug4__env.json",
+      "role": "native",
+      "sha256": "8790454d3c2bf29223ade370aa750853dd017003bc45cccdb77f210838b39946",
+      "size_bytes": 73
+    }
+  ],
+  "normalized_artifact_identity": "a38257c904fc580a5e371f7f5b3a81d3f07a467dd0e3adafaf8f3743b28ad341",
+  "request_schema_version": 1,
+  "result_schema_version": 1,
+  "reusable": false,
+  "schema_version": 1
+}

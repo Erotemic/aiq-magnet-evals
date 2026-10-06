@@ -15,6 +15,7 @@ from pathlib import Path
 
 from magnet_evals.backends.harbor.bridge import endpoint_bridge
 from magnet_evals.backends.harbor.normalize import normalize_harbor_job
+from magnet_evals.backends.harbor.ownership import cleanup_owned_docker, record_project
 from magnet_evals.contracts import (
     EvaluationRequest,
     ExecutionContext,
@@ -419,8 +420,14 @@ class HarborBackend:
             forced_status = failure = None
             try:
                 job = await Job.create(config)
-                if environment_started_hook is not None:
-                    job.on_environment_started(environment_started_hook)
+                async def record_environment(event):
+                    # This public event precedes sandbox creation at the pin.
+                    # Commit ownership before any Docker resources can appear.
+                    record_project(context.output_dir, event.trial_name)
+                    if environment_started_hook is not None:
+                        await environment_started_hook(event)
+
+                job.on_environment_started(record_environment)
                 if agent_started_hook is not None:
                     job.on_agent_started(agent_started_hook)
                 await job.run()
@@ -432,6 +439,9 @@ class HarborBackend:
                 raise ArtifactError(f'Harbor did not publish a native job result: {failure or forced_status}')
             return normalize_harbor_job(job_dir, identity=resolved.identity, fallback_task=resolved.request.task,
                 location_prefix='native/harbor/' + job_name, forced_status=forced_status, failure=failure)
+
+    async def cleanup_worker_resources(self, work_dir: Path):
+        return await asyncio.to_thread(cleanup_owned_docker, work_dir)
 
     def import_results(self, resolved: ResolvedEvaluation, source: str, context: ExecutionContext):
         protocol = _execution_protocol(resolved.request)

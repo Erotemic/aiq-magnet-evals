@@ -1,0 +1,17 @@
+{
+    "job_name": "evaluation",
+    "jobs_dir": "/tmp/pytest-of-joncrall-agent/pytest-139/test_harbor_hard_kill_cleans_o0/.aiq-evals-work-q9rn6umj/native/harbor",
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "agents": [
+        {
+            "import_path": "tests.native.harbor_sleep_agent:StubbornSleepAgent",
+            "model_name": "openai/fixture-coding"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-139/test_harbor_hard_kill_cleans_o0/.aiq-evals-work-q9rn6umj/native/harbor/inputs/division"
+        }
+    ]
+}

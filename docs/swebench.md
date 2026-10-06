@@ -98,6 +98,12 @@ checked, but these runs remain nonreusable until the entire runtime is pinned.
 Plain Harbor mutable images/builds also remain nonreusable; digest-pinned
 images or protocol-enforced physical image pins are required for reuse.
 
+Harbor records attempt-owned Compose projects before sandbox creation. After
+worker failure or forced termination, the parent checks ownership and removes
+matching containers and unused project networks. Foreign Compose directories
+are refused and cleanup errors remain diagnostic facts. Native SIGKILL evidence
+retains a cancelled bundle without publishing a reward or successful-run marker.
+
 ## Acceptance and remaining integration
 
 ```bash

@@ -1,0 +1,9 @@
+{
+  "worker": {
+    "pid": 1294650,
+    "returncode": -9
+  },
+  "unrelated_container_preserved": true,
+  "owned_containers_absent": true,
+  "owned_networks_absent": true
+}

@@ -1,0 +1,32 @@
+{
+  "schema": "aiq-magnet-evals-harbor-hardkill-capture/1",
+  "sha256": {
+    "hardkill-observation.json": "968b8a3832abfcc539e8e83d4b7fa629088eabb8293eacb63fe266cc7b30577e",
+    "run/ATTEMPT_TERMINAL": "36a7ecb1512963a9044ff7d91b2cd9e784faa61e9639d5f8ebddabc2a933a5f0",
+    "run/attempt.json": "80f513fe911c8a78480d9d077bf959c5e32eeb3d4f3303275efc9819566a4d4c",
+    "run/native/aiq_worker/harbor-cleanup.json": "fbd34ac6811aae44a62e0e020c5f3521c48c364b68ff2a7705eaaffca2d94516",
+    "run/native/aiq_worker/stderr.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run/native/aiq_worker/stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "run/native/harbor/evaluation/config.json": "38ed4944d6193178bd8f793faedcbbbc05fa33afdc7c3501efdd33a1215f4547",
+    "run/native/harbor/evaluation/division__kXJhUg4/agent/started": "a4ecc5c87d811bbff7a118c17ef8cf83318cb623a103c15b8549089aa2a7f0ac",
+    "run/native/harbor/evaluation/division__kXJhUg4/config.json": "3dd0f6d760f70e786ad0b4e70f60812b6a5a52499708b826a82cfb3895a35f1f",
+    "run/native/harbor/evaluation/division__kXJhUg4/lock.json": "4b0e093c81b923be4df9b4121a27e2c7a30900493fd09e5913a68143530a0628",
+    "run/native/harbor/evaluation/division__kXJhUg4/trial.log": "5401ccbe8e1b5d98ed67744f8e63fc987b4623f39b70df7d7433f1ed1b1e3f25",
+    "run/native/harbor/evaluation/job.log": "1af4323211ffd2a8f2b2abba3b6e8f6cb427793b7f4bd25b3065e2ffbfc77ace",
+    "run/native/harbor/evaluation/lock.json": "2bd6759ca74fecf8eabac426c2f9d341b770a454ada415fdd45a100e6cb1a20d",
+    "run/native/harbor/evaluation/result.json": "a951472f7c4fca991661211f0e89616e40a537c0cef6023e88b3d42f8853097a",
+    "run/native/harbor/inputs/division/environment/.gitignore": "a51104264729e7b362ea8c739de0ada29ba6e4f6047580ec3a3fd330ad20fd47",
+    "run/native/harbor/inputs/division/environment/Dockerfile": "9c17f31302bbb50c531bce8f96796fddd8ff3f12bb965d57e990e0887883ced7",
+    "run/native/harbor/inputs/division/environment/calc.py": "2b1feebb68b3b5ca031f4bb7c11f9042a81653980f0c2d1f9137024a8c80d717",
+    "run/native/harbor/inputs/division/environment/test_calc.py": "6d8f2ada960540f9304f8aa92a89e8de5e1fe212d8deeb689a3683a9145fb94c",
+    "run/native/harbor/inputs/division/instruction.md": "706f9ddaaf5efe92982c094993ea25969b189b2ecfa98eeacfe7da767f730f50",
+    "run/native/harbor/inputs/division/solution/model.patch": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+    "run/native/harbor/inputs/division/solution/solve.sh": "6bb985d17d66b79e5b78d3b1e7fb87bcdf7faf2da667f3d9f2d546bef65cd49a",
+    "run/native/harbor/inputs/division/task.toml": "dfd0c2721379520fe851cc9a4ed010a54791178642e9baf2a28f5b2f09e348a2",
+    "run/native/harbor/inputs/division/tests/test.sh": "3a82f70f1130d7b31215bead86db08429f640b78bb94c6ccb68c62fe529fccd8",
+    "run/native/harbor/owned-projects/division__kxjhug4__env.json": "8790454d3c2bf29223ade370aa750853dd017003bc45cccdb77f210838b39946",
+    "run/resolved_request.json": "30cecadd25f6968f3c7d57eccdc960bafc138acff59f299d0532652872b9b8af",
+    "run/results.json": "7b0e74e453b4016f6810dcf495ea83aebed3769bcc8c4b04e768b28dd8f6c191",
+    "run/run_manifest.json": "9bb921510522eb71b99a0fd4c83de1e8493016909994612e1598a8a5cc690bdb"
+  }
+}

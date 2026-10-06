@@ -1,5 +1,6 @@
 """Native cancellation fixture with an observable running sandbox command."""
 import os
+import signal
 import subprocess
 from pathlib import Path
 
@@ -29,3 +30,12 @@ class SleepAgent(BaseAgent):
             if child and child.poll() is None:
                 child.terminate()
                 child.wait(timeout=5)
+
+
+class StubbornSleepAgent(SleepAgent):
+    """Force the parent's escalation path instead of native SIGINT cleanup."""
+
+    async def run(self, instruction, environment, context):
+        signal.signal(signal.SIGINT, signal.SIG_IGN)
+        signal.signal(signal.SIGTERM, signal.SIG_IGN)
+        await super().run(instruction, environment, context)

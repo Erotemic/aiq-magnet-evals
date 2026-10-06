@@ -2,9 +2,12 @@
 from __future__ import annotations
 
 import asyncio
+import contextlib
 import json
+import os
 import shlex
 import shutil
+import signal
 import subprocess
 import sys
 from dataclasses import replace
@@ -16,6 +19,8 @@ from magnet_evals.backends.harbor import HarborBackend
 from magnet_evals.contracts import EvaluationRequest, ExecutionContext, ModelBinding
 from magnet_evals.ensure import ensure_evaluation
 from magnet_evals.errors import ArtifactError, RequestValidationError
+from magnet_evals.outputs import load_run
+from magnet_evals.runner import run_evaluation_async
 from magnet_evals.store import ResultStore
 from tests.native.harbor_fixture import TASKS
 from tests.native.harbor_relay import relay
@@ -120,6 +125,77 @@ def test_import_rejects_another_model(tmp_path):
     resolved = HarborBackend().resolve(replace(request(), models=(replace(request().primary_model, model='different'),)))
     with pytest.raises(ArtifactError, match='model'):
         HarborBackend().import_results(resolved, str(source), ExecutionContext(output_dir=tmp_path / 'import'))
+
+
+def test_harbor_hard_kill_cleans_only_owned_docker_resources(tmp_path, monkeypatch):
+    import magnet_evals.runner as runner
+
+    terminate = runner._terminate_process_tree
+    terminated = []
+
+    async def fast_escalation(process):
+        await terminate(process, grace_seconds=0.1)
+        terminated.append({'pid': process.pid, 'returncode': process.returncode})
+
+    monkeypatch.setattr(runner, '_terminate_process_tree', fast_escalation)
+    monkeypatch.setattr(runner, '_TERM_GRACE_SECONDS', 0.1)
+    destination = tmp_path / 'run'
+
+    async def probe():
+        task = asyncio.create_task(run_evaluation_async(request(task_options={
+            'agent': 'python:tests.native.harbor_sleep_agent:StubbornSleepAgent'}),
+            ExecutionContext(output_dir=destination, worker_python=sys.executable)))
+        witness = None
+        try:
+            async with asyncio.timeout(180):
+                while not list(tmp_path.glob('.aiq-evals-work-*/native/harbor/evaluation/*/agent/started')):
+                    if task.done():
+                        await task
+                        pytest.fail('worker exited before the cancellation probe')
+                    await asyncio.sleep(0.2)
+            work, = tmp_path.glob('.aiq-evals-work-*')
+            record, = (work / 'native/harbor/owned-projects').glob('*.json')
+            project = json.loads(record.read_text())['project']
+            container = subprocess.check_output(['docker', 'ps', '-q', '--filter',
+                'label=com.docker.compose.project=' + project, '--filter',
+                'label=com.docker.compose.service=main'], text=True).strip()
+            image = subprocess.check_output(['docker', 'inspect', container, '--format', '{{.Image}}'], text=True).strip()
+            # Harbor's built image inherits Compose labels. Give this genuinely
+            # unrelated container its own project instead of inheriting ours.
+            witness = subprocess.check_output(['docker', 'run', '-d', '--label',
+                'com.docker.compose.project=unrelated-' + os.urandom(6).hex(),
+                image, 'sleep', '120'], text=True).strip()
+            task.cancel()
+            with pytest.raises(asyncio.CancelledError):
+                await task
+            assert subprocess.check_output(['docker', 'inspect', witness, '--format', '{{.State.Running}}'], text=True).strip() == 'true'
+            assert not subprocess.check_output(['docker', 'ps', '-aq', '--filter',
+                'label=com.docker.compose.project=' + project]).strip()
+            assert not subprocess.check_output(['docker', 'network', 'ls', '-q', '--filter',
+                'label=com.docker.compose.project=' + project]).strip()
+        finally:
+            if not task.done():
+                task.cancel()
+                with contextlib.suppress(asyncio.CancelledError):
+                    await task
+            if witness:
+                subprocess.run(['docker', 'rm', '-f', witness], check=True, capture_output=True)
+
+    asyncio.run(probe())
+    assert terminated and terminated[-1]['returncode'] == -signal.SIGKILL
+    run = load_run(destination)
+    assert run.result.status == 'cancelled' and not run.complete
+    assert not (destination / 'RUN_COMPLETE').exists()
+    cleanup = json.loads((destination / 'native/aiq_worker/harbor-cleanup.json').read_text())
+    assert cleanup['removed_containers'] and not cleanup['errors']
+    observation = tmp_path / 'hardkill-observation.json'
+    observation.write_text(json.dumps({
+        'worker': terminated[-1], 'unrelated_container_preserved': True,
+        'owned_containers_absent': True, 'owned_networks_absent': True}, indent=2) + '\n')
+    assert not list(destination.glob('native/harbor/evaluation/*/verifier/reward.txt'))
+    if capture := os.environ.get('AIQ_HARBOR_HARDKILL_CAPTURE_DIR'):
+        shutil.copytree(destination, Path(capture) / 'run')
+        shutil.copy2(observation, Path(capture) / observation.name)
 
 
 @pytest.mark.external
