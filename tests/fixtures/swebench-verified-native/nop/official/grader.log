@@ -1,0 +1,15 @@
+<frozen runpy>:128: RuntimeWarning: 'swebench.harness.run_evaluation' found in sys.modules after import of package 'swebench.harness', but prior to execution of 'swebench.harness.run_evaluation'; this may result in unpredictable behaviour
+No instances to run.
+Cleaning cached images...
+Removed 0 images.
+Total instances: 5
+Instances submitted: 5
+Instances completed: 0
+Instances incomplete: 0
+Instances resolved: 0
+Instances unresolved: 0
+Instances with empty patches: 5
+Instances with errors: 0
+Unstopped containers: 0
+Unremoved images: 0
+Report written to mockllm__model.nop.json

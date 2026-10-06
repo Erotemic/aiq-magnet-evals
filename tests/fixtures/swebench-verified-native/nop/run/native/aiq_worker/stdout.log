@@ -1,0 +1,6 @@
+Loading dataset princeton-nlp/SWE-bench_Verified from Hugging Face...
+Service default: using local image 'swebench/sweb.eval.x86_64.django_1776_django-10914@sha256:f26f0db931c6c1e785ab8287e1ea4f5f948846267db159deaf90b3fe7adea4e9'.
+Service default: using local image 'swebench/sweb.eval.x86_64.django_1776_django-10880@sha256:94e6ba5d96b1a1db8bc6fd117c03728d6a7453ddb723dc4484f48bd22efc968d'.
+Service default: using local image 'swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b'.
+Service default: using local image 'swebench/sweb.eval.x86_64.django_1776_django-10554@sha256:3e799bbbf2aa8ad8201cf7fa1302d3a8c2d0885bcd8141dbfcf67ae9d68ab2d1'.
+Service default: using local image 'swebench/sweb.eval.x86_64.psf_1776_requests-1142@sha256:b2733e57feb4cfaeac24ab5ec496d4cb89a37db53bd0ca72eaededdb2ce19d1c'.

@@ -1,0 +1,18 @@
+<frozen runpy>:128: RuntimeWarning: 'swebench.harness.run_evaluation' found in sys.modules after import of package 'swebench.harness', but prior to execution of 'swebench.harness.run_evaluation'; this may result in unpredictable behaviour
+Found 5 existing instance images. Will reuse them.
+Running 5 instances...
+  0%|          | 0/5 [00:00<?, ?it/s] 20%|██        | 1/5 [00:23<01:34, 23.55s/it]1 ran successfully, 0 failed:  20%|██        | 1/5 [00:23<01:34, 23.55s/it]1 ran successfully, 0 failed:  40%|████      | 2/5 [00:47<01:10, 23.60s/it]2 ran successfully, 0 failed:  40%|████      | 2/5 [00:47<01:10, 23.60s/it]2 ran successfully, 0 failed:  60%|██████    | 3/5 [01:11<00:47, 23.82s/it]3 ran successfully, 0 failed:  60%|██████    | 3/5 [01:11<00:47, 23.82s/it]3 ran successfully, 0 failed:  80%|████████  | 4/5 [01:34<00:23, 23.70s/it]4 ran successfully, 0 failed:  80%|████████  | 4/5 [01:34<00:23, 23.70s/it]4 ran successfully, 0 failed: 100%|██████████| 5/5 [01:53<00:00, 22.64s/it]5 ran successfully, 0 failed: 100%|██████████| 5/5 [01:53<00:00, 22.64s/it]5 ran successfully, 0 failed: 100%|██████████| 5/5 [01:53<00:00, 22.64s/it]
+All instances run.
+Cleaning cached images...
+Removed 0 images.
+Total instances: 5
+Instances submitted: 5
+Instances completed: 5
+Instances incomplete: 0
+Instances resolved: 5
+Instances unresolved: 0
+Instances with empty patches: 0
+Instances with errors: 0
+Unstopped containers: 0
+Unremoved images: 0
+Report written to mockllm__model.oracle.json

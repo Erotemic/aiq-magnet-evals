@@ -1,0 +1,37 @@
+{
+  "engine": "inspect_ai",
+  "identity_algorithm": "aiq-evals-measurement-v3+sha256",
+  "identity_unknown_reasons": [],
+  "measurement_identity": "daeeebc5843fc7bb4be078604e06efcb913cdd51ff72c6f83db55a8fbd944b94",
+  "metadata_checksums": {
+    "attempt.json": "38d87755a09e9518335d4310ab21edf6ef82b69835f8dd57db53147ff1d98b5d",
+    "resolved_request.json": "1bf0c5378e4e3fbd7ab0158d19e13e1c86bdef6e5a576fd039a43764da647b42",
+    "results.json": "7753404c811252f485323153edc0e11f576c5dd32eca75b5805524c9c0bb44d0"
+  },
+  "native_artifact_identity": "11867ff09fb31ed9d53d8800489d9c456a4dbdcdd67deed65df91055a2d0e004",
+  "native_artifacts": [
+    {
+      "path": "aiq_worker/stderr.log",
+      "role": "native",
+      "sha256": "1ac44911272074fccfddeef82bbeeb0c29e45bdda40db43ee059d2af0c71232e",
+      "size_bytes": 445
+    },
+    {
+      "path": "aiq_worker/stdout.log",
+      "role": "native",
+      "sha256": "3037d4ba84d92dc9fe0701b0e1f1ce1513fc9078ccfbf07f3a5751184970a9ac",
+      "size_bytes": 873
+    },
+    {
+      "path": "inspect_ai/logs/2026-10-06T02-20-42-00-00_aiq-swebench-verified_Mb6SX97PxCaUTPsqUnHiyE.eval",
+      "role": "native",
+      "sha256": "11e046881e78e1defca13d33d8975c292e22aa24d18faf6b1122f1ce0654bcf9",
+      "size_bytes": 58309
+    }
+  ],
+  "normalized_artifact_identity": "0b5a021bacab249d88f35d395e62017ef8b95f81c32bb10b34739b27611a07f5",
+  "request_schema_version": 1,
+  "result_schema_version": 1,
+  "reusable": true,
+  "schema_version": 1
+}

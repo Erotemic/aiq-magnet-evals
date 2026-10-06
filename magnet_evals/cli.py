@@ -323,6 +323,26 @@ class AiqMagnetEvalsCLI(kwconf.ModalCLI):
     __version__ = __version__
 
 
+class ExportPredictionsCLI(kwconf.Config):
+    """Export captured Inspect patches into official SWE-bench JSONL."""
+    run_dir = kwconf.Value(None, position=1, required=True, parser=str)
+    output = kwconf.Value(None, required=True, parser=str)
+
+    @classmethod
+    def main(cls, argv=True, **kwargs) -> int:
+        from magnet_evals.benchmarks.swe_bench_verified import export_predictions
+        args = _cli_args(cls, argv, kwargs)
+        print(export_predictions(args.run_dir, args.output))
+        return 0
+
+
+class SWEBenchCLI(kwconf.ModalCLI):
+    """SWE-bench benchmark protocols and retained patch tooling."""
+
+
+SWEBenchCLI.register(ExportPredictionsCLI, command='export-predictions')
+
+
 for _command, _cli in (
     ('phase1-status', Phase1StatusCLI),
     ('phase1-probe', Phase1ProbeCLI),
@@ -334,6 +354,7 @@ for _command, _cli in (
     ('run', RunCLI),
     ('import-native', ImportNativeCLI),
     ('show', ShowCLI),
+    ('swebench', SWEBenchCLI),
 ):
     AiqMagnetEvalsCLI.register(_cli, command=_command)
 

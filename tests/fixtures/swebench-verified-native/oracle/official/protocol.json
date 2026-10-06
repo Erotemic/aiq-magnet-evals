@@ -1,0 +1,42 @@
+{
+  "dataset": "princeton-nlp/SWE-bench_Verified",
+  "dataset_revision": "c104f840cc67f8b6eec6f759ebc8b2693d585d4a",
+  "dataset_sha256": "4d6bece2fddb0e85a9ace79116bd0c48e9306268ce520fbfaba6fdc66d34cbd1",
+  "images": {
+    "django__django-10554": "swebench/sweb.eval.x86_64.django_1776_django-10554@sha256:3e799bbbf2aa8ad8201cf7fa1302d3a8c2d0885bcd8141dbfcf67ae9d68ab2d1",
+    "django__django-10880": "swebench/sweb.eval.x86_64.django_1776_django-10880@sha256:94e6ba5d96b1a1db8bc6fd117c03728d6a7453ddb723dc4484f48bd22efc968d",
+    "django__django-10914": "swebench/sweb.eval.x86_64.django_1776_django-10914@sha256:f26f0db931c6c1e785ab8287e1ea4f5f948846267db159deaf90b3fe7adea4e9",
+    "django__django-10999": "swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b",
+    "psf__requests-1142": "swebench/sweb.eval.x86_64.psf_1776_requests-1142@sha256:b2733e57feb4cfaeac24ab5ec496d4cb89a37db53bd0ca72eaededdb2ce19d1c"
+  },
+  "swebench_version": "3.0.15",
+  "swebench_revision": "b524f150d5d76f188c741d75669025f718c89c2e",
+  "repository_setup": "git-reset-clean/v1",
+  "grader_command": [
+    "/tmp/aiq-harbor-roadmap/verified-worker/bin/python",
+    "-m",
+    "swebench.harness.run_evaluation",
+    "--dataset_name",
+    "/tmp/pytest-of-joncrall-agent/pytest-108/test_verified_patches_regrade_0/dataset.json",
+    "--predictions_path",
+    "/tmp/pytest-of-joncrall-agent/pytest-108/test_verified_patches_regrade_0/predictions.jsonl",
+    "--max_workers",
+    "1",
+    "--run_id",
+    "oracle",
+    "--instance_ids",
+    "django__django-10554",
+    "django__django-10880",
+    "django__django-10914",
+    "django__django-10999",
+    "psf__requests-1142",
+    "--instance_image_tag",
+    "aiq-verified-b62dbfe7f88ceb5e",
+    "--timeout",
+    "600",
+    "--cache_level",
+    "instance",
+    "--clean",
+    "False"
+  ]
+}

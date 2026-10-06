@@ -1,0 +1,30 @@
+{
+  "diagnostics": {
+    "native_logs": [
+      {
+        "eval_id": "XNLtUrvXZLaFFyi22kSbPL",
+        "location": "native/inspect_ai/logs/2026-10-06T02-20-42-00-00_aiq-swebench-verified_Mb6SX97PxCaUTPsqUnHiyE.eval",
+        "model": "mockllm/model",
+        "status": "success",
+        "task": "aiq_swebench_verified",
+        "task_id": "Mb6SX97PxCaUTPsqUnHiyE"
+      }
+    ],
+    "normalization_warnings": []
+  },
+  "execution_context": {
+    "env_keys": [],
+    "model_endpoint_roles": [],
+    "output_dir": "/tmp/pytest-of-joncrall-agent/pytest-108/test_verified_patches_regrade_1/store/attempts/da/daeeebc5843fc7bb4be078604e06efcb913cdd51ff72c6f83db55a8fbd944b94/20261006T022034599504Z-8fcd0ee6",
+    "timeout_seconds": null,
+    "worker_python": "/tmp/aiq-harbor-roadmap/verified-worker/bin/python"
+  },
+  "schema_version": 1,
+  "source_attempt": {
+    "native_artifact_identity": "11867ff09fb31ed9d53d8800489d9c456a4dbdcdd67deed65df91055a2d0e004",
+    "normalized_artifact_identity": "0b5a021bacab249d88f35d395e62017ef8b95f81c32bb10b34739b27611a07f5",
+    "path": "/tmp/pytest-of-joncrall-agent/pytest-108/test_verified_patches_regrade_1/store/attempts/da/daeeebc5843fc7bb4be078604e06efcb913cdd51ff72c6f83db55a8fbd944b94/20261006T022034599504Z-8fcd0ee6",
+    "relative_path": "attempts/da/daeeebc5843fc7bb4be078604e06efcb913cdd51ff72c6f83db55a8fbd944b94/20261006T022034599504Z-8fcd0ee6"
+  },
+  "status": "succeeded"
+}

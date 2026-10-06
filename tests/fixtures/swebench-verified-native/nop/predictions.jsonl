@@ -1,0 +1,5 @@
+{"instance_id": "django__django-10554", "model_name_or_path": "mockllm/model", "model_patch": ""}
+{"instance_id": "django__django-10880", "model_name_or_path": "mockllm/model", "model_patch": ""}
+{"instance_id": "django__django-10914", "model_name_or_path": "mockllm/model", "model_patch": ""}
+{"instance_id": "django__django-10999", "model_name_or_path": "mockllm/model", "model_patch": ""}
+{"instance_id": "psf__requests-1142", "model_name_or_path": "mockllm/model", "model_patch": ""}

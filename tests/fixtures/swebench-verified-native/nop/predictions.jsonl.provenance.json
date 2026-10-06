@@ -1,0 +1,54 @@
+{
+  "measurement_identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "daeeebc5843fc7bb4be078604e06efcb913cdd51ff72c6f83db55a8fbd944b94",
+    "reusable": true,
+    "unknown_reasons": []
+  },
+  "native_artifact_identity": "11867ff09fb31ed9d53d8800489d9c456a4dbdcdd67deed65df91055a2d0e004",
+  "normalized_artifact_identity": "0b5a021bacab249d88f35d395e62017ef8b95f81c32bb10b34739b27611a07f5",
+  "predictions_sha256": "8b3faba51f5dfe34961db5d29446bbf070d0f8d62bbf4e06c30d0165bcdab958",
+  "samples": [
+    {
+      "epoch": 1,
+      "eval_id": "XNLtUrvXZLaFFyi22kSbPL",
+      "instance_id": "django__django-10554",
+      "native_log": "native/inspect_ai/logs/2026-10-06T02-20-42-00-00_aiq-swebench-verified_Mb6SX97PxCaUTPsqUnHiyE.eval",
+      "native_sample_uuid": "VgBGdKeLfzi8vAJPXEf8cr",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "epoch": 1,
+      "eval_id": "XNLtUrvXZLaFFyi22kSbPL",
+      "instance_id": "django__django-10880",
+      "native_log": "native/inspect_ai/logs/2026-10-06T02-20-42-00-00_aiq-swebench-verified_Mb6SX97PxCaUTPsqUnHiyE.eval",
+      "native_sample_uuid": "fBqVH9gZUpt9ngANEtn8Sm",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "epoch": 1,
+      "eval_id": "XNLtUrvXZLaFFyi22kSbPL",
+      "instance_id": "django__django-10914",
+      "native_log": "native/inspect_ai/logs/2026-10-06T02-20-42-00-00_aiq-swebench-verified_Mb6SX97PxCaUTPsqUnHiyE.eval",
+      "native_sample_uuid": "hwj9JLcJPF5wPFFgbjgUQq",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "epoch": 1,
+      "eval_id": "XNLtUrvXZLaFFyi22kSbPL",
+      "instance_id": "django__django-10999",
+      "native_log": "native/inspect_ai/logs/2026-10-06T02-20-42-00-00_aiq-swebench-verified_Mb6SX97PxCaUTPsqUnHiyE.eval",
+      "native_sample_uuid": "8ui6dQaypcMZCWbNpTXfcH",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "epoch": 1,
+      "eval_id": "XNLtUrvXZLaFFyi22kSbPL",
+      "instance_id": "psf__requests-1142",
+      "native_log": "native/inspect_ai/logs/2026-10-06T02-20-42-00-00_aiq-swebench-verified_Mb6SX97PxCaUTPsqUnHiyE.eval",
+      "native_sample_uuid": "HVNsdiiNbMjMuhyrUEegW7",
+      "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "schema": "aiq-magnet-evals-swebench-predictions/1"
+}

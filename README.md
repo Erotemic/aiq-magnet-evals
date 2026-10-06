@@ -38,7 +38,9 @@ the shared conformance suite. Nothing is frozen before a PyPI release (ADR-0010)
 Harbor is also registered as an experimental generic engine at candidate pin
 `0.23.0`, in an isolated Python 3.12+ worker. Synthetic Docker probes and native
 worker conformance are recorded in [the Harbor evidence ledger](docs/planning/harbor-evidence.md).
-SWE-bench Verified/Pro integration and full VM/GPU acceptance remain in progress.
+[SWE-bench Verified](docs/swebench.md) now has a pinned five-instance offline
+oracle/NOP fixture with fresh official regrading and engine-free patch export.
+Pro integration and full VM/GPU acceptance remain in progress.
 
 From a source checkout, `dev/ci/harbor_phase0.sh` runs the infrastructure probes
 and `dev/ci/native_harbor.sh` runs generic adapter acceptance. The checkout-only

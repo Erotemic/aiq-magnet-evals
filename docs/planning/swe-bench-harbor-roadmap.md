@@ -1656,7 +1656,7 @@ Environment: Docker-capable Linux VM; GPU explicitly not required.
 - [x] Prove allowlisted endpoint succeeds while unlisted local/LAN and Internet
       targets fail.
 - [x] Capture cancellation and partial-failure native artifacts.
-- [ ] Pin Inspect-Evals/SWE-bench versions for Verified.
+- [x] Pin Inspect-Evals/SWE-bench versions for Verified (five-instance evidence).
 - [x] Pin Pro V2 repository revision/checksums.
 - [x] Decide Harbor Python API versus CLI worker implementation.
 
@@ -1687,9 +1687,9 @@ endpoint check is intentionally deferred to GPU acceptance.
 
 Owners: `infer-stack`, `aiq-magnet`
 
-- [ ] provenance schema/digest;
-- [ ] catalog query;
-- [ ] lease descriptor emission;
+- [x] provenance schema/digest;
+- [x] catalog query;
+- [x] lease descriptor emission;
 - [ ] MAGNET preflight projection;
 - [ ] runtime verification;
 - [ ] quantization mutation test.
@@ -1700,11 +1700,11 @@ Gate: same alias changing Q4 -> Q5 cannot reuse the old measurement.
 
 Owner: `aiq-magnet-evals`
 
-- [ ] pinned Inspect-Evals worker;
-- [ ] canonical request;
-- [ ] patch export;
-- [ ] upstream official regrade acceptance;
-- [ ] frozen smoke/screening ids;
+- [x] pinned Inspect-Evals worker;
+- [x] canonical request;
+- [x] patch export;
+- [x] upstream official regrade acceptance (five-instance oracle/NOP fixture);
+- [x] frozen smoke/screening ids (only smoke runtime verified);
 - [ ] MAGNET example recipe.
 
 Gate: per-instance Inspect verdict and official grader verdict agree on the

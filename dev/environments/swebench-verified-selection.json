@@ -1,0 +1,48 @@
+{
+  "schema": "aiq-magnet-evals-verified-selection/1",
+  "dataset": "princeton-nlp/SWE-bench_Verified",
+  "dataset_revision": "c104f840cc67f8b6eec6f759ebc8b2693d585d4a",
+  "smoke": [
+    "django__django-10554",
+    "django__django-10880",
+    "django__django-10914",
+    "django__django-10999",
+    "psf__requests-1142"
+  ],
+  "screening": [
+    "django__django-10554",
+    "django__django-10880",
+    "django__django-10914",
+    "django__django-10999",
+    "psf__requests-1142",
+    "sphinx-doc__sphinx-8638",
+    "django__django-13810",
+    "sphinx-doc__sphinx-9229",
+    "pydata__xarray-7229",
+    "django__django-13346",
+    "django__django-15554",
+    "scikit-learn__scikit-learn-11310",
+    "django__django-13820",
+    "django__django-15268",
+    "sympy__sympy-21847",
+    "pytest-dev__pytest-5809",
+    "django__django-12276",
+    "matplotlib__matplotlib-24627",
+    "pylint-dev__pylint-4604",
+    "sympy__sympy-23262",
+    "sphinx-doc__sphinx-9281",
+    "sphinx-doc__sphinx-8595",
+    "sympy__sympy-13551",
+    "sympy__sympy-22456",
+    "django__django-15467"
+  ],
+  "screening_selection": "smoke plus first 20 SHA256(seed:instance_id) ranks",
+  "seed": "aiq-magnet-evals-verified-screening-v1",
+  "runtime_verified_ids": [
+    "django__django-10554",
+    "django__django-10880",
+    "django__django-10914",
+    "django__django-10999",
+    "psf__requests-1142"
+  ]
+}

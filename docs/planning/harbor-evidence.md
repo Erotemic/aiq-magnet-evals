@@ -20,8 +20,8 @@ capability claims. Phase 0 was run on 2026-10-05 (America/New_York).
 - Inspect-Evals candidate source inspected:
   `9080b5e9f1647ed14e45de8cb01e3d43411c0163` (requires Inspect >=0.3.261).
   Its Verified task pins dataset revision
-  `c104f840cc67f8b6eec6f759ebc8b2693d585d4a`. No Verified native acceptance
-  has been performed; this is a candidate, not a supported pin.
+  `c104f840cc67f8b6eec6f759ebc8b2693d585d4a`. Verified native acceptance is
+  scoped to the five-instance fixture below; broader capability remains untested.
 
 ## Reproduction and observed gates
 
@@ -92,6 +92,57 @@ benchmark profile rather than silently replaying the wrong trial.
 - Full VM acceptance command, then the separate small GPU acceptance command.
 
 No supported Harbor adapter pin or complete SWE-bench capability is claimed yet.
+
+## Verified native acceptance: 2026-10-05/06
+
+The candidate worker freezes Inspect 0.3.272, Inspect-Evals
+`9080b5e9f1647ed14e45de8cb01e3d43411c0163`, SWE-bench 3.0.15
+(tag commit `b524f150d5d76f188c741d75669025f718c89c2e`), Python 3.12.3,
+and `dev/environments/swebench-verified-py312-constraints.txt`.
+`dev/environments/swebench-verified-images.json` records actual pulled image
+digests. The pinned Verified dataset contains 500 rows; only these five were
+accepted: django__django-10554, -10880, -10914, -10999 and psf__requests-1142.
+
+`tests/native/test_swebench_verified.py`: **2 passed**, 388.18 seconds.
+The complete reproduction script `dev/ci/swebench_verified_acceptance.sh`
+also passed **2 tests** in 385.54 seconds, including its constrained worker
+installation and digest-pinned image preparation.
+Each test executes five fresh Inspect sandboxes. Oracle: **5/5**, and fresh
+official containers regrade the exact exported patches **5/5** with no errors
+or incomplete instances. NOP: **0/5** with five actual empty patches. The
+official harness records those five as empty submissions, runs no grading
+containers, and resolves none. No per-instance NOP grader report is fabricated.
+
+Unmodified Inspect bundles, official grader reports/logs/patches, selected
+dataset rows and commands are under `tests/fixtures/swebench-verified-native`.
+The engine-free regression tests verify their SHA256 inventory, export the
+same patches byte for byte, compare each oracle patch to the official grader's
+`patch.diff`, and refuse tampered artifacts.
+
+### Explicit local protocol changes and excluded cells
+
+The task wrapper uses upstream Inspect-Evals agent/scorer/oracle code, selecting
+pinned dataset rows and digest-pinned images. It uses public ComposeConfig to
+avoid the upstream shared YAML-cache race. Before agent execution it runs
+`git reset --hard <base_commit>` and `git clean -fd` (`git-reset-clean/v1`).
+This changes the repository baseline explicitly: the original Requests image
+contained build residue, causing an oracle capture around 872 KB rather than
+the 743-byte gold patch. That capture scored 1 in Inspect but 0 on fresh
+official replay; grading the gold alone scored 1. Cleaning untracked files
+alone still left tracked mode changes in another image and made NOP nonempty.
+Reset plus clean produced the accepted exact oracle/NOP behavior above.
+
+An earlier Requests smoke attempt (1142, 1724, 1766, 1921, 2317) failed offline
+acceptance: the latter four gold patches encounter HTTP-dependent tests. That
+set was replaced by the now-frozen offline infrastructure fixture before any
+model comparisons. Those four offline cells and the remaining 495 Verified
+instances are untested, not supported by this acceptance. The separate
+25-instance screening selection is frozen but has not been executed.
+
+The official 3.0.15 CLI lacks a dataset-revision argument, so acceptance writes
+the pinned selected rows as its documented local JSON input. This preserves
+dataset identity rather than silently grading against the moving HF default.
+No GPU/model scores, full benchmark capability or publisher parity are claimed.
 
 ## Generic adapter acceptance: 2026-10-05
 

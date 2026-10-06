@@ -1,0 +1,121 @@
+{
+  "adapter_version": "0.2.0",
+  "engine_version": "0.3.272",
+  "identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "8738a4064af57d3c971c11639570aad756ac90c166f62d6b815fed243c9ea2e4",
+    "reusable": true,
+    "unknown_reasons": []
+  },
+  "native_config": {
+    "eval_options": {
+      "log_samples": true,
+      "max_sandboxes": 1,
+      "max_tasks": 1,
+      "message_limit": 30,
+      "sandbox_cleanup": true
+    },
+    "log_format": "eval",
+    "model": "mockllm/model",
+    "model_args": {},
+    "model_base_url": null,
+    "model_roles": {},
+    "registration_modules": [
+      "inspect_evals.swe_bench.scorers",
+      "inspect_evals.swe_bench.solvers",
+      "inspect_evals.swe_bench.swe_bench"
+    ],
+    "task_args": {
+      "clean_repository": true,
+      "images": {
+        "django__django-10554": "swebench/sweb.eval.x86_64.django_1776_django-10554@sha256:3e799bbbf2aa8ad8201cf7fa1302d3a8c2d0885bcd8141dbfcf67ae9d68ab2d1",
+        "django__django-10880": "swebench/sweb.eval.x86_64.django_1776_django-10880@sha256:94e6ba5d96b1a1db8bc6fd117c03728d6a7453ddb723dc4484f48bd22efc968d",
+        "django__django-10914": "swebench/sweb.eval.x86_64.django_1776_django-10914@sha256:f26f0db931c6c1e785ab8287e1ea4f5f948846267db159deaf90b3fe7adea4e9",
+        "django__django-10999": "swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b",
+        "psf__requests-1142": "swebench/sweb.eval.x86_64.psf_1776_requests-1142@sha256:b2733e57feb4cfaeac24ab5ec496d4cb89a37db53bd0ca72eaededdb2ce19d1c"
+      },
+      "instance_ids": [
+        "django__django-10554",
+        "django__django-10880",
+        "django__django-10914",
+        "django__django-10999",
+        "psf__requests-1142"
+      ],
+      "solver": "oracle",
+      "tool_timeout": 210
+    },
+    "task_reference": "python:magnet_evals.benchmarks.inspect_verified_task:verified_task"
+  },
+  "request": {
+    "data_revision": "c104f840cc67f8b6eec6f759ebc8b2693d585d4a",
+    "engine": "inspect_ai",
+    "engine_options": {
+      "eval_options": {
+        "max_sandboxes": 1,
+        "max_tasks": 1,
+        "message_limit": 30,
+        "sandbox_cleanup": true
+      },
+      "registration_modules": [
+        "inspect_evals.swe_bench.scorers",
+        "inspect_evals.swe_bench.solvers",
+        "inspect_evals.swe_bench.swe_bench"
+      ]
+    },
+    "generation": {},
+    "models": [
+      {
+        "cache_token": null,
+        "model": "mockllm/model",
+        "provider": null,
+        "provider_options": {},
+        "revision": "fixture-v1",
+        "role": "primary"
+      }
+    ],
+    "schema_version": 1,
+    "task": "python:magnet_evals.benchmarks.inspect_verified_task:verified_task",
+    "task_options": {
+      "clean_repository": true,
+      "images": {
+        "django__django-10554": "swebench/sweb.eval.x86_64.django_1776_django-10554@sha256:3e799bbbf2aa8ad8201cf7fa1302d3a8c2d0885bcd8141dbfcf67ae9d68ab2d1",
+        "django__django-10880": "swebench/sweb.eval.x86_64.django_1776_django-10880@sha256:94e6ba5d96b1a1db8bc6fd117c03728d6a7453ddb723dc4484f48bd22efc968d",
+        "django__django-10914": "swebench/sweb.eval.x86_64.django_1776_django-10914@sha256:f26f0db931c6c1e785ab8287e1ea4f5f948846267db159deaf90b3fe7adea4e9",
+        "django__django-10999": "swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b",
+        "psf__requests-1142": "swebench/sweb.eval.x86_64.psf_1776_requests-1142@sha256:b2733e57feb4cfaeac24ab5ec496d4cb89a37db53bd0ca72eaededdb2ce19d1c"
+      },
+      "instance_ids": [
+        "django__django-10554",
+        "django__django-10880",
+        "django__django-10914",
+        "django__django-10999",
+        "psf__requests-1142"
+      ],
+      "solver": "oracle",
+      "tool_timeout": 210
+    },
+    "task_revision": "9080b5e9f1647ed14e45de8cb01e3d43411c0163"
+  },
+  "resolved_facts": {
+    "candidate_version": "0.3.272",
+    "candidate_version_match": true,
+    "engine_checkout_dirty": false,
+    "engine_checkout_probe_error": "fatal: not a git repository (or any of the parent directories): .git",
+    "engine_module_file": "/tmp/aiq-harbor-roadmap/verified-worker/lib/python3.12/site-packages/inspect_ai/__init__.py",
+    "engine_revision": null,
+    "engine_version": "0.3.272",
+    "native_api": "inspect_ai.eval + inspect_ai.log public APIs",
+    "observed_engine_revision": null,
+    "registration_module_digests": {
+      "inspect_evals.swe_bench.scorers": "9082eecac99b0c9a5a9d9d9bba0d99e894d82b2510964fd252f4155de1c08b5c",
+      "inspect_evals.swe_bench.solvers": "6cf9f3e3a11376a9be92629b6be29276fd1e1d1a7460accbc85846c93ff5669b",
+      "inspect_evals.swe_bench.swe_bench": "42d9f6dc6c3c8e6929bcb09bb618a677285269140850887e4144ba299cafe9a8"
+    },
+    "requested_engine_revision": null,
+    "task_python_attribute": "verified_task",
+    "task_python_module": "magnet_evals.benchmarks.inspect_verified_task",
+    "task_reference_kind": "python_factory",
+    "task_source_path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/magnet_evals/benchmarks/inspect_verified_task.py",
+    "task_source_sha256": "90b2c7830bf972eeaf86696e674353a381f29edcc7e17ac764bba2ccba8386de"
+  }
+}
