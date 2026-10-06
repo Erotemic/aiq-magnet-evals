@@ -74,8 +74,9 @@ the sandbox continues to share Harbor's egress-control sidecar network namespace
 Only the relay hostname is allowlisted. A second, attempt-owned host HTTP hop
 binds to the Docker bridge gateway and forwards to loopback. No container port
 is published, and the sandbox does not use host networking. Both hops close
-after the job. This design needs production hardening and adapter integration
-before it can be used for benchmark runs.
+after the job. Generic adapter execution and Phase 0 now share this bridge.
+Real-model timing/streaming and benchmark protocol acceptance remain separate
+gates.
 
 The upstream replay agent searches `instance_*/result.json`; the fresh-replay
 fixture therefore uses task name `instance_division`. It selects the first
@@ -84,12 +85,37 @@ benchmark profile rather than silently replaying the wrong trial.
 
 ## Remaining gates
 
-- Generic Harbor backend resolution, identity, execution, engine-free import,
-  normalization, cancellation fallback, and shared conformance.
-- Production endpoint bridge integration and cleanup tests.
+- Hard-kill fallback cleanup and real-model bridge timing/streaming.
 - Pinned Inspect-Evals/official SWE-bench worker acceptance and patch export.
 - Actual Pro V2 oracle/NOP, locked mini-SWE generation, replay joins and profiles.
 - infer-stack scientific serving provenance and MAGNET preflight/runtime checks.
 - Full VM acceptance command, then the separate small GPU acceptance command.
 
 No supported Harbor adapter pin or complete SWE-bench capability is claimed yet.
+
+## Generic adapter acceptance: 2026-10-05
+
+`dev/ci/native_harbor.sh`: **12 passed, 12 other-engine tests deselected**,
+190.74 seconds, at the candidate pin and worker constraints above. The shared
+conformance checks cover execution, stable identity/reuse, native import and
+SIGINT process/container cleanup. Adapter-specific native checks cover task
+and config content identity, endpoint/location invariance, checksum refusal,
+input drift refusal, imported model mismatch, rejection of ignored agent
+options, consumed attempt-owned config snapshots, and scripted tools through
+the shared production bridge with unrelated LAN/Internet access denied.
+
+The Python 3.11 engine-free suite passed **193 tests**, 4 absent-engine module
+skips and 43 native deselections. Native Harbor captures normalize and
+round-trip without Harbor installed. Eight normalized regression summaries
+were regenerated with `dev/regenerate_native_regressions.py harbor` and
+reviewed; unchanged raw fixture checksums pass. Earlier type and lint checks
+passed for the adapter; benchmark-specific work is still in progress.
+
+Resolution hashes selected task bytes, agent Python source, explicit file
+configuration, Harbor source, installed dependency versions and Python runtime.
+Execution re-resolves before copying immutable inputs into the owned attempt.
+The native retry exception-set defaults are sorted before identity hashing;
+their otherwise nondeterministic JSON order must not change worker identity.
+Installed agents with absent or mutable version selectors remain nonreusable.
+The optional dependency and `uv.lock` select the candidate engine; only the
+recorded worker constraints describe the environment accepted above.

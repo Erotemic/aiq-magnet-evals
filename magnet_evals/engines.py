@@ -28,6 +28,17 @@ class EngineSpec:
 
 
 ENGINE_SPECS: dict[str, EngineSpec] = {
+    'harbor': EngineSpec(
+        key='harbor', distribution='harbor', module='harbor',
+        repository='https://github.com/harbor-framework/harbor.git',
+        candidate_revision='1e5c5c6db929a10a140d05e606882c671ae20729',
+        candidate_version='0.23.0', pin_state='candidate',
+        python_requirement_hint='>=3.12; isolated worker',
+        research_notes=(
+            'Native synthetic Docker probes: docs/planning/harbor-evidence.md.',
+            'SWE-bench Verified/Pro benchmark acceptance remains open.',
+        ),
+    ),
     'helm': EngineSpec(
         key='helm',
         distribution='crfm-helm',

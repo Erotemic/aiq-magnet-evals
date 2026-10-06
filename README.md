@@ -35,6 +35,20 @@ HELM `crfm-helm==0.5.14` through MAGNET. Support is limited to the tested
 combinations in `docs/planning/phase1-capabilities.md`. All three engines pass
 the shared conformance suite. Nothing is frozen before a PyPI release (ADR-0010).
 
+Harbor is also registered as an experimental generic engine at candidate pin
+`0.23.0`, in an isolated Python 3.12+ worker. Synthetic Docker probes and native
+worker conformance are recorded in [the Harbor evidence ledger](docs/planning/harbor-evidence.md).
+SWE-bench Verified/Pro integration and full VM/GPU acceptance remain in progress.
+
+From a source checkout, `dev/ci/harbor_phase0.sh` runs the infrastructure probes
+and `dev/ci/native_harbor.sh` runs generic adapter acceptance. The checkout-only
+`examples/harbor_synthetic_request.json` uses an oracle and needs no model/GPU.
+For model-driven jobs, use `task_options.endpoint_location="sandbox"` (default)
+for installed agents, or `"host"` for agents whose model client runs in the worker.
+The primary endpoint is operational; task/agent/config bytes and native phase
+network policies contribute to measurement identity. Installed agent runtimes
+without an explicit version are non-reusable.
+
 Implemented now:
 
 - versioned dependency-free request, resolution, result, sample, and metric contracts;

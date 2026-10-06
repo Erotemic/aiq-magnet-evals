@@ -24,6 +24,9 @@ classifiers = [
 dependencies = ["kwconf>=0.12.0"]
 
 [project.optional-dependencies]
+harbor = [
+  "harbor==0.23.0; python_version >= '3.12'",
+]
 inspect = [
   "inspect-ai==0.3.272",
 ]
@@ -67,6 +70,9 @@ target-version = "py311"
 line-length = 88
 lint.select = ["E", "F", "I"]
 lint.ignore = ["E501"]
+# Captured native sources are immutable evidence, and task repositories are
+# sandbox inputs. Neither is a host-side implementation lint target.
+extend-exclude = ["tests/fixtures/harbor-native", "tests/native/harbor_tasks"]
 
 # Example task modules import their engine at module level (Inspect's @task and
 # OLMo's @register need it); they only ever load inside that engine's worker.

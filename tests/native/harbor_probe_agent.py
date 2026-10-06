@@ -38,7 +38,7 @@ with opener.open(request, timeout=10) as response:
 class ProbeAgent(BaseAgent):
     def __init__(self, *args, targets, chat=True, **kwargs):
         super().__init__(*args, **kwargs)
-        self.targets = targets
+        self.targets = dict(targets)
         self.chat = chat
 
     @staticmethod
@@ -49,6 +49,9 @@ class ProbeAgent(BaseAgent):
         return "1"
 
     async def setup(self, environment):
+        endpoint = self._get_env('OPENAI_API_BASE')
+        if endpoint:
+            self.targets['allowed'] = endpoint.rstrip('/') + '/models'
         (self.logs_dir / "environment-capabilities.json").write_text(
             environment.capabilities.model_dump_json(indent=2))
         targets = self.logs_dir / "probe-targets.json"

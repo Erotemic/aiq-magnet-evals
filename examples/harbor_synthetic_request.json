@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "engine": "harbor",
+  "task": "path:tests/native/harbor_tasks",
+  "data_revision": "synthetic-division-v1",
+  "models": [{
+    "role": "primary",
+    "model": "fixture",
+    "cache_token": "synthetic-oracle-v1"
+  }],
+  "task_options": {
+    "agent": "oracle",
+    "environment": "docker",
+    "n_concurrent": 1,
+    "n_attempts": 1
+  }
+}

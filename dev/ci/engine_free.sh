@@ -9,7 +9,7 @@ uv venv -q --python "$PY" "$VENV"
 uv pip install -q --python "$VENV/bin/python" -e '.[tests]' ruff
 "$VENV/bin/python" - <<'PY'
 import importlib.util
-missing = [m for m in ('inspect_ai', 'olmo_eval', 'helm', 'magnet', 'kwdagger') if importlib.util.find_spec(m)]
+missing = [m for m in ('harbor', 'inspect_ai', 'olmo_eval', 'helm', 'magnet', 'kwdagger') if importlib.util.find_spec(m)]
 assert not missing, f'engine-free environment has engines installed: {missing}'
 import magnet_evals  # noqa: F401
 PY

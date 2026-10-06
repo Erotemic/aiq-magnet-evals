@@ -98,3 +98,14 @@ def test_helm_fixture_normalization(name):
 
     result = normalize_helm_runs([FIXTURES / 'helm-native' / name], identity=IDENTITY)
     assert summarize(result) == HELM_GOLDENS[name]
+
+
+HARBOR_GOLDENS = json.loads((FIXTURES / 'harbor-native/expected-normalized.json').read_text())
+
+
+@pytest.mark.parametrize('name', sorted(HARBOR_GOLDENS))
+def test_harbor_fixture_normalization(name):
+    from magnet_evals.backends.harbor.normalize import normalize_harbor_job
+
+    result = normalize_harbor_job(FIXTURES / 'harbor-native' / name, identity=IDENTITY, fallback_task=name)
+    assert summarize(result) == HARBOR_GOLDENS[name]

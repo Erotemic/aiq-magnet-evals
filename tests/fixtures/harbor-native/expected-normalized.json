@@ -1,0 +1,254 @@
+{
+  "cancellation": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 1,
+          "processed": 1,
+          "saved": 0,
+          "status": "partial"
+        },
+        "has_error": false,
+        "metrics": [],
+        "native_status": "cancelled",
+        "task": "cancellation"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 0,
+    "status": "cancelled",
+    "tool_messages": 0
+  },
+  "fresh-replay": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "patch-replay-agent__replay__adhoc",
+            "mean",
+            1,
+            1.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "fresh-replay"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 0,
+    "status": "succeeded",
+    "tool_messages": 0
+  },
+  "no-network": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "aiq-harbor-phase0-probe__adhoc",
+            "mean",
+            1,
+            0.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "no-network"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 0,
+    "status": "succeeded",
+    "tool_messages": 0
+  },
+  "nop": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "nop__adhoc",
+            "mean",
+            1,
+            0.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "nop"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 0,
+    "status": "succeeded",
+    "tool_messages": 0
+  },
+  "oracle": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "oracle__adhoc",
+            "mean",
+            1,
+            1.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "oracle"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 0,
+    "status": "succeeded",
+    "tool_messages": 0
+  },
+  "partial-failure": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 2,
+          "failed": 1,
+          "processed": 2,
+          "saved": 1,
+          "status": "partial"
+        },
+        "has_error": false,
+        "metrics": [],
+        "native_status": "failed",
+        "task": "partial-failure"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 2
+    },
+    "samples_with_trajectory": 0,
+    "status": "failed",
+    "tool_messages": 0
+  },
+  "replay-generation": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "oracle__adhoc",
+            "mean",
+            1,
+            1.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "replay-generation"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 0,
+    "status": "succeeded",
+    "tool_messages": 0
+  },
+  "scripted": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "aiq-harbor-phase0-probe__fixture-coding__adhoc",
+            "mean",
+            1,
+            1.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "scripted"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 1,
+    "status": "succeeded",
+    "tool_messages": 0
+  }
+}

@@ -3,8 +3,8 @@
 Status: proposed implementation roadmap, 2026-10-05
 
 Implementation is underway. Native Phase 0 synthetic Docker probes are recorded
-in [harbor-evidence.md](harbor-evidence.md); these do not yet establish a Harbor
-backend or SWE-bench benchmark support.
+in [harbor-evidence.md](harbor-evidence.md); generic Harbor adapter acceptance is also recorded there. SWE-bench benchmark
+support and the full VM gate remain in progress.
 
 This document plans the work required to make `aiq-magnet-evals` a trustworthy
 runtime for repository-level coding benchmarks, with particular emphasis on
@@ -1668,16 +1668,16 @@ this gate.
 
 Owner: `aiq-magnet-evals`
 
-- [ ] registry entry and optional dependency;
-- [ ] request validation;
-- [ ] resolution/identity;
-- [ ] execute;
-- [ ] normalization;
-- [ ] import;
-- [ ] cancellation/cleanup;
-- [ ] native conformance fixture;
-- [ ] scripted tool-using synthetic task;
-- [ ] engine-free result load.
+- [x] registry entry and optional dependency;
+- [x] request validation;
+- [x] resolution/identity;
+- [x] execute;
+- [x] normalization;
+- [x] import;
+- [x] cancellation/cleanup;
+- [x] native conformance fixture;
+- [x] scripted tool-using synthetic task;
+- [x] engine-free result load.
 
 Gate: deterministic transport and scripted tool-using Harbor tasks pass the same
 backend conformance expectations as Inspect/OLMo where applicable. The real-model

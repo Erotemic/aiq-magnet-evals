@@ -17,6 +17,11 @@ class SymbolCheck:
 
 
 API_SURFACES: dict[str, tuple[SymbolCheck, ...]] = {
+    'harbor': (
+        SymbolCheck('harbor.job', 'Job.create', 'supported native job construction'),
+        SymbolCheck('harbor.job', 'Job.run', 'native asynchronous execution and cancellation'),
+        SymbolCheck('harbor.models.job.config', 'JobConfig', 'structured native job inputs'),
+    ),
     'olmo_eval': (
         SymbolCheck(
             'olmo_eval.runners.asynq.runner',

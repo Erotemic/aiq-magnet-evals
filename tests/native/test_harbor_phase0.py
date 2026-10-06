@@ -14,6 +14,7 @@ from pathlib import Path
 
 import pytest
 
+from magnet_evals.backends.harbor.bridge import endpoint_bridge as production_bridge
 from tests.native.harbor_fixture import TASKS, run_job, trial_results
 from tests.native.harbor_relay import relay
 from tests.native.scripted_endpoint import scripted_endpoint
@@ -70,26 +71,7 @@ def endpoint_bridge(directory, upstream):
     gateway = json.loads(subprocess.check_output([
         "docker", "network", "inspect", "bridge", "--format", "{{json .IPAM.Config}}",
     ]))[0]["Gateway"]
-    # The relay is engine-free; the container imports it without invoking a CLI.
-    module = Path(__file__).with_name("harbor_relay.py").resolve()
-    with relay(upstream.rsplit("/v1", 1)[0], gateway) as port:
-        startup = (
-            "from harbor_relay import relay; import threading; "
-            f"bridge=relay('http://{gateway}:{port}', '0.0.0.0', 8080); "
-            "bridge.__enter__(); threading.Event().wait()"
-        )
-        compose = directory / "bridge.json"
-        compose.write_text(json.dumps({"services": {"model-relay": {
-            "image": "python:3.12-alpine@sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111",
-            "working_dir": "/fixture",
-            "command": ["python", "-c", startup],
-            "networks": ["default"],
-            "volumes": [{"type": "bind", "source": str(module),
-                         "target": "/fixture/harbor_relay.py", "read_only": True}],
-            "healthcheck": {"test": ["CMD", "python", "-c",
-                "import socket; socket.create_connection(('127.0.0.1',8080),2).close()"],
-                "interval": "1s", "timeout": "3s", "retries": 15},
-        }}}))
+    with production_bridge(directory, upstream) as (compose, _endpoint):
         yield compose, gateway
 
 

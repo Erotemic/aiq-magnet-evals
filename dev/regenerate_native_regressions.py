@@ -29,6 +29,7 @@ IDENTITY = MeasurementIdentity(algorithm='regression', digest='0' * 64, reusable
 INSPECT_ROOT = REPO / 'tests' / 'fixtures' / 'inspect-native'
 OLMO_ROOT = REPO / 'tests' / 'fixtures' / 'olmo-native'
 HELM_ROOT = REPO / 'tests' / 'fixtures' / 'helm-native'
+HARBOR_ROOT = REPO / 'tests' / 'fixtures' / 'harbor-native'
 
 # fixture directory -> native tasks the originating request resolved to
 OLMO_FIXTURES = {
@@ -78,7 +79,15 @@ def regenerate_helm() -> None:
     _write(HELM_ROOT / 'expected-normalized.json', goldens)
 
 
+def regenerate_harbor() -> None:
+    from magnet_evals.backends.harbor.normalize import normalize_harbor_job
+
+    goldens = {path.name: summarize(normalize_harbor_job(path, identity=IDENTITY, fallback_task=path.name))
+               for path in sorted(HARBOR_ROOT.iterdir()) if (path / 'result.json').is_file()}
+    _write(HARBOR_ROOT / 'expected-normalized.json', goldens)
+
+
 if __name__ == '__main__':
     targets = sys.argv[1:] or ['olmo']
     for target in targets:
-        {'inspect': regenerate_inspect, 'olmo': regenerate_olmo, 'helm': regenerate_helm}[target]()
+        {'harbor': regenerate_harbor, 'inspect': regenerate_inspect, 'olmo': regenerate_olmo, 'helm': regenerate_helm}[target]()

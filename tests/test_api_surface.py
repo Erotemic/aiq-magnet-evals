@@ -2,7 +2,7 @@ from magnet_evals.probes.api_surface import API_SURFACES, resolve_symbol
 
 
 def test_surfaces_cover_engines():
-    assert set(API_SURFACES) == {'helm', 'olmo_eval', 'inspect_ai'}
+    assert set(API_SURFACES) == {'harbor', 'helm', 'olmo_eval', 'inspect_ai'}
 
 
 def test_resolve_symbol():

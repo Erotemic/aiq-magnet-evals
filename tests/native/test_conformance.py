@@ -31,7 +31,7 @@ from magnet_evals.runner import resolve_evaluation, resolve_evaluation_async
 from magnet_evals.store import ResultStore
 
 OLMO_REVISION = "73ade80e24f796af55caeb8fd7b75a7f3fd607fd"
-ENGINE_MODULES = ("inspect_ai", "olmo_eval", "helm")
+ENGINE_MODULES = ("harbor", "inspect_ai", "olmo_eval", "helm")
 
 
 @dataclass(frozen=True)
@@ -147,10 +147,28 @@ def _helm_profile() -> Profile:
     )
 
 
-PROFILES = {"inspect_ai": _inspect_profile, "olmo_eval": _olmo_profile, "helm": _helm_profile}
+def _harbor_profile() -> Profile:
+    from tests.native.harbor_fixture import TASKS
+
+    success = EvaluationRequest(
+        engine='harbor', task='path:' + str(TASKS.resolve()), data_revision='synthetic-v1',
+        models=(ModelBinding(role='primary', model='fixture', revision='synthetic-v1'),),
+        task_options={'agent': 'oracle'},
+    )
+    return Profile(
+        engine='harbor', module='harbor', success=success,
+        changed=replace(success, task_options={'agent': 'oracle', 'n_attempts': 2}),
+        failing=_fixed(replace(success, task_options={
+            'agent': 'python:tests.native.harbor_failure_agent:FailureAgent'})),
+        slow=replace(success, task_options={'agent': 'python:tests.native.harbor_sleep_agent:SleepAgent'}),
+        slow_pid_env='AIQ_HARBOR_CHILD_PID_FILE', native_subdir='native/harbor/evaluation',
+    )
 
 
-@pytest.fixture(params=sorted(PROFILES))
+PROFILES = {'harbor': _harbor_profile, "inspect_ai": _inspect_profile, "olmo_eval": _olmo_profile, "helm": _helm_profile}
+
+
+@pytest.fixture(params=[pytest.param(name, marks=pytest.mark.docker_sandbox) if name == 'harbor' else name for name in sorted(PROFILES)])
 def profile(request) -> Profile:
     if importlib.util.find_spec(request.param) is None:
         pytest.skip(f"{request.param} is not installed in this interpreter")

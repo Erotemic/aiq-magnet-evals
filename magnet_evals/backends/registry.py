@@ -22,6 +22,11 @@ class BackendRegistration:
 
 
 _BUILTINS = {
+    'harbor': BackendRegistration(
+        key='harbor',
+        module='magnet_evals.backends.harbor',
+        factory='HarborBackend',
+    ),
     'helm': BackendRegistration(
         key='helm',
         module='magnet_evals.backends.helm',

@@ -93,3 +93,13 @@ worker path isolation, the rename, packaged examples, and the Docker sandbox.
 Opt-in, outside the gate: Inspect's Docker sandbox (`docker_sandbox`), 2 tests
 plus the Docker example, passed; see `planning/phase7-evidence.md`.
 
+
+## Harbor and SWE-bench candidate status: 2026-10-05
+
+Harbor remains experimental, with candidate pin `0.23.0`. Its generic native
+gate `dev/ci/native_harbor.sh` passed 12 tests (12 other-engine deselections);
+the separate Phase 0 Docker probes passed 6. The engine-free Python 3.11
+suite passed 193 tests. Scope and raw evidence are recorded in
+[planning/harbor-evidence.md](planning/harbor-evidence.md). These checks do not
+replace G1–G10, establish benchmark support, satisfy full SWE-bench VM/GPU
+acceptance, or constitute a hosted CI run.
