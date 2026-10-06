@@ -11,6 +11,7 @@ VERIFIED_ENV=${VERIFIED_ENV:-$SWE_WORK/verified-worker}
 SWE_PRO_DIR=${SWE_PRO_DIR:-$SWE_WORK/swe-pro}
 INFER_STACK_DIR=${INFER_STACK_DIR:-$(dirname "$PWD")/infer_stack}
 MAGNET_DIR=${MAGNET_DIR:-$(dirname "$PWD")/aiq-super-repo/submodules/aiq-magnet}
+INSPECT_EVALS_DIR=${INSPECT_EVALS_DIR:-$SWE_WORK/inspect-evals}
 python3 - "$AIQ_VM_REPORT" "$PWD" "$INFER_STACK_DIR" "$MAGNET_DIR" <<'PY'
 import json
 import sys
@@ -35,6 +36,42 @@ if [ ! -x "$CORE_ENV/bin/python" ]; then
     uv venv -q --python 3.11 "$CORE_ENV"
     uv pip install -q --python "$CORE_ENV/bin/python" -e .
 fi
+# A separate GPU host does not share the VM's /tmp workers or image cache.
+# Prepare the same pinned sources/environments before acquiring any model lease.
+if [ ! -d "$SWE_PRO_DIR/.git" ]; then
+    git clone https://github.com/scaleapi/SWE-bench_Pro-os.git "$SWE_PRO_DIR"
+    git -C "$SWE_PRO_DIR" checkout --detach 66f92766bba642462d4bbe5479e83f91f9211862
+fi
+test "$(git -C "$SWE_PRO_DIR" rev-parse HEAD)" = 66f92766bba642462d4bbe5479e83f91f9211862
+test -z "$(git -C "$SWE_PRO_DIR" status --porcelain --untracked-files=no)"
+if [ ! -d "$INSPECT_EVALS_DIR/.git" ]; then
+    git clone https://github.com/UKGovernmentBEIS/inspect_evals.git "$INSPECT_EVALS_DIR"
+    git -C "$INSPECT_EVALS_DIR" checkout --detach 9080b5e9f1647ed14e45de8cb01e3d43411c0163
+fi
+test "$(git -C "$INSPECT_EVALS_DIR" rev-parse HEAD)" = 9080b5e9f1647ed14e45de8cb01e3d43411c0163
+test -z "$(git -C "$INSPECT_EVALS_DIR" status --porcelain --untracked-files=no)"
+if [ ! -x "$HARBOR_ENV/bin/python" ]; then
+    uv venv -q --python 3.12 "$HARBOR_ENV"
+fi
+uv pip install -q --python "$HARBOR_ENV/bin/python" \
+    -c dev/environments/harbor-py312-constraints.txt -e '.[harbor,tests]'
+if [ ! -x "$VERIFIED_ENV/bin/python" ]; then
+    uv venv -q --python 3.12 "$VERIFIED_ENV"
+fi
+uv pip install -q --python "$VERIFIED_ENV/bin/python" \
+    -c dev/environments/swebench-verified-py312-constraints.txt \
+    -e '.[inspect,tests]' "$INSPECT_EVALS_DIR[swe_bench]" 'swebench==3.0.15'
+"$CORE_ENV/bin/python" - <<'PY'
+import json
+import subprocess
+from pathlib import Path
+images = json.loads(Path('dev/environments/swebench-verified-images.json').read_text())
+for image in images.values():
+    subprocess.run(['docker', 'pull', image], check=True)
+pro = json.loads(Path('dev/environments/swebench-pro-smoke.json').read_text())
+subprocess.run(['docker', 'pull', pro['image']], check=True)
+subprocess.run(['docker', 'tag', pro['image'], pro['image'].split('@')[0]], check=True)
+PY
 catalog_args=()
 if [ -n "${AIQ_INFER_CATALOG:-}" ]; then
     catalog_args=(--catalog "$AIQ_INFER_CATALOG")
