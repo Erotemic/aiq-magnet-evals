@@ -1,10 +1,15 @@
 # SWE-bench, SWE-bench Pro V2, and Harbor integration roadmap
 
-Status: proposed implementation roadmap, 2026-10-05
+Status: initial CPU/Docker acceptance complete, 2026-10-06; GPU and campaigns deferred
 
-Implementation is underway. Native Phase 0 synthetic Docker probes are recorded
-in [harbor-evidence.md](harbor-evidence.md); generic Harbor adapter acceptance is also recorded there. SWE-bench benchmark
-support and the full VM gate remain in progress.
+Initial implementation passed all seven VM gates and all 17 independent checks.
+Native Harbor, Verified, Pro V2 and MAGNET evidence is recorded in
+[harbor-evidence.md](harbor-evidence.md), with the unmodified
+[passing report](evidence/swebench-vm-2026-10-06/report.json). MAGNET serving
+provenance and smoke recipes use `dev/swebench-harbor-integration` from the
+exact `b2311d2` integration base. Real-model GPU acceptance, full benchmarks
+and the comparison campaign remain deferred; later phase checkboxes below
+retain those untested gates.
 
 This document plans the work required to make `aiq-magnet-evals` a trustworthy
 runtime for repository-level coding benchmarks, with particular emphasis on
@@ -1690,9 +1695,9 @@ Owners: `infer-stack`, `aiq-magnet`
 - [x] provenance schema/digest;
 - [x] catalog query;
 - [x] lease descriptor emission;
-- [ ] MAGNET preflight projection;
-- [ ] runtime verification;
-- [x] quantization mutation test (infer-stack; MAGNET node invalidation pending).
+- [x] MAGNET preflight projection;
+- [x] runtime verification;
+- [x] quantization mutation test (infer-stack and native MAGNET node/measurement invalidation).
 
 Gate: same alias changing Q4 -> Q5 cannot reuse the old measurement.
 
@@ -1705,7 +1710,7 @@ Owner: `aiq-magnet-evals`
 - [x] patch export;
 - [x] upstream official regrade acceptance (five-instance oracle/NOP fixture);
 - [x] frozen smoke/screening ids (only smoke runtime verified);
-- [ ] MAGNET example recipe.
+- [x] MAGNET example recipe preparation (five-instance Verified smoke).
 
 Gate: per-instance Inspect verdict and official grader verdict agree on the
 acceptance fixture or every discrepancy is understood/documented.
@@ -1721,8 +1726,8 @@ Owners: `aiq-magnet-evals`, `aiq-magnet`
 - [x] fresh patch replay;
 - [x] joined normalized samples;
 - [x] HARD-51 profile definition, without requiring a model run;
-- [ ] infrastructure-error eligibility;
-- [ ] fake infer-stack lease/descriptor path through MAGNET.
+- [x] infrastructure-error eligibility (captured Pro parser failure remains ineligible without a score);
+- [x] fake infer-stack lease/descriptor path through MAGNET (generic Harbor worker; paired Pro normalization evidenced separately).
 
 Gate: Pro V2 generation/replay plumbing, oracle/NOP, network policy, and normalized
 error semantics all pass on the Docker VM. HARD-51 model execution is not part of

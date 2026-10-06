@@ -242,10 +242,13 @@ attention, launch arguments, chat template/image changes, placement invariance
 and real SQLite lease descriptor emission. These are configured facts, not
 GPU/weight attestation.
 
-MAGNET `dev/aiq-evals-integration` / `b2311d2` is absent from the local checkout
-and available remotes. Legacy main lacks EvaluationNode and the fake-lease
-hook. No replacement scheduler was created. MAGNET projection/runtime checks
-and full VM acceptance remain open. GPU acceptance is implemented but not run.
+At the initial 2026-10-05 run, MAGNET `dev/aiq-evals-integration` / `b2311d2`
+was unavailable in the checked remotes. A later superrepo fetch exposed that
+exact integration base. The shared submodule now uses
+`dev/swebench-harbor-integration`, with serving provenance checks,
+Harbor lease/container acceptance and coding smoke recipe preparation. No
+replacement scheduler was created. Full VM acceptance passed on 2026-10-06;
+GPU acceptance is implemented but not run.
 
 ## Full VM gate record: 2026-10-05
 
@@ -325,4 +328,62 @@ MAGNET parser inputs do not establish MAGNET runtime capabilities.
 Final engine-free checks passed **237 tests**, 4 absent-engine skips and 51
 native deselections in 9.97 seconds; lint, core/reporter types and shell syntax
 passed. A fresh `git ls-remote --heads origin refs/heads/dev/aiq-evals-integration`
-returned no branch, and `b2311d2` remains absent from the available checkout.
+returned no branch at that time. The 2026-10-06 superrepo fetch subsequently
+provided `upstream/dev/aiq-evals-integration` at the exact `b2311d2` base.
+
+## Integrated VM acceptance: 2026-10-06
+
+Command: `dev/ci/swebench_vm_acceptance.sh`. Overall **PASS**: all seven gates
+and all **17 independent checks** passed. The unmodified report, seven JUnit
+files, logs, native captures and SHA256 inventory are retained in
+[swebench-vm-2026-10-06](evidence/swebench-vm-2026-10-06/README.md).
+This supersedes the integration blocker in the historical 2026-10-05 record;
+the earlier failed report remains unchanged.
+
+| Gate | Observed result |
+| --- | --- |
+| Engine-free | 238 passed, 4 absent-engine skips; 10.17 seconds |
+| Harbor Phase 0 | 6 passed, no skips; 214.76 seconds |
+| Generic Harbor conformance | 13 passed, no skips; 186.90 seconds |
+| Verified + fresh official regrading | 2 passed, no skips; 392.19 seconds; oracle 5/5, NOP 5 empty patches |
+| Pro generation + fresh replay | 4 passed, no skips; 820.62 seconds |
+| infer-stack serving provenance | 14 passed, no skips; 0.54 seconds |
+| MAGNET integration | 27 passed, no skips, 6 heavy-engine deselections; 255.81 seconds |
+
+Tested source revisions are evaluator `50b7d9c8a1c99bda1f298fbd727795713b6e8178`,
+infer-stack `36237f1b77ea7b4c2d7c6b341a72ce1095b81766`, and MAGNET
+`21b5b18d678b92d94ce59345d285707b27c331f8`. The report also fingerprints
+the source files. MAGNET uses its existing EvaluationNode scheduler on
+`dev/swebench-harbor-integration`, based on the fetched `b2311d2` integration.
+
+The native MAGNET fixture exercises real infer-stack null-backend leases,
+scripted OpenAI-compatible HTTP, and Harbor Docker workers through both host
+and container-only worker paths. Two selector rows share one measurement and
+one released lease; later requests reuse it without another lease. Concurrent
+gates execute once. Changing Q4 to Q5 under the same alias invalidates both
+the node and measurement. Stale catalog or leased facts stop before inference;
+mutable facts disable reuse. Native HTTP infrastructure errors and captured
+incomplete Pro grading remain ineligible for claim scoring.
+
+A real SIGTERM cancellation crosses the MAGNET lease gate, terminates the
+owned worker, releases its lease, removes its sandbox/network, and preserves
+a cancelled attempt without successful publication. The native probe exposed
+and drove fixes to a thread-based child wait in MAGNET and lease cleanup on
+SIGTERM in infer-stack. No ownership protections were relaxed.
+
+The archive retains 112 native/observation files byte for byte, including
+successful host/container bundles and the cancelled bundle. An independent
+Python 3.11 audit with no engines, MAGNET or kwdagger installed validated the
+inventory, read all three bundles, and reproduced their normalized summaries
+using the existing regression helper. Broader regressions passed: MAGNET
+309 tests with 36 optional-engine skips; infer-stack 1203 tests with 8
+optional/native skips. Changed source lint, types and shell syntax passed.
+
+This closes the initial CPU/Docker acceptance scope only. The lease fixture
+does not load weights or establish GPU/model performance. Paired Pro native
+generation/replay and MAGNET lease execution are separately evidenced; an
+actual model running Pro through MAGNET is not yet evidenced. Mini-SWE's
+installed runtime closure remains mutable and nonreusable. GPU acceptance,
+25-instance Verified screening, HARD-51, full 500/642 runs, comparison campaigns,
+Modal/publisher protocol parity and the separate hosted heavy-engine integration
+job remain unrun. The candidate adapters remain experimental.

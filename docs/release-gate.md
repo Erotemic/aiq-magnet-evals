@@ -108,9 +108,12 @@ Verified has a pinned five-instance offline oracle/NOP fixture whose patches
 agree with fresh official SWE-bench 3.0.15 grading. Local Pro V2 retains
 generation/replay jobs with native oracle/NOP smoke and scripted locked mini-SWE
 synthetic and actual Pro-image evidence. Python 3.11 passed 226 engine-free
-tests. The VM command passed six gates and failed the unavailable MAGNET
-EvaluationNode integration gate; GPU acceptance
-is implemented but not run. These candidates remain experimental and establish
+tests. The initial VM command passed six gates and failed the then-unavailable
+MAGNET EvaluationNode integration gate. The integrated 2026-10-06 run passed
+all seven VM gates and all 17 independent checks, including native MAGNET
+lease/container/reuse/provenance/cancellation checks. GPU acceptance is
+implemented but not run.
+These candidates remain experimental and establish
 neither full-benchmark support nor the release gates above.
 
 Supplemental Harbor hard-kill acceptance passed with a real agent ignoring

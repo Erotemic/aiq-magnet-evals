@@ -41,8 +41,10 @@ worker conformance are recorded in [the Harbor evidence ledger](docs/planning/ha
 [SWE-bench Verified](docs/swebench.md) now has a pinned five-instance offline
 oracle/NOP fixture with fresh official regrading and engine-free patch export.
 Pro V2 has an experimental local Harbor generation/fresh-replay profile with
-captured oracle/NOP and scripted locked-agent evidence. Full cross-repository
-VM/GPU acceptance remains in progress.
+captured oracle/NOP and scripted locked-agent evidence. Cross-repository VM
+acceptance passed all 17 required checks; real-model GPU acceptance remains
+unrun. Scope and [retained evidence](docs/planning/evidence/swebench-vm-2026-10-06/README.md)
+remain limited to the tested cells.
 
 From a source checkout, `dev/ci/harbor_phase0.sh` runs the infrastructure probes
 and `dev/ci/native_harbor.sh` runs generic adapter acceptance. The checkout-only

@@ -1,0 +1,16 @@
+{
+  "magnet-fake-lease-integration": [
+    "tests.test_aiq_evals_swebench.test_harbor_scheduler_lease_reuse_and_evidence[False]",
+    "tests.test_aiq_evals_swebench.test_harbor_scheduler_lease_reuse_and_evidence[True]",
+    "tests.test_aiq_evals_swebench.test_stale_serving_facts_abort_before_inference[catalog]",
+    "tests.test_aiq_evals_swebench.test_stale_serving_facts_abort_before_inference[lease]",
+    "tests.test_aiq_evals_swebench.test_concurrent_selectors_share_one_native_execution",
+    "tests.test_aiq_evals_swebench.test_infrastructure_failure_produces_no_false_score[True]",
+    "tests.test_aiq_evals_swebench.test_native_pro_replay_failure_is_ineligible",
+    "tests.test_aiq_evals_swebench.test_cancelled_native_lease_releases_and_cleans_sandbox"
+  ],
+  "quantization-measurement-invalidation": [
+    "tests.test_aiq_evals_swebench.test_quantization_invalidates_same_alias_measurement",
+    "tests.test_aiq_evals_swebench.test_uncertain_serving_inputs_cannot_become_reusable"
+  ]
+}

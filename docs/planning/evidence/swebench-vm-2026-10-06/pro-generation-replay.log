@@ -1,0 +1,15 @@
+Using Python 3.12.3 environment at: /tmp/aiq-harbor-roadmap/venv
+Resolved 98 packages in 55ms
+   Building aiq-magnet-evals @ file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals
+      Built aiq-magnet-evals @ file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals
+Prepared 1 package in 917ms
+Uninstalled 1 package in 1ms
+Installed 1 package in 6ms
+ ~ aiq-magnet-evals==0.1.0 (from file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals)
+ghcr.io/scaleapi/swe-bench_pro-v2@sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18: Pulling from scaleapi/swe-bench_pro-v2
+Digest: sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18
+Status: Image is up to date for ghcr.io/scaleapi/swe-bench_pro-v2@sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18
+ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2@sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18
+....                                                                     [100%]
+4 passed in 820.62s (0:13:40)
+Native Pro captures: /tmp/aiq-harbor-roadmap/pro-acceptance-captures/run-jKavhwdb

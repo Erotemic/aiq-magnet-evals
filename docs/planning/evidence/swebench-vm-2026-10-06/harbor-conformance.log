@@ -1,0 +1,10 @@
+Using Python 3.12.3 environment at: /tmp/aiq-harbor-roadmap/venv
+Resolved 98 packages in 206ms
+   Building aiq-magnet-evals @ file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals
+      Built aiq-magnet-evals @ file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals
+Prepared 1 package in 918ms
+Uninstalled 1 package in 1ms
+Installed 1 package in 4ms
+ ~ aiq-magnet-evals==0.1.0 (from file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals)
+.............                                                            [100%]
+13 passed, 12 deselected in 186.91s (0:03:06)

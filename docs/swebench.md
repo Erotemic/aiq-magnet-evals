@@ -104,7 +104,7 @@ matching containers and unused project networks. Foreign Compose directories
 are refused and cleanup errors remain diagnostic facts. Native SIGKILL evidence
 retains a cancelled bundle without publishing a reward or successful-run marker.
 
-## Acceptance and remaining integration
+## Acceptance and remaining GPU work
 
 ```bash
 dev/ci/swebench_vm_acceptance.sh
@@ -114,10 +114,14 @@ The CPU/Docker command reports engine-free, Harbor, Verified, Pro, serving
 provenance and MAGNET gates. It retains JUnit/native captures, rejects skipped
 required checks and fails when a required integration is unavailable. MAGNET
 must supply its fake-lease hook at `dev/ci/swebench_vm_acceptance.sh` on the
-EvaluationNode integration branch. The available legacy checkout lacks it.
-The recorded 2026-10-05 run passed the other six gates and failed this required
+EvaluationNode integration branch. That hook is implemented on
+`dev/swebench-harbor-integration` in the shared MAGNET submodule. The recorded
+2026-10-05 run passed the other six gates and failed this required
 MAGNET gate; its report and JUnit evidence are in
 `docs/planning/evidence/swebench-vm-2026-10-05`.
+The 2026-10-06 integrated run passed all seven gates and all 17 independent
+checks; its unmodified report, JUnit evidence and native MAGNET bundles are in
+[the passing evidence directory](planning/evidence/swebench-vm-2026-10-06/README.md).
 
 The VM report includes all 17 independent roadmap checks and the exact JUnit
 cases supporting each. Missing, skipped, failed or duplicate required cases
@@ -143,5 +147,9 @@ task, fixed Verified smoke/official grading and one Pro generation/replay task.
 It releases only its lease on exit and verifies release and Harbor cleanup.
 It launches no HARD-51/full run. Immutable configured provenance is required;
 infer-stack reports configured facts rather than attesting weight files or
-hardware. MAGNET provenance projection/rescheduling and fake-lease acceptance
-remain unfinished until the referenced integration checkout is available.
+hardware. The script prepares the pinned workers, upstream checkouts and image
+cache on the GPU host before acquiring a model lease. MAGNET provenance
+projection/rescheduling and fake-lease acceptance passed the full VM gate.
+These CPU fixtures establish protocol and scheduling behavior, not actual
+loaded weights or model performance. Mini-SWE runtime closure remains mutable
+and nonreusable. Full Verified/Pro runs and Modal protocol parity remain untested.

@@ -1,0 +1,39 @@
+Using Python 3.12.3 environment at: /tmp/aiq-harbor-roadmap/verified-worker
+Resolved 136 packages in 2.32s
+   Building inspect-evals @ file:///tmp/aiq-harbor-roadmap/inspect-evals
+   Building aiq-magnet-evals @ file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals
+      Built aiq-magnet-evals @ file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals
+      Built inspect-evals @ file:///tmp/aiq-harbor-roadmap/inspect-evals
+Prepared 2 packages in 4.07s
+Uninstalled 2 packages in 128ms
+Installed 2 packages in 94ms
+ ~ aiq-magnet-evals==0.1.0 (from file:///home/local/KHQ/jon.crall/code/aiq-magnet-evals)
+ ~ inspect-evals==0.0.1.dev1+unknown.g9080b5e9f (from file:///tmp/aiq-harbor-roadmap/inspect-evals)
+Preparing pinned Verified image: django__django-10554
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-10554@sha256:3e799bbbf2aa8ad8201cf7fa1302d3a8c2d0885bcd8141dbfcf67ae9d68ab2d1: Pulling from swebench/sweb.eval.x86_64.django_1776_django-10554
+Digest: sha256:3e799bbbf2aa8ad8201cf7fa1302d3a8c2d0885bcd8141dbfcf67ae9d68ab2d1
+Status: Image is up to date for swebench/sweb.eval.x86_64.django_1776_django-10554@sha256:3e799bbbf2aa8ad8201cf7fa1302d3a8c2d0885bcd8141dbfcf67ae9d68ab2d1
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-10554@sha256:3e799bbbf2aa8ad8201cf7fa1302d3a8c2d0885bcd8141dbfcf67ae9d68ab2d1
+Preparing pinned Verified image: django__django-10880
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-10880@sha256:94e6ba5d96b1a1db8bc6fd117c03728d6a7453ddb723dc4484f48bd22efc968d: Pulling from swebench/sweb.eval.x86_64.django_1776_django-10880
+Digest: sha256:94e6ba5d96b1a1db8bc6fd117c03728d6a7453ddb723dc4484f48bd22efc968d
+Status: Image is up to date for swebench/sweb.eval.x86_64.django_1776_django-10880@sha256:94e6ba5d96b1a1db8bc6fd117c03728d6a7453ddb723dc4484f48bd22efc968d
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-10880@sha256:94e6ba5d96b1a1db8bc6fd117c03728d6a7453ddb723dc4484f48bd22efc968d
+Preparing pinned Verified image: django__django-10914
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-10914@sha256:f26f0db931c6c1e785ab8287e1ea4f5f948846267db159deaf90b3fe7adea4e9: Pulling from swebench/sweb.eval.x86_64.django_1776_django-10914
+Digest: sha256:f26f0db931c6c1e785ab8287e1ea4f5f948846267db159deaf90b3fe7adea4e9
+Status: Image is up to date for swebench/sweb.eval.x86_64.django_1776_django-10914@sha256:f26f0db931c6c1e785ab8287e1ea4f5f948846267db159deaf90b3fe7adea4e9
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-10914@sha256:f26f0db931c6c1e785ab8287e1ea4f5f948846267db159deaf90b3fe7adea4e9
+Preparing pinned Verified image: django__django-10999
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b: Pulling from swebench/sweb.eval.x86_64.django_1776_django-10999
+Digest: sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b
+Status: Image is up to date for swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b
+docker.io/swebench/sweb.eval.x86_64.django_1776_django-10999@sha256:22a35ae325dc5abdd397b1d474d66aad62da6d23c4e9c8763478e82bcf63af7b
+Preparing pinned Verified image: psf__requests-1142
+docker.io/swebench/sweb.eval.x86_64.psf_1776_requests-1142@sha256:b2733e57feb4cfaeac24ab5ec496d4cb89a37db53bd0ca72eaededdb2ce19d1c: Pulling from swebench/sweb.eval.x86_64.psf_1776_requests-1142
+Digest: sha256:b2733e57feb4cfaeac24ab5ec496d4cb89a37db53bd0ca72eaededdb2ce19d1c
+Status: Image is up to date for swebench/sweb.eval.x86_64.psf_1776_requests-1142@sha256:b2733e57feb4cfaeac24ab5ec496d4cb89a37db53bd0ca72eaededdb2ce19d1c
+docker.io/swebench/sweb.eval.x86_64.psf_1776_requests-1142@sha256:b2733e57feb4cfaeac24ab5ec496d4cb89a37db53bd0ca72eaededdb2ce19d1c
+..                                                                       [100%]
+2 passed in 392.20s (0:06:32)
+Native Verified captures: /tmp/aiq-harbor-roadmap/verified-acceptance-captures/run-XfCDsUWK
