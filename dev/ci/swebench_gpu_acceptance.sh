@@ -16,11 +16,13 @@ import json
 import sys
 from pathlib import Path
 from dev.acceptance_support import source_digest
+from dev.swebench_vm_checks import checks_pass
 report = json.loads(Path(sys.argv[1]).read_text())
 required = {'engine-free', 'harbor-phase0', 'harbor-conformance', 'verified',
             'pro-generation-replay', 'serving-provenance', 'magnet-fake-lease'}
 assert report['status'] == 'PASS' and set(report['gates']) == required
 assert all(value == 'PASS' for value in report['gates'].values())
+assert checks_pass(report), 'required independent VM checks are missing or failed'
 assert report['evals_source_sha256'] == source_digest(Path(sys.argv[2])), 'evaluation source changed since VM acceptance'
 assert report['infer_stack_source_sha256'] == source_digest(Path(sys.argv[3]), ('infer_stack', 'tests/test_serving_provenance.py', 'pyproject.toml')), 'infer-stack source changed since VM acceptance'
 assert report['magnet_source_sha256'] == source_digest(Path(sys.argv[4]), ('magnet', 'dev/ci', 'pyproject.toml')), 'MAGNET source changed since VM acceptance'

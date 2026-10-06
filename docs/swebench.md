@@ -119,6 +119,17 @@ The recorded 2026-10-05 run passed the other six gates and failed this required
 MAGNET gate; its report and JUnit evidence are in
 `docs/planning/evidence/swebench-vm-2026-10-05`.
 
+The VM report includes all 17 independent roadmap checks and the exact JUnit
+cases supporting each. Missing, skipped, failed or duplicate required cases
+produce FAIL even if their enclosing gate says PASS. The MAGNET hook must write
+the JSON file named by `AIQ_VM_MAGNET_CHECKS`, mapping
+`magnet-fake-lease-integration` and `quantization-measurement-invalidation` to
+nonempty lists of its actual `classname.testname` JUnit identifiers (including
+parameter suffixes). Those tests must exercise the fake-lease EvaluationNode
+path and same-alias Q4-to-Q5 node invalidation respectively. The reporter
+requires those cases in `magnet-fake-lease.xml`; a declaration alone cannot pass.
+GPU acceptance requires every independent check to pass.
+
 The GPU script is implemented for a later GPU host and has not been run:
 
 ```bash

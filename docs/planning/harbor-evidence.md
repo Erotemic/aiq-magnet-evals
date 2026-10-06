@@ -305,3 +305,24 @@ the missing MAGNET integration. The corrected retained capture independently
 passed in **12.05 seconds**. Final engine-free checks passed **229 tests**, 4
 absent-engine skips and 51 native deselections in 10.33 seconds; lint and core
 type checks passed. Real-model timing/GPU acceptance remains open.
+
+## Independent VM reporting audit: 2026-10-05
+
+The VM driver now reports the roadmap's **17 independent checks**, with exact
+supporting JUnit identifiers and source-file checksums. It rejects missing,
+skipped, failed and duplicate required cases, even if the enclosing gate status
+is PASS. infer-stack environment preparation is also inside its gate, so a
+preparation failure does not prevent the remaining checks/report from running.
+GPU acceptance refuses reports without the complete independent checks.
+
+`docs/planning/evidence/swebench-vm-2026-10-05/checks-report.json` is derived from
+the retained JUnit files and identifies the unchanged original report by SHA256.
+It is **not a new native run** or an updated passing VM report. It shows **15
+checks PASS and 2 FAIL**: MAGNET fake-lease integration and same-alias
+quantization/measurement invalidation require the absent consumer integration.
+Eight engine-free reporter tests verify these evidence rules; their synthetic
+MAGNET parser inputs do not establish MAGNET runtime capabilities.
+Final engine-free checks passed **237 tests**, 4 absent-engine skips and 51
+native deselections in 9.97 seconds; lint, core/reporter types and shell syntax
+passed. A fresh `git ls-remote --heads origin refs/heads/dev/aiq-evals-integration`
+returned no branch, and `b2311d2` remains absent from the available checkout.

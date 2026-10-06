@@ -1,0 +1,302 @@
+{
+  "schema": "aiq-magnet-evals-swebench-vm-checks/1",
+  "derived_from": "report.json",
+  "report_sha256": "3ebcf9ce38fa213523006c70aea95337c660e049aa6e1b9ece654a2f49228876",
+  "checks": {
+    "harbor-backend-conformance": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-conformance",
+          "test": "tests.native.test_conformance.test_resolution_is_deterministic_and_worker_consistent[harbor]",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "harbor-conformance",
+          "test": "tests.native.test_conformance.test_ensure_executes_reuses_imports_and_reads_engine_free[harbor]",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "harbor-conformance",
+          "test": "tests.native.test_conformance.test_failure_is_inspectable_and_never_canonical[harbor]",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "harbor-conformance",
+          "test": "tests.native.test_conformance.test_cancellation_leaves_cancelled_attempt_and_no_canonical[harbor]",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "harbor-import-normalization-parity": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-conformance",
+          "test": "tests.native.test_conformance.test_ensure_executes_reuses_imports_and_reads_engine_free[harbor]",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "engine-free",
+          "test": "tests.test_harbor_normalize.test_engine_free_oracle_nop_and_scripted_roundtrip",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "nested-container-endpoint-bridge": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-phase0",
+          "test": "tests.native.test_harbor_phase0.test_allowlist_bridge_tool_execution_and_phase_policy",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "harbor-conformance",
+          "test": "tests.native.test_harbor_native.test_worker_uses_shared_bridge_and_scripted_tools",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "scripted-tool-using-synthetic-task": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-phase0",
+          "test": "tests.native.test_harbor_phase0.test_allowlist_bridge_tool_execution_and_phase_policy",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "pro-generation-replay",
+          "test": "tests.native.test_swebench_pro.test_locked_mini_swe_tools_capture_exact_patch_and_replay",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "unlisted-local-lan-egress-denial": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-phase0",
+          "test": "tests.native.test_harbor_phase0.test_allowlist_bridge_tool_execution_and_phase_policy",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "internet-egress-denial": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-phase0",
+          "test": "tests.native.test_harbor_phase0.test_allowlist_bridge_tool_execution_and_phase_policy",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "endpoint-allowlist-success": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-phase0",
+          "test": "tests.native.test_harbor_phase0.test_allowlist_bridge_tool_execution_and_phase_policy",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "exact-patch-capture": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-phase0",
+          "test": "tests.native.test_harbor_phase0.test_exact_patch_replay_in_fresh_sandbox",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "pro-generation-replay",
+          "test": "tests.native.test_swebench_pro.test_locked_mini_swe_tools_capture_exact_patch_and_replay",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "fresh-patch-replay": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-phase0",
+          "test": "tests.native.test_harbor_phase0.test_exact_patch_replay_in_fresh_sandbox",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "pro-generation-replay",
+          "test": "tests.native.test_swebench_pro.test_pro_gold_and_nop_are_scored_by_fresh_replay[oracle-1]",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "pro-generation-replay",
+          "test": "tests.native.test_swebench_pro.test_pro_gold_and_nop_are_scored_by_fresh_replay[nop-0]",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "model-infrastructure-failure-separation": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-phase0",
+          "test": "tests.native.test_harbor_phase0.test_partial_verifier_failure_is_not_zero_reward",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "engine-free",
+          "test": "tests.test_harbor_normalize.test_verifier_error_and_cancellation_never_become_model_zero",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "engine-free",
+          "test": "tests.test_swebench_pro.test_early_native_verifier_zero_does_not_depress_the_replay_aggregate",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "verified-smoke-official-regrade": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "verified",
+          "test": "tests.native.test_swebench_verified.test_verified_patches_regrade_in_fresh_official_containers[oracle-1]",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "verified",
+          "test": "tests.native.test_swebench_verified.test_verified_patches_regrade_in_fresh_official_containers[nop-0]",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "pro-v2-oracle-smoke": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "pro-generation-replay",
+          "test": "tests.native.test_swebench_pro.test_pro_gold_and_nop_are_scored_by_fresh_replay[oracle-1]",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "pro-v2-nop-smoke": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "pro-generation-replay",
+          "test": "tests.native.test_swebench_pro.test_pro_gold_and_nop_are_scored_by_fresh_replay[nop-0]",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "magnet-fake-lease-integration": {
+      "status": "FAIL",
+      "evidence": [
+        {
+          "gate": "magnet-fake-lease",
+          "status": "FAIL",
+          "reason": "missing MAGNET check-to-JUnit binding"
+        }
+      ]
+    },
+    "serving-provenance-identity": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "serving-provenance",
+          "test": "tests.test_serving_provenance.test_weight_changes_invalidate_same_alias[quantization-Q5]",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "serving-provenance",
+          "test": "tests.test_serving_provenance.test_placement_and_reclaim_are_operational",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "serving-provenance",
+          "test": "tests.test_serving_provenance.test_descriptor_uses_actual_deployment_and_emits_private_free_json",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "quantization-measurement-invalidation": {
+      "status": "FAIL",
+      "evidence": [
+        {
+          "gate": "magnet-fake-lease",
+          "status": "FAIL",
+          "reason": "missing MAGNET check-to-JUnit binding"
+        },
+        {
+          "gate": "serving-provenance",
+          "test": "tests.test_serving_provenance.test_weight_changes_invalidate_same_alias[quantization-Q5]",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    },
+    "result-reuse-single-flight": {
+      "status": "PASS",
+      "evidence": [
+        {
+          "gate": "harbor-conformance",
+          "test": "tests.native.test_conformance.test_ensure_executes_reuses_imports_and_reads_engine_free[harbor]",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "engine-free",
+          "test": "tests.test_single_flight.test_concurrent_ensures_execute_once",
+          "status": "PASS",
+          "reason": null
+        },
+        {
+          "gate": "engine-free",
+          "test": "tests.test_single_flight.test_single_flight_spans_processes",
+          "status": "PASS",
+          "reason": null
+        }
+      ]
+    }
+  },
+  "evidence_sha256": {
+    "engine-free.xml": "c9600ce36be4cbbd5bdb96b7ca65ceacb61928a7ca9d3857c42489fe95e337b6",
+    "harbor-phase0.xml": "1137b49e4525ad56d78a26963c1bc08d3b32ba7da99ce93a89fb8cd4374fdbcb",
+    "harbor-conformance.xml": "c2263976c90cd3373234fb6d68a159cb5f43e8a9c12acf4f017442bf7828ad7e",
+    "verified.xml": "577781de7d96f67e69de677b3b5aeda290ca85892ea0225961cbaac367330869",
+    "pro-generation-replay.xml": "f4ef6c54e85e784c673d42f9208d6427a39334b5e8aacf549e8867ce9c5500f6",
+    "serving-provenance.xml": "9a30964f875f63d84c8ca4cd266c8f14961a1b5d76d48697edc100b2e495014a"
+  }
+}
