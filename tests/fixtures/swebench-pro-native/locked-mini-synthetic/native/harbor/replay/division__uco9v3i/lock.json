@@ -1,0 +1,39 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "division",
+        "type": "local",
+        "digest": "sha256:567fce1286d6655af6399804253dd475c34d056cda3f084e437c678b376e60f8",
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/inputs/division"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent_setup_timeout_multiplier": 20.0,
+    "agent": {
+        "import_path": "patch_replay:PatchReplayAgent",
+        "model_name": "replay",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {
+            "source_job": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+        },
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

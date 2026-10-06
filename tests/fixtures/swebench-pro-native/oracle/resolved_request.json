@@ -1,0 +1,278 @@
+{
+  "adapter_version": "0.1.0",
+  "engine_version": "0.23.0",
+  "identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "4c13e346b57a3181ba04859b19df51b636256df7740714c57f28543291f893d3",
+    "reusable": true,
+    "unknown_reasons": []
+  },
+  "native_config": {
+    "agent_setup_timeout_multiplier": null,
+    "agent_timeout_multiplier": null,
+    "agents": [
+      {
+        "concurrency_group": null,
+        "extra_allowed_hosts": [],
+        "import_path": "tests.native.harbor_capture_agent:CaptureAgent",
+        "kwargs": {
+          "mode": "oracle"
+        },
+        "load_trajectory": null,
+        "max_timeout_sec": null,
+        "mcp_servers": [],
+        "model_name": "fixture",
+        "n_concurrent": null,
+        "name": null,
+        "override_setup_timeout_sec": null,
+        "override_timeout_sec": null,
+        "resume_trajectory": false,
+        "skills": []
+      }
+    ],
+    "artifacts": [],
+    "datasets": [],
+    "debug": false,
+    "environment": {
+      "cpu_enforcement_policy": "auto",
+      "delete": true,
+      "extra_allowed_hosts": [],
+      "extra_docker_compose": [],
+      "force_build": false,
+      "import_path": null,
+      "kwargs": {},
+      "memory_enforcement_policy": "auto",
+      "mounts": null,
+      "override_cpus": null,
+      "override_gpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_tpu": null,
+      "type": "docker"
+    },
+    "environment_build_timeout_multiplier": null,
+    "extra_instruction_paths": [],
+    "extra_instructions": [],
+    "install_only": false,
+    "metrics": [],
+    "n_attempts": 1,
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "retry": {
+      "exclude_exceptions": [
+        "AgentAuthenticationError",
+        "AgentSafetyRefusalError",
+        "AgentTimeoutError",
+        "ApiUsageLimitError",
+        "ModelNotFoundError",
+        "RewardFileEmptyError",
+        "RewardFileNotFoundError",
+        "VerifierOutputParseError",
+        "VerifierTimeoutError"
+      ],
+      "include_exceptions": null,
+      "max_retries": 0,
+      "max_wait_sec": 60.0,
+      "min_wait_sec": 1.0,
+      "wait_multiplier": 1.0
+    },
+    "source_jobs": [],
+    "tasks": [
+      {
+        "download_dir": null,
+        "git_commit_id": null,
+        "git_url": null,
+        "name": null,
+        "overwrite": false,
+        "path": "/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+        "ref": null,
+        "source": null
+      }
+    ],
+    "timeout_multiplier": 1.0,
+    "user_agent": null,
+    "verifier": {
+      "disable": false,
+      "max_timeout_sec": null,
+      "override_timeout_sec": null
+    },
+    "verifier_timeout_multiplier": null
+  },
+  "request": {
+    "data_revision": "sha256:9d84f8507c89241d42d8b3ef911600a1ec75dbbb32687ce9b45b93318502c0bd",
+    "engine": "harbor",
+    "engine_options": {
+      "checksums": "/tmp/aiq-harbor-roadmap/swe-pro/v2/SHA256SUMS",
+      "execution_protocol": "python:magnet_evals.benchmarks.swe_bench_pro:ProV2Protocol",
+      "protocol_options": {
+        "image_ids": {
+          "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2": "sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18"
+        }
+      },
+      "registration_modules": [
+        "locked_mini_swe",
+        "patch_replay"
+      ]
+    },
+    "generation": {},
+    "models": [
+      {
+        "cache_token": null,
+        "model": "fixture",
+        "provider": null,
+        "provider_options": {},
+        "revision": "fixture-v1",
+        "role": "primary"
+      }
+    ],
+    "schema_version": 1,
+    "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+    "task_options": {
+      "agent": "python:tests.native.harbor_capture_agent:CaptureAgent",
+      "agent_kwargs": {
+        "mode": "oracle"
+      },
+      "agent_revision": "acceptance-v1",
+      "task_ids": [
+        "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+      ]
+    },
+    "task_revision": "66f92766bba642462d4bbe5479e83f91f9211862"
+  },
+  "resolved_facts": {
+    "agent_option_paths": [],
+    "endpoint_location": "sandbox",
+    "engine_version": "0.23.0",
+    "identity_facts": {
+      "adapter_source_sha256": "7983726744c58bc1a5f28f9664131ce0426ab3f482ac9b5866948cb0bf975fc1",
+      "agent_option_content": {},
+      "agent_source_sha256": "685ccfa9070743d7b1be71d257278768bd5960bf15a4f5f58a15d49c62753e7c",
+      "benchmark_checksums_sha256": "9d84f8507c89241d42d8b3ef911600a1ec75dbbb32687ce9b45b93318502c0bd",
+      "execution_protocol": {
+        "facts": {
+          "image_ids": {
+            "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2": "sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18"
+          },
+          "protocol": "local-harbor/pro-v2-offline-replay/v1",
+          "replay_source_sha256": "5c8b344de37164e9723f1724c2573013957fb644c3913a64c12c1718c737d876",
+          "synthetic": false
+        },
+        "source_sha256": "d0803c0e814e2fb37b164138519b03f678a0e27eaa20f6cf080a5ab228919b60"
+      },
+      "harbor_source_sha256": "1e5b175cc74e4f774a77c48f045c536a2582a7c75e66392f54a2e8d642fc3226",
+      "native_task_names": [
+        "swebench-pro/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+      ],
+      "python_runtime": "CPython/3.12.3",
+      "registration_sources": {
+        "locked_mini_swe": "9d7b479ad20d5fda9ad35cf86a0e16dd5d43b74ed2bb665c78bec6381e10674b",
+        "patch_replay": "9d7b479ad20d5fda9ad35cf86a0e16dd5d43b74ed2bb665c78bec6381e10674b"
+      },
+      "runtime_dependencies": {
+        "aiohappyeyeballs": "2.7.1",
+        "aiohttp": "3.14.4",
+        "aiosignal": "1.4.0",
+        "annotated-doc": "0.0.5",
+        "annotated-types": "0.8.0",
+        "anyio": "4.15.1",
+        "attrs": "26.1.0",
+        "boto3": "1.43.108",
+        "botocore": "1.43.108",
+        "certifi": "2026.7.22",
+        "cffi": "2.1.1",
+        "charset-normalizer": "3.5.2",
+        "click": "8.5.0",
+        "coverage": "7.16.2",
+        "cryptography": "50.0.2",
+        "deprecation": "2.1.0",
+        "dirhash": "0.5.0",
+        "distro": "1.9.0",
+        "fastapi": "0.142.2",
+        "fastuuid": "0.14.0",
+        "filelock": "3.32.7",
+        "frozenlist": "1.8.0",
+        "fsspec": "2026.9.0",
+        "h11": "0.16.0",
+        "h2": "4.4.1",
+        "harbor": "0.23.0",
+        "hf-xet": "1.6.0",
+        "hpack": "4.2.0",
+        "httpcore": "1.0.9",
+        "httpx": "0.28.1",
+        "huggingface-hub": "1.33.0",
+        "hyperframe": "6.1.0",
+        "idna": "3.20",
+        "importlib-metadata": "8.9.0",
+        "iniconfig": "2.3.0",
+        "jinja2": "3.1.6",
+        "jiter": "0.17.0",
+        "jmespath": "1.1.0",
+        "jsonschema": "4.26.0",
+        "jsonschema-specifications": "2025.9.1",
+        "litellm": "1.104.0",
+        "markdown-it-py": "4.2.0",
+        "markupsafe": "3.0.4",
+        "mdurl": "0.1.2",
+        "multidict": "6.9.1",
+        "openai": "2.54.0",
+        "opentelemetry-api": "1.45.0",
+        "packaging": "26.3",
+        "pathspec": "1.1.1",
+        "platformdirs": "4.12.3",
+        "pluggy": "1.6.0",
+        "postgrest": "2.32.0",
+        "propcache": "0.5.4",
+        "pycparser": "3.0",
+        "pydantic": "2.13.5",
+        "pydantic-core": "2.46.5",
+        "pydantic-settings": "2.15.0",
+        "pygments": "2.21.0",
+        "pyjwt": "2.15.1",
+        "pytest": "9.1.1",
+        "pytest-cov": "7.1.0",
+        "python-dateutil": "2.9.0.post0",
+        "python-dotenv": "1.2.4",
+        "pyyaml": "6.0.3",
+        "realtime": "2.32.0",
+        "referencing": "0.37.0",
+        "regex": "2026.9.29",
+        "requests": "2.34.2",
+        "rich": "15.0.0",
+        "rpds-py": "2026.9.1",
+        "s3transfer": "0.19.2",
+        "scantree": "0.0.4",
+        "shellingham": "1.5.4",
+        "shortuuid": "1.0.13",
+        "six": "1.17.0",
+        "sniffio": "1.3.1",
+        "starlette": "1.7.0",
+        "storage3": "2.32.0",
+        "strenum": "0.4.15",
+        "supabase": "2.32.0",
+        "supabase-auth": "2.32.0",
+        "supabase-functions": "2.32.0",
+        "tenacity": "9.1.4",
+        "tiktoken": "0.14.0",
+        "tokenizers": "0.23.2",
+        "toml": "0.10.2",
+        "tqdm": "4.70.1",
+        "typer": "0.27.2",
+        "typing-extensions": "4.16.0",
+        "typing-inspection": "0.4.4",
+        "urllib3": "2.8.0",
+        "uvicorn": "0.54.0",
+        "websockets": "15.0.1",
+        "yarl": "1.25.1",
+        "zipp": "4.1.1"
+      },
+      "selected_tasks": [
+        "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+      ],
+      "task_source_sha256": "135f0174d4cdc8367b2d87e526d2d5811d93d3f2d4d8bfe0115b7a727f8bc377"
+    },
+    "task_content": {
+      "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2": "fc23c0b5f93e035c69585cd234d4e90bd84245252f35bd1d00f8f44774fda713"
+    },
+    "task_source_path": "/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks"
+  }
+}

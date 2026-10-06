@@ -1,0 +1,16 @@
+{
+    "task": {
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/inputs/division"
+    },
+    "trial_name": "division__uco9v3i",
+    "trials_dir": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay",
+    "agent_setup_timeout_multiplier": 20.0,
+    "agent": {
+        "import_path": "patch_replay:PatchReplayAgent",
+        "model_name": "replay",
+        "kwargs": {
+            "source_job": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+        }
+    },
+    "job_id": "7c2f1796-1cbd-4e9f-8681-ab546f4bd80a"
+}

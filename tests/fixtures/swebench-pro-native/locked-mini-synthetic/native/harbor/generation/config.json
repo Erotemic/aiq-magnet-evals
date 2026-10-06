@@ -1,0 +1,36 @@
+{
+    "job_name": "generation",
+    "jobs_dir": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor",
+    "agent_setup_timeout_multiplier": 20.0,
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "environment": {
+        "type": "docker",
+        "extra_docker_compose": [
+            "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation-inputs/bridge/endpoint-bridge.json"
+        ]
+    },
+    "agents": [
+        {
+            "import_path": "locked_mini_swe:LockedMiniSwe",
+            "model_name": "openai/fixture-coding",
+            "extra_allowed_hosts": [
+                "model-relay"
+            ],
+            "kwargs": {
+                "config_file": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation-inputs/agent-inputs/0/mini_toolcall.yaml",
+                "version": "2.4.6"
+            },
+            "env": {
+                "OPENAI_API_BASE": "http://model-relay:8080/v1",
+                "OPENAI_BASE_URL": "http://model-relay:8080/v1",
+                "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation-inputs/inputs/division"
+        }
+    ]
+}

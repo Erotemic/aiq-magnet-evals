@@ -33,5 +33,10 @@ for instance, image in images.items():
     print(f'Preparing pinned Verified image: {instance}', flush=True)
     subprocess.run(['docker', 'pull', image], check=True)
 PY
-export AIQ_VERIFIED_CAPTURE_DIR=${AIQ_VERIFIED_CAPTURE_DIR:-$SWE_WORK/verified-acceptance-captures}
+if [ -z "${AIQ_VERIFIED_CAPTURE_DIR:-}" ]; then
+    mkdir -p "$SWE_WORK/verified-acceptance-captures"
+    AIQ_VERIFIED_CAPTURE_DIR=$(mktemp -d "$SWE_WORK/verified-acceptance-captures/run-XXXXXXXX")
+fi
+export AIQ_VERIFIED_CAPTURE_DIR
 "$VERIFIED_ENV/bin/python" -m pytest -q tests/native/test_swebench_verified.py
+echo "Native Verified captures: $AIQ_VERIFIED_CAPTURE_DIR"

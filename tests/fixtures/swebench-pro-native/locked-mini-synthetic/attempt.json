@@ -1,0 +1,96 @@
+{
+  "diagnostics": {
+    "aggregate_withheld": false,
+    "authoritative_phase": "fresh-replay",
+    "failure": null,
+    "generation_diagnostics": {
+      "aggregate_withheld": false,
+      "failure": null,
+      "infrastructure_error_count": 0,
+      "native_job_id": "982ca88f-d832-4811-80b0-8f668ec38832",
+      "native_job_stats": {
+        "cost_usd": 0.0,
+        "evals": {
+          "mini-swe-agent-locked__fixture-coding__adhoc": {
+            "exception_stats": {},
+            "metrics": [
+              {
+                "mean": 1.0
+              }
+            ],
+            "n_errors": 0,
+            "n_trials": 1,
+            "pass_at_k": {},
+            "reward_stats": {
+              "reward": {
+                "1.0": [
+                  "division__r24KX6y"
+                ]
+              }
+            }
+          }
+        },
+        "n_cache_tokens": 0,
+        "n_cancelled_trials": 0,
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_input_tokens": 20,
+        "n_output_tokens": 8,
+        "n_pending_trials": 0,
+        "n_retries": 0,
+        "n_running_trials": 0
+      },
+      "provenance": "native Harbor job; request revision tokens are not attested by an import"
+    },
+    "infrastructure_error_count": 0,
+    "native_job_id": "7c2f1796-1cbd-4e9f-8681-ab546f4bd80a",
+    "native_job_stats": {
+      "cost_usd": null,
+      "evals": {
+        "patch-replay-agent__replay__adhoc": {
+          "exception_stats": {},
+          "metrics": [
+            {
+              "mean": 1.0
+            }
+          ],
+          "n_errors": 0,
+          "n_trials": 1,
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "1.0": [
+                "division__uco9v3i"
+              ]
+            }
+          }
+        }
+      },
+      "n_cache_tokens": null,
+      "n_cancelled_trials": 0,
+      "n_completed_trials": 1,
+      "n_errored_trials": 0,
+      "n_input_tokens": null,
+      "n_output_tokens": null,
+      "n_pending_trials": 0,
+      "n_retries": 0,
+      "n_running_trials": 0
+    },
+    "protocol": "local-harbor/pro-v2-offline-replay/v1",
+    "provenance": "native Harbor job; request revision tokens are not attested by an import",
+    "verifier_coverage_error_count": 0
+  },
+  "execution_context": {
+    "env_keys": [
+      "OPENAI_API_KEY"
+    ],
+    "model_endpoint_roles": [
+      "primary"
+    ],
+    "output_dir": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/20261006T024925168594Z-1a91b636",
+    "timeout_seconds": 1200,
+    "worker_python": "/tmp/aiq-harbor-roadmap/venv/bin/python"
+  },
+  "schema_version": 1,
+  "status": "succeeded"
+}

@@ -1,0 +1,314 @@
+{
+  "artifacts": [],
+  "diagnostics": {
+    "aggregate_withheld": false,
+    "authoritative_phase": "fresh-replay",
+    "failure": null,
+    "generation_diagnostics": {
+      "aggregate_withheld": false,
+      "failure": null,
+      "infrastructure_error_count": 0,
+      "native_job_id": "fe809cf7-2388-424b-a5d9-65e4f4a30c7a",
+      "native_job_stats": {
+        "cost_usd": null,
+        "evals": {
+          "acceptance-oracle-nop-capture__fixture__adhoc": {
+            "exception_stats": {},
+            "metrics": [
+              {
+                "mean": 0.0
+              }
+            ],
+            "n_errors": 0,
+            "n_trials": 1,
+            "pass_at_k": {},
+            "reward_stats": {
+              "reward": {
+                "0.0": [
+                  "instance_ansible__ansible-0ea40e__2rDzjkd"
+                ]
+              }
+            }
+          }
+        },
+        "n_cache_tokens": null,
+        "n_cancelled_trials": 0,
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_input_tokens": null,
+        "n_output_tokens": null,
+        "n_pending_trials": 0,
+        "n_retries": 0,
+        "n_running_trials": 0
+      },
+      "provenance": "native Harbor job; request revision tokens are not attested by an import"
+    },
+    "infrastructure_error_count": 0,
+    "native_job_id": "2995e6fe-181c-4786-b211-7c33ae02cb10",
+    "native_job_stats": {
+      "cost_usd": null,
+      "evals": {
+        "patch-replay-agent__replay__adhoc": {
+          "exception_stats": {},
+          "metrics": [
+            {
+              "mean": 0.0
+            }
+          ],
+          "n_errors": 0,
+          "n_trials": 1,
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "0.0": [
+                "instance_ansible__ansible-0ea40e__GLvLsci"
+              ]
+            }
+          }
+        }
+      },
+      "n_cache_tokens": null,
+      "n_cancelled_trials": 0,
+      "n_completed_trials": 1,
+      "n_errored_trials": 0,
+      "n_input_tokens": null,
+      "n_output_tokens": null,
+      "n_pending_trials": 0,
+      "n_retries": 0,
+      "n_running_trials": 0
+    },
+    "protocol": "local-harbor/pro-v2-offline-replay/v1",
+    "provenance": "native Harbor job; request revision tokens are not attested by an import",
+    "verifier_coverage_error_count": 0
+  },
+  "engine": "harbor",
+  "identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310",
+    "reusable": true,
+    "unknown_reasons": []
+  },
+  "records": [
+    {
+      "coverage": {
+        "expected": 1,
+        "failed": 0,
+        "processed": 1,
+        "saved": 1,
+        "status": "complete"
+      },
+      "error": null,
+      "metrics": [
+        {
+          "denominator": 1,
+          "group": "patch-replay-agent__replay__adhoc",
+          "metric": "mean",
+          "model_role": "primary",
+          "reducer": "mean",
+          "score": "reward",
+          "scorer": "verifier",
+          "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+          "value": 0.0
+        }
+      ],
+      "model_role": "primary",
+      "native_config": {
+        "agents": [
+          {
+            "import_path": "patch_replay:PatchReplayAgent",
+            "kwargs": {
+              "source_job": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+            },
+            "model_name": "replay"
+          }
+        ],
+        "job_name": "replay",
+        "jobs_dir": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor",
+        "n_concurrent_trials": 1,
+        "quiet": true,
+        "tasks": [
+          {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+          }
+        ]
+      },
+      "native_status": "succeeded",
+      "primary_metric": "mean",
+      "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks"
+    }
+  ],
+  "samples": [
+    {
+      "epoch": null,
+      "model_role": "primary",
+      "native": {
+        "agent_error": null,
+        "agent_info": {
+          "model_info": {
+            "name": "replay",
+            "provider": null
+          },
+          "name": "patch-replay-agent",
+          "version": "1.0.0"
+        },
+        "attempt_id": "a5d6dd15-0185-4678-b08e-406a052e27d6",
+        "authoritative_phase": "fresh-replay",
+        "counted_as_model_failure": true,
+        "environment_error": null,
+        "exception_info": null,
+        "exception_phase": null,
+        "generation_native": {
+          "agent_error": null,
+          "agent_info": {
+            "model_info": {
+              "name": "fixture",
+              "provider": null
+            },
+            "name": "acceptance-oracle-nop-capture",
+            "version": "1.0.0"
+          },
+          "attempt_id": "02105689-74e7-4733-bc92-d9fba6977530",
+          "counted_as_model_failure": true,
+          "environment_error": null,
+          "exception_info": null,
+          "exception_phase": null,
+          "native_rewards": {
+            "reward": 0.0
+          },
+          "patch_artifact": "native/harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/agent/model.patch",
+          "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "result_artifact": "native/harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/result.json",
+          "task_checksum": "8cfc27a14a66fc28d72c52828e83ade880a8865648ce05e487f896e664da67e8",
+          "timings": {
+            "agent_execution": {
+              "finished_at": "2026-10-06T02:42:31.206176Z",
+              "started_at": "2026-10-06T02:42:24.134869Z"
+            },
+            "agent_setup": {
+              "finished_at": "2026-10-06T02:42:24.043632Z",
+              "started_at": "2026-10-06T02:42:24.043498Z"
+            },
+            "environment_setup": {
+              "finished_at": "2026-10-06T02:42:24.043405Z",
+              "started_at": "2026-10-06T02:42:20.101412Z"
+            },
+            "verifier": {
+              "finished_at": "2026-10-06T02:44:02.033011Z",
+              "started_at": "2026-10-06T02:42:32.189065Z"
+            }
+          },
+          "trial_id": "02105689-74e7-4733-bc92-d9fba6977530",
+          "trial_name": "instance_ansible__ansible-0ea40e__2rDzjkd",
+          "trial_status": "succeeded",
+          "verifier_artifacts": [
+            "native/harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/output.json",
+            "native/harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/reward.txt",
+            "native/harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/run-script-stderr.txt",
+            "native/harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/run-script-stdout.txt",
+            "native/harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/test-stdout.txt"
+          ],
+          "verifier_environment_mode": "shared",
+          "verifier_error": null
+        },
+        "generation_rewards": {
+          "reward": 0.0
+        },
+        "generation_trial_id": "02105689-74e7-4733-bc92-d9fba6977530",
+        "generation_trial_name": "instance_ansible__ansible-0ea40e__2rDzjkd",
+        "native_rewards": {
+          "reward": 0.0
+        },
+        "patch_bytes": 0,
+        "patch_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "protocol": "local-harbor/pro-v2-offline-replay/v1",
+        "replay": {
+          "patch": null,
+          "task": "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+        },
+        "replay_trial_id": "a5d6dd15-0185-4678-b08e-406a052e27d6",
+        "result_artifact": "native/harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/result.json",
+        "task_checksum": "8cfc27a14a66fc28d72c52828e83ade880a8865648ce05e487f896e664da67e8",
+        "timings": {
+          "agent_execution": {
+            "finished_at": "2026-10-06T02:44:23.018055Z",
+            "started_at": "2026-10-06T02:44:20.456190Z"
+          },
+          "agent_setup": {
+            "finished_at": "2026-10-06T02:44:20.345815Z",
+            "started_at": "2026-10-06T02:44:20.345742Z"
+          },
+          "environment_setup": {
+            "finished_at": "2026-10-06T02:44:20.345694Z",
+            "started_at": "2026-10-06T02:44:16.325457Z"
+          },
+          "verifier": {
+            "finished_at": "2026-10-06T02:45:59.276294Z",
+            "started_at": "2026-10-06T02:44:24.023520Z"
+          }
+        },
+        "trial_id": "a5d6dd15-0185-4678-b08e-406a052e27d6",
+        "trial_name": "instance_ansible__ansible-0ea40e__GLvLsci",
+        "trial_status": "succeeded",
+        "verifier_artifacts": [
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/output.json",
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/reward.txt",
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/run-script-stderr.txt",
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/run-script-stdout.txt",
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/test-stdout.txt"
+        ],
+        "verifier_environment_mode": "shared",
+        "verifier_error": null,
+        "verifier_observation": {
+          "complete": true,
+          "missing": [],
+          "observed": [
+            "test/units/utils/test_vars.py::TestVariableUtils::test_combine_vars_improper_args",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_combine_vars_merge",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_combine_vars_replace",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_append",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_append_rp",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_keep",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_prepend",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_prepend_rp",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_replace",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_append",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_append_rp",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_keep",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_prepend",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_prepend_rp",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_replace",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_simple"
+          ],
+          "reason": null,
+          "required": [
+            "test/units/utils/test_vars.py::TestVariableUtils::test_combine_vars_improper_args",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_combine_vars_merge",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_combine_vars_replace",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_append",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_append_rp",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_keep",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_prepend",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_prepend_rp",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_non_recursive_and_list_replace",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_append",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_append_rp",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_keep",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_prepend",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_prepend_rp",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_recursive_and_list_replace",
+            "test/units/utils/test_vars.py::TestVariableUtils::test_merge_hash_simple"
+          ]
+        }
+      },
+      "sample_id": "swebench-pro/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+      "scores": {
+        "reward": 0.0
+      },
+      "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+      "trajectory": null,
+      "usage": {}
+    }
+  ],
+  "schema_version": 1,
+  "status": "succeeded"
+}

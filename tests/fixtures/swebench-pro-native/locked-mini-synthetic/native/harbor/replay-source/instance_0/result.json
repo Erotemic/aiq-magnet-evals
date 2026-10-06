@@ -1,0 +1,137 @@
+{
+    "id": "e91133a1-d248-42c8-9af3-362a1f7d861e",
+    "task_name": "division",
+    "trial_name": "division__r24KX6y",
+    "trial_uri": "file:///tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation/division__r24KX6y",
+    "task_id": {
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation-inputs/inputs/division"
+    },
+    "source": null,
+    "task_checksum": "95c9440aa536a7af4710d5f7b92eacc40a19ab3a015a7310f429975389cca6be",
+    "config": {
+        "task": {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation-inputs/inputs/division",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "division__r24KX6y",
+        "trials_dir": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": 20.0,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "locked_mini_swe:LockedMiniSwe",
+            "model_name": "openai/fixture-coding",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [
+                "model-relay"
+            ],
+            "kwargs": {
+                "config_file": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation-inputs/agent-inputs/0/mini_toolcall.yaml",
+                "version": "2.4.6"
+            },
+            "env": {
+                "OPENAI_API_BASE": "http://model-relay:8080/v1",
+                "OPENAI_BASE_URL": "http://model-relay:8080/v1",
+                "OPENAI_API_KEY": "${OPENAI_API_KEY}"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [
+                "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/generation-inputs/bridge/endpoint-bridge.json"
+            ],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "982ca88f-d832-4811-80b0-8f668ec38832",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "mini-swe-agent-locked",
+        "version": "2.4.6",
+        "model_info": {
+            "name": "fixture-coding",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 20,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 8,
+        "cost_usd": 0.0,
+        "model_usage": {
+            "openai/fixture-coding": {
+                "n_input_tokens": 20,
+                "n_cache_tokens": 0,
+                "n_output_tokens": 8,
+                "cost_usd": null
+            }
+        },
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-06T02:49:26.608103Z",
+    "finished_at": "2026-10-06T02:50:17.194915Z",
+    "environment_setup": {
+        "started_at": "2026-10-06T02:49:26.653574Z",
+        "finished_at": "2026-10-06T02:49:30.594552Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-06T02:49:30.594606Z",
+        "finished_at": "2026-10-06T02:49:44.861053Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-06T02:49:45.291182Z",
+        "finished_at": "2026-10-06T02:50:02.173805Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-06T02:50:03.094594Z",
+        "finished_at": "2026-10-06T02:50:03.996201Z"
+    },
+    "step_results": null
+}

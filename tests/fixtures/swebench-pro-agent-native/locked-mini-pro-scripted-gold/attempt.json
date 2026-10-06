@@ -1,0 +1,97 @@
+{
+  "diagnostics": {
+    "aggregate_withheld": false,
+    "authoritative_phase": "fresh-replay",
+    "failure": null,
+    "generation_diagnostics": {
+      "aggregate_withheld": false,
+      "failure": null,
+      "infrastructure_error_count": 0,
+      "native_job_id": "eaf201af-5921-4981-8718-2373c5defe02",
+      "native_job_stats": {
+        "cost_usd": 0.0,
+        "evals": {
+          "mini-swe-agent-locked__fixture-coding__adhoc": {
+            "exception_stats": {},
+            "metrics": [
+              {
+                "mean": 1.0
+              }
+            ],
+            "n_errors": 0,
+            "n_trials": 1,
+            "pass_at_k": {},
+            "reward_stats": {
+              "reward": {
+                "1.0": [
+                  "instance_ansible__ansible-0ea40e__S7KMhKE"
+                ]
+              }
+            }
+          }
+        },
+        "n_cache_tokens": 0,
+        "n_cancelled_trials": 0,
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_input_tokens": 20,
+        "n_output_tokens": 8,
+        "n_pending_trials": 0,
+        "n_retries": 0,
+        "n_running_trials": 0
+      },
+      "provenance": "native Harbor job; request revision tokens are not attested by an import"
+    },
+    "infrastructure_error_count": 0,
+    "missing_replay_ids": [],
+    "native_job_id": "ddcd1341-47a5-4a63-941f-b6be358ac01e",
+    "native_job_stats": {
+      "cost_usd": null,
+      "evals": {
+        "patch-replay-agent__replay__adhoc": {
+          "exception_stats": {},
+          "metrics": [
+            {
+              "mean": 1.0
+            }
+          ],
+          "n_errors": 0,
+          "n_trials": 1,
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "1.0": [
+                "instance_ansible__ansible-0ea40e__CkyPyqP"
+              ]
+            }
+          }
+        }
+      },
+      "n_cache_tokens": null,
+      "n_cancelled_trials": 0,
+      "n_completed_trials": 1,
+      "n_errored_trials": 0,
+      "n_input_tokens": null,
+      "n_output_tokens": null,
+      "n_pending_trials": 0,
+      "n_retries": 0,
+      "n_running_trials": 0
+    },
+    "protocol": "local-harbor/pro-v2-offline-replay/v1",
+    "provenance": "native Harbor job; request revision tokens are not attested by an import",
+    "verifier_coverage_error_count": 0
+  },
+  "execution_context": {
+    "env_keys": [
+      "OPENAI_API_KEY"
+    ],
+    "model_endpoint_roles": [
+      "primary"
+    ],
+    "output_dir": "/tmp/pytest-of-joncrall-agent/pytest-129/test_locked_mini_swe_runs_insi0/store/attempts/_unkeyed/20261006T032603157736Z-3ce5bd59",
+    "timeout_seconds": 1800,
+    "worker_python": "/tmp/aiq-harbor-roadmap/venv/bin/python"
+  },
+  "schema_version": 1,
+  "status": "succeeded"
+}

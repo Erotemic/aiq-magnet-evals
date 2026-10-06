@@ -16,9 +16,9 @@ evidence for all 500 instances.
 new acceptance in a separate destination:
 
 ```bash
-dev/ci/swebench_verified_acceptance.sh
+AIQ_VERIFIED_CAPTURE_DIR=/tmp/verified-new-capture dev/ci/swebench_verified_acceptance.sh
 python3 dev/capture_verified_fixtures.py \
-  --source /tmp/aiq-harbor-roadmap/verified-acceptance-captures \
+  --source /tmp/verified-new-capture \
   --destination /tmp/verified-new-fixtures
 ```
 

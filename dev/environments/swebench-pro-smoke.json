@@ -1,0 +1,9 @@
+{
+  "schema": "aiq-magnet-evals-pro-v2-smoke/1",
+  "source_revision": "66f92766bba642462d4bbe5479e83f91f9211862",
+  "manifest_sha256": "9d84f8507c89241d42d8b3ef911600a1ec75dbbb32687ce9b45b93318502c0bd",
+  "task_id": "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+  "image": "ghcr.io/scaleapi/swe-bench_pro-v2:instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2@sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18",
+  "image_id": "sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18",
+  "mini_swe_agent_version": "2.4.6"
+}

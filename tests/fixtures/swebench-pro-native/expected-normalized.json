@@ -1,0 +1,104 @@
+{
+  "locked-mini-synthetic": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "patch-replay-agent__replay__adhoc",
+            "mean",
+            1,
+            1.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "pro-v2/fixture"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 1,
+    "status": "succeeded",
+    "tool_messages": 0
+  },
+  "nop": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "patch-replay-agent__replay__adhoc",
+            "mean",
+            1,
+            0.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "pro-v2/fixture"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 0,
+    "status": "succeeded",
+    "tool_messages": 0
+  },
+  "oracle": {
+    "epochs": [],
+    "records": [
+      {
+        "coverage": {
+          "expected": 1,
+          "failed": 0,
+          "processed": 1,
+          "saved": 1,
+          "status": "complete"
+        },
+        "has_error": false,
+        "metrics": [
+          [
+            "verifier",
+            "reward",
+            "mean",
+            "patch-replay-agent__replay__adhoc",
+            "mean",
+            1,
+            1.0
+          ]
+        ],
+        "native_status": "succeeded",
+        "task": "pro-v2/fixture"
+      }
+    ],
+    "sample_kinds": {
+      "sample": 1
+    },
+    "samples_with_trajectory": 0,
+    "status": "succeeded",
+    "tool_messages": 0
+  }
+}

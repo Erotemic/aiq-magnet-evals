@@ -1,0 +1,387 @@
+{
+  "engine": "harbor",
+  "identity_algorithm": "aiq-evals-measurement-v3+sha256",
+  "identity_unknown_reasons": [
+    "installed agent sandbox runtime is not fully pinned"
+  ],
+  "measurement_identity": "282f43fdeda6af3c9ad5b90aada2757b02029203fcd737ffc7f997996b8b0a14",
+  "metadata_checksums": {
+    "attempt.json": "f8513f2d2ded9f7c67621ff0a6d3bfac3c7ff01656628ecc7384442a8407971f",
+    "resolved_request.json": "32e3d4adfb8650089209d449de77decf72bcc84de64ccb00d9fb4485bc32c68f",
+    "results.json": "03692143ecd1c6c7aa5b188007cc2b37145ec31db3faa22897487821506a6daa"
+  },
+  "native_artifact_identity": "75f3aeac93ac1ca48e998a2a490df91c8c83208ae381d826727edf6b24deb55f",
+  "native_artifacts": [
+    {
+      "path": "aiq_worker/stderr.log",
+      "role": "native",
+      "sha256": "e652a11580e48b2ffebcfd474d749b3e9fc9fabb1a40d5f8b269cbf19fdebe0b",
+      "size_bytes": 23
+    },
+    {
+      "path": "aiq_worker/stdout.log",
+      "role": "native",
+      "sha256": "a47f70aabee5dfd7130791fbebe6b634b5f874c39e3237cf065f54f74d839279",
+      "size_bytes": 310
+    },
+    {
+      "path": "harbor/generation/config.json",
+      "role": "native",
+      "sha256": "eff60f84afe398da72cf5946115e95f511f73bee292b7d75cb2dda7ba591b892",
+      "size_bytes": 1559
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/agent/mini-swe-agent.trajectory.json",
+      "role": "native",
+      "sha256": "76cfd58f971c5aef38e99fc7a9f2894026eb3090c83c115f8e3c4ac5bef85ce0",
+      "size_bytes": 19593
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/agent/mini-swe-agent.txt",
+      "role": "native",
+      "sha256": "b30e12eb5322d63642d39afe0334a58e88afcb3b6469b6a711518c396892ca65",
+      "size_bytes": 6877
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/agent/model.patch",
+      "role": "native",
+      "sha256": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+      "size_bytes": 250
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/agent/trajectory.json",
+      "role": "native",
+      "sha256": "756b56c6a46a64c9f1fca1ff20b19b06d27551a0d093666ab274451c499666e8",
+      "size_bytes": 10864
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/artifacts/manifest.json",
+      "role": "native",
+      "sha256": "ded0d7ce10852ffc713c14edac13664f70953cf5e271de31db9e1c64229411d8",
+      "size_bytes": 178
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/config.json",
+      "role": "native",
+      "sha256": "1eb8a0a2a6c434399ffac9d9838076f99f294c15382d651367016c2a4154b0ae",
+      "size_bytes": 1484
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/lock.json",
+      "role": "native",
+      "sha256": "e4426f1be2f8728ec138ab75d9348ed5cdcbec9905f085f4fed1c349b4b33782",
+      "size_bytes": 2224
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/result.json",
+      "role": "native",
+      "sha256": "d44d642e1bab859d644dbfea375aa5f0e6a93151097bf3bca0061af1a314e645",
+      "size_bytes": 5259
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/runtime-agent.json",
+      "role": "native",
+      "sha256": "9811cd45dab80e0084b15eaa7c4a0bc9882c9f2ac6ca4609704f11d8b9386804",
+      "size_bytes": 2287
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/runtime-image.json",
+      "role": "native",
+      "sha256": "b99204f7f629c1edc19668e4a83404d0f4b1d17782ef82f0a006d6d511aed4fc",
+      "size_bytes": 295
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/trial.log",
+      "role": "native",
+      "sha256": "73a808d8eed8dd28031397154585b88816a53fd2ea601ee87bcf7025f65f82ce",
+      "size_bytes": 6273
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/verifier/pytest.txt",
+      "role": "native",
+      "sha256": "f9991bfc1c7ebd12bb16ce56e1cf3117618ca286795cd280e4f6ac597c67ff48",
+      "size_bytes": 98
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/verifier/reward.txt",
+      "role": "native",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "size_bytes": 2
+    },
+    {
+      "path": "harbor/generation/division__r24KX6y/verifier/test-stdout.txt",
+      "role": "native",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "harbor/generation/job.log",
+      "role": "native",
+      "sha256": "92ea5789120702b8f0af3ccdf6e2c4c70250a497157577d9be23d9f3325815d5",
+      "size_bytes": 6510
+    },
+    {
+      "path": "harbor/generation/lock.json",
+      "role": "native",
+      "sha256": "0a6ddab0edad10c7a072c1fdbbb6eabdd9127e6c57b25679e2c321819a46b589",
+      "size_bytes": 3386
+    },
+    {
+      "path": "harbor/generation/result.json",
+      "role": "native",
+      "sha256": "3364ce5d5a01c439ab17bce52aa6b09d8a6e61bbfd369dbe9460705dfe75ead4",
+      "size_bytes": 1121
+    },
+    {
+      "path": "harbor/generation-inputs/agent-inputs/0/mini_toolcall.yaml",
+      "role": "native",
+      "sha256": "7275afa9920a6fb1b9ec66ab74cee44121db9b0276bb9fa90f5ec0597e523a45",
+      "size_bytes": 4700
+    },
+    {
+      "path": "harbor/generation-inputs/bridge/endpoint-bridge.json",
+      "role": "native",
+      "sha256": "9761e2cc529c091bd97173c50eafe2470db219b310dbb236c1a4a2c93447b6d0",
+      "size_bytes": 721
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/environment/.gitignore",
+      "role": "native",
+      "sha256": "a51104264729e7b362ea8c739de0ada29ba6e4f6047580ec3a3fd330ad20fd47",
+      "size_bytes": 28
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/environment/Dockerfile",
+      "role": "native",
+      "sha256": "9c17f31302bbb50c531bce8f96796fddd8ff3f12bb965d57e990e0887883ced7",
+      "size_bytes": 385
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/environment/calc.py",
+      "role": "native",
+      "sha256": "2b1feebb68b3b5ca031f4bb7c11f9042a81653980f0c2d1f9137024a8c80d717",
+      "size_bytes": 71
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/environment/test_calc.py",
+      "role": "native",
+      "sha256": "6d8f2ada960540f9304f8aa92a89e8de5e1fe212d8deeb689a3683a9145fb94c",
+      "size_bytes": 216
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/instruction.md",
+      "role": "native",
+      "sha256": "706f9ddaaf5efe92982c094993ea25969b189b2ecfa98eeacfe7da767f730f50",
+      "size_bytes": 155
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/solution/model.patch",
+      "role": "native",
+      "sha256": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+      "size_bytes": 250
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/solution/solve.sh",
+      "role": "native",
+      "sha256": "6bb985d17d66b79e5b78d3b1e7fb87bcdf7faf2da667f3d9f2d546bef65cd49a",
+      "size_bytes": 126
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/task.toml",
+      "role": "native",
+      "sha256": "eba60a8529784b6aec1f19ac57fe4fc3552790c5e2d40128212a2f265d60e38a",
+      "size_bytes": 295
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/division/tests/test.sh",
+      "role": "native",
+      "sha256": "3a82f70f1130d7b31215bead86db08429f640b78bb94c6ccb68c62fe529fccd8",
+      "size_bytes": 326
+    },
+    {
+      "path": "harbor/generation-normalized.json",
+      "role": "native",
+      "sha256": "e58d656a7ff9df2ebd43c82dd2953e003dbb93ba7279b12c1435a9a41fc7b23e",
+      "size_bytes": 18222
+    },
+    {
+      "path": "harbor/joins.json",
+      "role": "native",
+      "sha256": "37a6ecb030ba48196cd4639dc44a57b1f0c27014f676d9f3d655593281a7c9ca",
+      "size_bytes": 252
+    },
+    {
+      "path": "harbor/replay/config.json",
+      "role": "native",
+      "sha256": "405980e01bb2161b731a894cb39dd11c1a760790faeb1992a513ee187236d629",
+      "size_bytes": 894
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/agent/replay.json",
+      "role": "native",
+      "sha256": "b5a8a826dffa9ea495da8fdab7dd0ae8f9c0bbdbb0899fef40fdfc51922bbbea",
+      "size_bytes": 424
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/artifacts/manifest.json",
+      "role": "native",
+      "sha256": "ded0d7ce10852ffc713c14edac13664f70953cf5e271de31db9e1c64229411d8",
+      "size_bytes": 178
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/config.json",
+      "role": "native",
+      "sha256": "945ab684f7d8d3b530e8c9bc1860e38a24b90bd4f30a9ded7470b79ceb30756b",
+      "size_bytes": 855
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/lock.json",
+      "role": "native",
+      "sha256": "3259bbe6d71648749e2ec8248acd3d92ae2714ed231a57d3882d943127d21304",
+      "size_bytes": 1365
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/result.json",
+      "role": "native",
+      "sha256": "88d0b7fedef7543844ecf5df7e3508d9d55173945daa472cca58d01d1b357134",
+      "size_bytes": 4494
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/runtime-image.json",
+      "role": "native",
+      "sha256": "a1810905aba8e5d217614b3fe7780a3fe41c96aaf46c657c19fe6d1ec84cdbb0",
+      "size_bytes": 295
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/trial.log",
+      "role": "native",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "size_bytes": 34
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/verifier/pytest.txt",
+      "role": "native",
+      "sha256": "fcd476841e8af121ff907e81a92a59579b64c007b70cb79f9d096806f703fc7e",
+      "size_bytes": 98
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/verifier/reward.txt",
+      "role": "native",
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865",
+      "size_bytes": 2
+    },
+    {
+      "path": "harbor/replay/division__uco9v3i/verifier/test-stdout.txt",
+      "role": "native",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "harbor/replay/job.log",
+      "role": "native",
+      "sha256": "add6f043d1b4985655648dccdd55f8638606a16b0e4c62e9aa05467a05d19ae0",
+      "size_bytes": 124
+    },
+    {
+      "path": "harbor/replay/lock.json",
+      "role": "native",
+      "sha256": "f71e67755b28f72bfa2110b774a7f33896620b9c2c84720eb6811daadd574225",
+      "size_bytes": 2399
+    },
+    {
+      "path": "harbor/replay/result.json",
+      "role": "native",
+      "sha256": "555026b793018ce41e5eeb0ae97c3e307ffec5a2d6a5ed8f925310c17125add6",
+      "size_bytes": 1119
+    },
+    {
+      "path": "harbor/replay-inputs/agent-inputs/0/replay-source/instance_0/agent/model.patch",
+      "role": "native",
+      "sha256": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+      "size_bytes": 250
+    },
+    {
+      "path": "harbor/replay-inputs/agent-inputs/0/replay-source/instance_0/result.json",
+      "role": "native",
+      "sha256": "d44d642e1bab859d644dbfea375aa5f0e6a93151097bf3bca0061af1a314e645",
+      "size_bytes": 5259
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/environment/.gitignore",
+      "role": "native",
+      "sha256": "a51104264729e7b362ea8c739de0ada29ba6e4f6047580ec3a3fd330ad20fd47",
+      "size_bytes": 28
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/environment/Dockerfile",
+      "role": "native",
+      "sha256": "9c17f31302bbb50c531bce8f96796fddd8ff3f12bb965d57e990e0887883ced7",
+      "size_bytes": 385
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/environment/calc.py",
+      "role": "native",
+      "sha256": "2b1feebb68b3b5ca031f4bb7c11f9042a81653980f0c2d1f9137024a8c80d717",
+      "size_bytes": 71
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/environment/test_calc.py",
+      "role": "native",
+      "sha256": "6d8f2ada960540f9304f8aa92a89e8de5e1fe212d8deeb689a3683a9145fb94c",
+      "size_bytes": 216
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/instruction.md",
+      "role": "native",
+      "sha256": "706f9ddaaf5efe92982c094993ea25969b189b2ecfa98eeacfe7da767f730f50",
+      "size_bytes": 155
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/solution/model.patch",
+      "role": "native",
+      "sha256": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+      "size_bytes": 250
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/solution/solve.sh",
+      "role": "native",
+      "sha256": "6bb985d17d66b79e5b78d3b1e7fb87bcdf7faf2da667f3d9f2d546bef65cd49a",
+      "size_bytes": 126
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/task.toml",
+      "role": "native",
+      "sha256": "eba60a8529784b6aec1f19ac57fe4fc3552790c5e2d40128212a2f265d60e38a",
+      "size_bytes": 295
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/division/tests/test.sh",
+      "role": "native",
+      "sha256": "3a82f70f1130d7b31215bead86db08429f640b78bb94c6ccb68c62fe529fccd8",
+      "size_bytes": 326
+    },
+    {
+      "path": "harbor/replay-normalized.json",
+      "role": "native",
+      "sha256": "2fd49e35926db0f37d28ecc2538f08d41af0c65508c81a03c50c1738853b9ecf",
+      "size_bytes": 5306
+    },
+    {
+      "path": "harbor/replay-source/instance_0/agent/model.patch",
+      "role": "native",
+      "sha256": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+      "size_bytes": 250
+    },
+    {
+      "path": "harbor/replay-source/instance_0/result.json",
+      "role": "native",
+      "sha256": "d44d642e1bab859d644dbfea375aa5f0e6a93151097bf3bca0061af1a314e645",
+      "size_bytes": 5259
+    }
+  ],
+  "normalized_artifact_identity": "608c1dcc82c9e8165d14a56a4aff3ccb7caba36337bc6e53af168ed5dfb03b13",
+  "request_schema_version": 1,
+  "result_schema_version": 1,
+  "reusable": false,
+  "schema_version": 1
+}

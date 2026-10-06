@@ -40,7 +40,9 @@ Harbor is also registered as an experimental generic engine at candidate pin
 worker conformance are recorded in [the Harbor evidence ledger](docs/planning/harbor-evidence.md).
 [SWE-bench Verified](docs/swebench.md) now has a pinned five-instance offline
 oracle/NOP fixture with fresh official regrading and engine-free patch export.
-Pro integration and full VM/GPU acceptance remain in progress.
+Pro V2 has an experimental local Harbor generation/fresh-replay profile with
+captured oracle/NOP and scripted locked-agent evidence. Full cross-repository
+VM/GPU acceptance remains in progress.
 
 From a source checkout, `dev/ci/harbor_phase0.sh` runs the infrastructure probes
 and `dev/ci/native_harbor.sh` runs generic adapter acceptance. The checkout-only

@@ -14,6 +14,7 @@ import asyncio
 import contextlib
 import importlib.util
 import json
+import shutil
 import subprocess
 import sys
 import textwrap
@@ -147,11 +148,30 @@ def _helm_profile() -> Profile:
     )
 
 
-def _harbor_profile() -> Profile:
+def _harbor_profile(tmp_path: Path) -> Profile:
+    from harbor.environments.docker.utils import (
+        default_docker_platform,
+        ensure_docker_image_built,
+    )
+
     from tests.native.harbor_fixture import TASKS
 
+    async def build():
+        source = TASKS / 'division/environment'
+        return await ensure_docker_image_built(docker_name='division',
+            docker_build_context=source, dockerfile_path=source / 'Dockerfile',
+            build_args={}, platform=await default_docker_platform())
+
+    image = asyncio.run(build())
+    image_id = subprocess.check_output(['docker', 'image', 'inspect', image, '--format', '{{.Id}}'], text=True).strip()
+    task = tmp_path / 'pinned-tasks/division'
+    shutil.copytree(TASKS / 'division', task)
+    config = task / 'task.toml'
+    config.write_text(config.read_text().replace('[environment]\n',
+        '[environment]\ndocker_image = ' + json.dumps(image_id) + '\n'))
+
     success = EvaluationRequest(
-        engine='harbor', task='path:' + str(TASKS.resolve()), data_revision='synthetic-v1',
+        engine='harbor', task='path:' + str(task.parent), data_revision='synthetic-v1',
         models=(ModelBinding(role='primary', model='fixture', revision='synthetic-v1'),),
         task_options={'agent': 'oracle'},
     )
@@ -169,10 +189,10 @@ PROFILES = {'harbor': _harbor_profile, "inspect_ai": _inspect_profile, "olmo_eva
 
 
 @pytest.fixture(params=[pytest.param(name, marks=pytest.mark.docker_sandbox) if name == 'harbor' else name for name in sorted(PROFILES)])
-def profile(request) -> Profile:
+def profile(request, tmp_path) -> Profile:
     if importlib.util.find_spec(request.param) is None:
         pytest.skip(f"{request.param} is not installed in this interpreter")
-    return PROFILES[request.param]()
+    return _harbor_profile(tmp_path) if request.param == 'harbor' else PROFILES[request.param]()
 
 
 def _ensure(req: EvaluationRequest, store: ResultStore, **kwargs):

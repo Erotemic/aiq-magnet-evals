@@ -1,0 +1,167 @@
+{
+  "schema_version": 1,
+  "engine": "harbor",
+  "identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "75eec64007441a93f7d13a5a1f135965a6e68bb3d6c2a1de27b182c795e77270",
+    "reusable": false,
+    "unknown_reasons": [
+      "installed agent sandbox runtime is not fully pinned"
+    ]
+  },
+  "status": "succeeded",
+  "records": [
+    {
+      "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+      "model_role": "primary",
+      "metrics": [
+        {
+          "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+          "model_role": "primary",
+          "metric": "mean",
+          "scorer": "verifier",
+          "reducer": "mean",
+          "value": 1.0,
+          "denominator": 1,
+          "score": "reward",
+          "group": "patch-replay-agent__replay__adhoc"
+        }
+      ],
+      "coverage": {
+        "status": "complete",
+        "expected": 1,
+        "processed": 1,
+        "saved": 1,
+        "failed": 0
+      },
+      "primary_metric": "mean",
+      "native_status": "succeeded",
+      "error": null,
+      "native_config": {
+        "agent_setup_timeout_multiplier": 20.0,
+        "agents": [
+          {
+            "import_path": "patch_replay:PatchReplayAgent",
+            "kwargs": {
+              "source_job": "/tmp/pytest-of-joncrall-agent/pytest-129/test_locked_mini_swe_runs_insi0/store/attempts/_unkeyed/.aiq-evals-work-gugky5of/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+            },
+            "model_name": "replay"
+          }
+        ],
+        "job_name": "replay",
+        "jobs_dir": "/tmp/pytest-of-joncrall-agent/pytest-129/test_locked_mini_swe_runs_insi0/store/attempts/_unkeyed/.aiq-evals-work-gugky5of/native/harbor",
+        "n_concurrent_trials": 1,
+        "quiet": true,
+        "tasks": [
+          {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-129/test_locked_mini_swe_runs_insi0/store/attempts/_unkeyed/.aiq-evals-work-gugky5of/native/harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+          }
+        ]
+      }
+    }
+  ],
+  "samples": [
+    {
+      "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+      "model_role": "primary",
+      "sample_id": "swebench-pro/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+      "epoch": null,
+      "scores": {
+        "reward": 1.0
+      },
+      "trajectory": null,
+      "usage": {},
+      "native": {
+        "agent_error": null,
+        "agent_info": {
+          "model_info": {
+            "name": "replay",
+            "provider": null
+          },
+          "name": "patch-replay-agent",
+          "version": "1.0.0"
+        },
+        "attempt_id": "64fe33f2-cbb8-4354-81a7-8115cab2f5e5",
+        "counted_as_model_failure": false,
+        "environment_error": null,
+        "exception_info": null,
+        "exception_phase": null,
+        "native_rewards": {
+          "reward": 1.0
+        },
+        "result_artifact": "native/harbor/replay/instance_ansible__ansible-0ea40e__CkyPyqP/result.json",
+        "task_checksum": "8cfc27a14a66fc28d72c52828e83ade880a8865648ce05e487f896e664da67e8",
+        "timings": {
+          "agent_execution": {
+            "finished_at": "2026-10-06T03:28:44.799433Z",
+            "started_at": "2026-10-06T03:28:40.369650Z"
+          },
+          "agent_setup": {
+            "finished_at": "2026-10-06T03:28:40.243829Z",
+            "started_at": "2026-10-06T03:28:40.243758Z"
+          },
+          "environment_setup": {
+            "finished_at": "2026-10-06T03:28:40.243706Z",
+            "started_at": "2026-10-06T03:28:36.210887Z"
+          },
+          "verifier": {
+            "finished_at": "2026-10-06T03:30:15.428467Z",
+            "started_at": "2026-10-06T03:28:45.767356Z"
+          }
+        },
+        "trial_id": "64fe33f2-cbb8-4354-81a7-8115cab2f5e5",
+        "trial_name": "instance_ansible__ansible-0ea40e__CkyPyqP",
+        "trial_status": "succeeded",
+        "verifier_artifacts": [
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__CkyPyqP/verifier/output.json",
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__CkyPyqP/verifier/reward.txt",
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__CkyPyqP/verifier/run-script-stderr.txt",
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__CkyPyqP/verifier/run-script-stdout.txt",
+          "native/harbor/replay/instance_ansible__ansible-0ea40e__CkyPyqP/verifier/test-stdout.txt"
+        ],
+        "verifier_environment_mode": "shared",
+        "verifier_error": null
+      }
+    }
+  ],
+  "artifacts": [],
+  "diagnostics": {
+    "aggregate_withheld": false,
+    "failure": null,
+    "infrastructure_error_count": 0,
+    "native_job_id": "ddcd1341-47a5-4a63-941f-b6be358ac01e",
+    "native_job_stats": {
+      "cost_usd": null,
+      "evals": {
+        "patch-replay-agent__replay__adhoc": {
+          "exception_stats": {},
+          "metrics": [
+            {
+              "mean": 1.0
+            }
+          ],
+          "n_errors": 0,
+          "n_trials": 1,
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "1.0": [
+                "instance_ansible__ansible-0ea40e__CkyPyqP"
+              ]
+            }
+          }
+        }
+      },
+      "n_cache_tokens": null,
+      "n_cancelled_trials": 0,
+      "n_completed_trials": 1,
+      "n_errored_trials": 0,
+      "n_input_tokens": null,
+      "n_output_tokens": null,
+      "n_pending_trials": 0,
+      "n_retries": 0,
+      "n_running_trials": 0
+    },
+    "provenance": "native Harbor job; request revision tokens are not attested by an import"
+  }
+}

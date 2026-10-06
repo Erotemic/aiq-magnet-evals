@@ -4,6 +4,8 @@ Run from the repository root:
 
 * OLMo and HELM goldens need no engine:
   ``python dev/regenerate_native_regressions.py olmo helm``.
+* Harbor and paired Pro V2 goldens need no engine:
+  ``python dev/regenerate_native_regressions.py harbor pro``.
 * Inspect needs the pinned runtime, because ``.eval`` entries are zstd-compressed:
   ``/tmp/aiq-inspect-p1/bin/python dev/regenerate_native_regressions.py inspect``.
   This writes each ``.eval`` fixture through Inspect's own JSON log writer to
@@ -30,6 +32,8 @@ INSPECT_ROOT = REPO / 'tests' / 'fixtures' / 'inspect-native'
 OLMO_ROOT = REPO / 'tests' / 'fixtures' / 'olmo-native'
 HELM_ROOT = REPO / 'tests' / 'fixtures' / 'helm-native'
 HARBOR_ROOT = REPO / 'tests' / 'fixtures' / 'harbor-native'
+PRO_ROOT = REPO / 'tests' / 'fixtures' / 'swebench-pro-native'
+PRO_AGENT_ROOT = REPO / 'tests' / 'fixtures' / 'swebench-pro-agent-native'
 
 # fixture directory -> native tasks the originating request resolved to
 OLMO_FIXTURES = {
@@ -87,7 +91,25 @@ def regenerate_harbor() -> None:
     _write(HARBOR_ROOT / 'expected-normalized.json', goldens)
 
 
+def regenerate_pro() -> None:
+    from magnet_evals.benchmarks.swe_bench_pro import normalize_pro_jobs
+    from magnet_evals.outputs import load_run
+
+    goldens = {}
+    for root in (PRO_ROOT, PRO_AGENT_ROOT):
+        goldens = {}
+        for source in sorted(root.iterdir()):
+            if not (source / 'run_manifest.json').is_file():
+                continue
+            run = load_run(source)
+            result = normalize_pro_jobs(source / 'native/harbor', identity=IDENTITY,
+                fallback_task='pro-v2/fixture', synthetic=source.name == 'locked-mini-synthetic')
+            goldens[source.name] = summarize(result)
+            assert [s.scores for s in result.samples] == [s.scores for s in run.result.samples]
+        _write(root / 'expected-normalized.json', goldens)
+
+
 if __name__ == '__main__':
     targets = sys.argv[1:] or ['olmo']
     for target in targets:
-        {'harbor': regenerate_harbor, 'inspect': regenerate_inspect, 'olmo': regenerate_olmo, 'helm': regenerate_helm}[target]()
+        {'pro': regenerate_pro, 'harbor': regenerate_harbor, 'inspect': regenerate_inspect, 'olmo': regenerate_olmo, 'helm': regenerate_helm}[target]()

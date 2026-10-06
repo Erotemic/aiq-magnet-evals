@@ -1,0 +1,7 @@
+{
+ "task": "division",
+ "patch": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/agent-inputs/0/replay-source/instance_0/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch calc.py...\nApplied patch calc.py cleanly.\n",
+ "post_apply_diffstat": " calc.py | 2 ++\n 1 file changed, 2 insertions(+)\n---\n1\n"
+}

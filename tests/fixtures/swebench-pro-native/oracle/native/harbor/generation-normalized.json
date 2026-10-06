@@ -1,0 +1,166 @@
+{
+  "schema_version": 1,
+  "engine": "harbor",
+  "identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "4c13e346b57a3181ba04859b19df51b636256df7740714c57f28543291f893d3",
+    "reusable": true,
+    "unknown_reasons": []
+  },
+  "status": "succeeded",
+  "records": [
+    {
+      "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+      "model_role": "primary",
+      "metrics": [
+        {
+          "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+          "model_role": "primary",
+          "metric": "mean",
+          "scorer": "verifier",
+          "reducer": "mean",
+          "value": 1.0,
+          "denominator": 1,
+          "score": "reward",
+          "group": "acceptance-oracle-nop-capture__fixture__adhoc"
+        }
+      ],
+      "coverage": {
+        "status": "complete",
+        "expected": 1,
+        "processed": 1,
+        "saved": 1,
+        "failed": 0
+      },
+      "primary_metric": "mean",
+      "native_status": "succeeded",
+      "error": null,
+      "native_config": {
+        "agents": [
+          {
+            "import_path": "tests.native.harbor_capture_agent:CaptureAgent",
+            "kwargs": {
+              "mode": "oracle"
+            },
+            "model_name": "fixture"
+          }
+        ],
+        "job_name": "generation",
+        "jobs_dir": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor0/store/attempts/4c/4c13e346b57a3181ba04859b19df51b636256df7740714c57f28543291f893d3/.aiq-evals-work-nyst0l5g/native/harbor",
+        "n_concurrent_trials": 1,
+        "quiet": true,
+        "tasks": [
+          {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor0/store/attempts/4c/4c13e346b57a3181ba04859b19df51b636256df7740714c57f28543291f893d3/.aiq-evals-work-nyst0l5g/native/harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+          }
+        ]
+      }
+    }
+  ],
+  "samples": [
+    {
+      "task": "path:/tmp/aiq-harbor-roadmap/swe-pro/v2/tasks",
+      "model_role": "primary",
+      "sample_id": "swebench-pro/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+      "epoch": null,
+      "scores": {
+        "reward": 1.0
+      },
+      "trajectory": null,
+      "usage": {},
+      "native": {
+        "agent_error": null,
+        "agent_info": {
+          "model_info": {
+            "name": "fixture",
+            "provider": null
+          },
+          "name": "acceptance-oracle-nop-capture",
+          "version": "1.0.0"
+        },
+        "attempt_id": "1a3e0262-31e3-4e73-8642-1b20ea0e0e1e",
+        "counted_as_model_failure": false,
+        "environment_error": null,
+        "exception_info": null,
+        "exception_phase": null,
+        "native_rewards": {
+          "reward": 1.0
+        },
+        "patch_artifact": "native/harbor/generation/instance_ansible__ansible-0ea40e__8oXSUsN/agent/model.patch",
+        "patch_sha256": "5531ce2ce92ec2a2b657be69afb696802fd7d3086fa010b78f2958ca0fed71fb",
+        "result_artifact": "native/harbor/generation/instance_ansible__ansible-0ea40e__8oXSUsN/result.json",
+        "task_checksum": "8cfc27a14a66fc28d72c52828e83ade880a8865648ce05e487f896e664da67e8",
+        "timings": {
+          "agent_execution": {
+            "finished_at": "2026-10-06T02:38:40.963899Z",
+            "started_at": "2026-10-06T02:38:33.356892Z"
+          },
+          "agent_setup": {
+            "finished_at": "2026-10-06T02:38:33.243136Z",
+            "started_at": "2026-10-06T02:38:33.243026Z"
+          },
+          "environment_setup": {
+            "finished_at": "2026-10-06T02:38:33.242935Z",
+            "started_at": "2026-10-06T02:38:29.369105Z"
+          },
+          "verifier": {
+            "finished_at": "2026-10-06T02:40:10.424426Z",
+            "started_at": "2026-10-06T02:38:41.931547Z"
+          }
+        },
+        "trial_id": "1a3e0262-31e3-4e73-8642-1b20ea0e0e1e",
+        "trial_name": "instance_ansible__ansible-0ea40e__8oXSUsN",
+        "trial_status": "succeeded",
+        "verifier_artifacts": [
+          "native/harbor/generation/instance_ansible__ansible-0ea40e__8oXSUsN/verifier/output.json",
+          "native/harbor/generation/instance_ansible__ansible-0ea40e__8oXSUsN/verifier/reward.txt",
+          "native/harbor/generation/instance_ansible__ansible-0ea40e__8oXSUsN/verifier/run-script-stderr.txt",
+          "native/harbor/generation/instance_ansible__ansible-0ea40e__8oXSUsN/verifier/run-script-stdout.txt",
+          "native/harbor/generation/instance_ansible__ansible-0ea40e__8oXSUsN/verifier/test-stdout.txt"
+        ],
+        "verifier_environment_mode": "shared",
+        "verifier_error": null
+      }
+    }
+  ],
+  "artifacts": [],
+  "diagnostics": {
+    "aggregate_withheld": false,
+    "failure": null,
+    "infrastructure_error_count": 0,
+    "native_job_id": "4f205df9-ca77-49e5-b825-218de8234b4d",
+    "native_job_stats": {
+      "cost_usd": null,
+      "evals": {
+        "acceptance-oracle-nop-capture__fixture__adhoc": {
+          "exception_stats": {},
+          "metrics": [
+            {
+              "mean": 1.0
+            }
+          ],
+          "n_errors": 0,
+          "n_trials": 1,
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "1.0": [
+                "instance_ansible__ansible-0ea40e__8oXSUsN"
+              ]
+            }
+          }
+        }
+      },
+      "n_cache_tokens": null,
+      "n_cancelled_trials": 0,
+      "n_completed_trials": 1,
+      "n_errored_trials": 0,
+      "n_input_tokens": null,
+      "n_output_tokens": null,
+      "n_pending_trials": 0,
+      "n_retries": 0,
+      "n_running_trials": 0
+    },
+    "provenance": "native Harbor job; request revision tokens are not attested by an import"
+  }
+}

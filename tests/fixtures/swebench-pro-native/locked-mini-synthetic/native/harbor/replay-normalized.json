@@ -1,0 +1,165 @@
+{
+  "schema_version": 1,
+  "engine": "harbor",
+  "identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "282f43fdeda6af3c9ad5b90aada2757b02029203fcd737ffc7f997996b8b0a14",
+    "reusable": false,
+    "unknown_reasons": [
+      "installed agent sandbox runtime is not fully pinned"
+    ]
+  },
+  "status": "succeeded",
+  "records": [
+    {
+      "task": "path:/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/tasks",
+      "model_role": "primary",
+      "metrics": [
+        {
+          "task": "path:/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/tasks",
+          "model_role": "primary",
+          "metric": "mean",
+          "scorer": "verifier",
+          "reducer": "mean",
+          "value": 1.0,
+          "denominator": 1,
+          "score": "reward",
+          "group": "patch-replay-agent__replay__adhoc"
+        }
+      ],
+      "coverage": {
+        "status": "complete",
+        "expected": 1,
+        "processed": 1,
+        "saved": 1,
+        "failed": 0
+      },
+      "primary_metric": "mean",
+      "native_status": "succeeded",
+      "error": null,
+      "native_config": {
+        "agent_setup_timeout_multiplier": 20.0,
+        "agents": [
+          {
+            "import_path": "patch_replay:PatchReplayAgent",
+            "kwargs": {
+              "source_job": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+            },
+            "model_name": "replay"
+          }
+        ],
+        "job_name": "replay",
+        "jobs_dir": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor",
+        "n_concurrent_trials": 1,
+        "quiet": true,
+        "tasks": [
+          {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/inputs/division"
+          }
+        ]
+      }
+    }
+  ],
+  "samples": [
+    {
+      "task": "path:/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/tasks",
+      "model_role": "primary",
+      "sample_id": "division",
+      "epoch": null,
+      "scores": {
+        "reward": 1.0
+      },
+      "trajectory": null,
+      "usage": {},
+      "native": {
+        "agent_error": null,
+        "agent_info": {
+          "model_info": {
+            "name": "replay",
+            "provider": null
+          },
+          "name": "patch-replay-agent",
+          "version": "1.0.0"
+        },
+        "attempt_id": "19bd367e-629f-412f-90f9-318412be6912",
+        "counted_as_model_failure": false,
+        "environment_error": null,
+        "exception_info": null,
+        "exception_phase": null,
+        "native_rewards": {
+          "reward": 1.0
+        },
+        "result_artifact": "native/harbor/replay/division__uco9v3i/result.json",
+        "task_checksum": "95c9440aa536a7af4710d5f7b92eacc40a19ab3a015a7310f429975389cca6be",
+        "timings": {
+          "agent_execution": {
+            "finished_at": "2026-10-06T02:50:24.999655Z",
+            "started_at": "2026-10-06T02:50:21.652924Z"
+          },
+          "agent_setup": {
+            "finished_at": "2026-10-06T02:50:21.563932Z",
+            "started_at": "2026-10-06T02:50:21.563862Z"
+          },
+          "environment_setup": {
+            "finished_at": "2026-10-06T02:50:21.563816Z",
+            "started_at": "2026-10-06T02:50:17.660077Z"
+          },
+          "verifier": {
+            "finished_at": "2026-10-06T02:50:27.037882Z",
+            "started_at": "2026-10-06T02:50:25.958351Z"
+          }
+        },
+        "trial_id": "19bd367e-629f-412f-90f9-318412be6912",
+        "trial_name": "division__uco9v3i",
+        "trial_status": "succeeded",
+        "verifier_artifacts": [
+          "native/harbor/replay/division__uco9v3i/verifier/pytest.txt",
+          "native/harbor/replay/division__uco9v3i/verifier/reward.txt",
+          "native/harbor/replay/division__uco9v3i/verifier/test-stdout.txt"
+        ],
+        "verifier_environment_mode": "shared",
+        "verifier_error": null
+      }
+    }
+  ],
+  "artifacts": [],
+  "diagnostics": {
+    "aggregate_withheld": false,
+    "failure": null,
+    "infrastructure_error_count": 0,
+    "native_job_id": "7c2f1796-1cbd-4e9f-8681-ab546f4bd80a",
+    "native_job_stats": {
+      "cost_usd": null,
+      "evals": {
+        "patch-replay-agent__replay__adhoc": {
+          "exception_stats": {},
+          "metrics": [
+            {
+              "mean": 1.0
+            }
+          ],
+          "n_errors": 0,
+          "n_trials": 1,
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "1.0": [
+                "division__uco9v3i"
+              ]
+            }
+          }
+        }
+      },
+      "n_cache_tokens": null,
+      "n_cancelled_trials": 0,
+      "n_completed_trials": 1,
+      "n_errored_trials": 0,
+      "n_input_tokens": null,
+      "n_output_tokens": null,
+      "n_pending_trials": 0,
+      "n_retries": 0,
+      "n_running_trials": 0
+    },
+    "provenance": "native Harbor job; request revision tokens are not attested by an import"
+  }
+}

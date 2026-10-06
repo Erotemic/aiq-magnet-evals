@@ -103,3 +103,12 @@ suite passed 193 tests. Scope and raw evidence are recorded in
 [planning/harbor-evidence.md](planning/harbor-evidence.md). These checks do not
 replace G1–G10, establish benchmark support, satisfy full SWE-bench VM/GPU
 acceptance, or constitute a hosted CI run.
+
+Verified has a pinned five-instance offline oracle/NOP fixture whose patches
+agree with fresh official SWE-bench 3.0.15 grading. Local Pro V2 retains
+generation/replay jobs with native oracle/NOP smoke and scripted locked mini-SWE
+synthetic and actual Pro-image evidence. Python 3.11 passed 226 engine-free
+tests. The VM command passed six gates and failed the unavailable MAGNET
+EvaluationNode integration gate; GPU acceptance
+is implemented but not run. These candidates remain experimental and establish
+neither full-benchmark support nor the release gates above.

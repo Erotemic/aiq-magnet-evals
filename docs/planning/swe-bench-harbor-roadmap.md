@@ -1692,7 +1692,7 @@ Owners: `infer-stack`, `aiq-magnet`
 - [x] lease descriptor emission;
 - [ ] MAGNET preflight projection;
 - [ ] runtime verification;
-- [ ] quantization mutation test.
+- [x] quantization mutation test (infer-stack; MAGNET node invalidation pending).
 
 Gate: same alias changing Q4 -> Q5 cannot reuse the old measurement.
 
@@ -1714,13 +1714,13 @@ acceptance fixture or every discrepancy is understood/documented.
 
 Owners: `aiq-magnet-evals`, `aiq-magnet`
 
-- [ ] oracle/NOP;
-- [ ] locked mini-SWE agent against scripted OpenAI-compatible endpoint;
-- [ ] enforced agent allowlist;
-- [ ] exact patch capture;
-- [ ] fresh patch replay;
-- [ ] joined normalized samples;
-- [ ] HARD-51 profile definition, without requiring a model run;
+- [x] oracle/NOP (one frozen native Ansible smoke task);
+- [x] locked mini-SWE agent against scripted OpenAI-compatible endpoint (synthetic task and frozen Ansible Pro image);
+- [x] enforced agent allowlist (shared native sidecar/bridge evidence);
+- [x] exact patch capture;
+- [x] fresh patch replay;
+- [x] joined normalized samples;
+- [x] HARD-51 profile definition, without requiring a model run;
 - [ ] infrastructure-error eligibility;
 - [ ] fake infer-stack lease/descriptor path through MAGNET.
 

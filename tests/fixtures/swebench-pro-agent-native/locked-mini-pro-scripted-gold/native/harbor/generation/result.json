@@ -1,0 +1,39 @@
+{
+    "id": "eaf201af-5921-4981-8718-2373c5defe02",
+    "started_at": "2026-10-05T23:26:04.889079",
+    "updated_at": "2026-10-05T23:28:33.679636",
+    "finished_at": "2026-10-05T23:28:33.679636",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "mini-swe-agent-locked__fixture-coding__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "instance_ansible__ansible-0ea40e__S7KMhKE"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 20,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 8,
+        "cost_usd": 0.0
+    }
+}

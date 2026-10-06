@@ -1,0 +1,120 @@
+{
+    "id": "19bd367e-629f-412f-90f9-318412be6912",
+    "task_name": "division",
+    "trial_name": "division__uco9v3i",
+    "trial_uri": "file:///tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay/division__uco9v3i",
+    "task_id": {
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/inputs/division"
+    },
+    "source": null,
+    "task_checksum": "95c9440aa536a7af4710d5f7b92eacc40a19ab3a015a7310f429975389cca6be",
+    "config": {
+        "task": {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/inputs/division",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "division__uco9v3i",
+        "trials_dir": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": 20.0,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "patch_replay:PatchReplayAgent",
+            "model_name": "replay",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {
+                "source_job": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "7c2f1796-1cbd-4e9f-8681-ab546f4bd80a",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "patch-replay-agent",
+        "version": "1.0.0",
+        "model_info": {
+            "name": "replay",
+            "provider": null
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-06T02:50:17.658518Z",
+    "finished_at": "2026-10-06T02:50:38.870979Z",
+    "environment_setup": {
+        "started_at": "2026-10-06T02:50:17.660077Z",
+        "finished_at": "2026-10-06T02:50:21.563816Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-06T02:50:21.563862Z",
+        "finished_at": "2026-10-06T02:50:21.563932Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-06T02:50:21.652924Z",
+        "finished_at": "2026-10-06T02:50:24.999655Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-06T02:50:25.958351Z",
+        "finished_at": "2026-10-06T02:50:27.037882Z"
+    },
+    "step_results": null
+}

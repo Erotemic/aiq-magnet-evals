@@ -167,6 +167,112 @@ configuration, Harbor source, installed dependency versions and Python runtime.
 Execution re-resolves before copying immutable inputs into the owned attempt.
 The native retry exception-set defaults are sorted before identity hashing;
 their otherwise nondeterministic JSON order must not change worker identity.
-Installed agents with absent or mutable version selectors remain nonreusable.
+Installed agents remain nonreusable until the complete sandbox runtime is
+pinned, even with a fixed package version. Mutable task images/build downloads
+also require an enforced physical image pin for reuse. Conformance now uses a
+concrete prebuilt image ID. Docker daemon platform/version are identified
+separately from operational endpoint locations.
 The optional dependency and `uv.lock` select the candidate engine; only the
 recorded worker constraints describe the environment accepted above.
+
+## Local Pro V2 paired protocol: 2026-10-05/06
+
+Frozen smoke instance:
+`instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2`.
+Observed image ID/digest:
+`sha256:af7d28fe6608951bf88e39b6a24d5574dcd1b5b82a6c983147666289f8014f18`.
+Its registry reference is in `dev/environments/swebench-pro-smoke.json`.
+The source/checksum pins above were verified against the actual task tree.
+
+Native oracle and NOP initially returned rewards 1 and 0. Separate generation
+and pristine replay jobs then returned oracle **1 -> 1**, NOP **0 -> 0**. The
+oracle patch is 1,892 bytes, SHA256
+`5531ce2ce92ec2a2b657be69afb696802fd7d3086fa010b78f2958ca0fed71fb`.
+NOP has an actually captured empty patch. Both replay trials retain required
+native test observations. Generation/replay UUIDs differ, and the replay input
+matches the captured patch checksum.
+
+Unchanged upstream `locked_mini_swe:LockedMiniSwe` installed mini-SWE **2.4.6**,
+executed four scripted tool calls in the synthetic Docker task, captured the
+exact expected division fix and passed native generation/fresh upstream replay.
+The accepted repeat passed **1 test** in 75.31 seconds. Observed managed Python
+is **3.12.14**; `runtime-agent.json` preserves the package closure. This mutable
+installation is not yet reproducible or reusable.
+
+Successful unmodified bundles are in `tests/fixtures/swebench-pro-native`.
+Engine-free tests verify checksums, re-normalize raw jobs after original worker
+paths disappear, validate UUID/patch joins, compare recorded rewards, and import
+paired trees with correct artifact paths. Derived summaries were regenerated
+with `dev/regenerate_native_regressions.py pro`.
+
+The full VM repeat additionally ran unchanged locked mini-SWE 2.4.6 inside the
+actual frozen Ansible image against four scripted tool calls. Captured gold is
+byte-identical to the native oracle patch above; generation and pristine replay
+both returned 1, and replay observed all **16 required tests**. Managed Python
+was **3.12.15**, demonstrating that an agent version alone does not pin runtime.
+The nonreusable raw bundle and checksums are retained separately in
+`tests/fixtures/swebench-pro-agent-native`, with engine-free re-normalization
+and paired import checks. This is scripted-gold infrastructure evidence.
+
+### Explicit local decisions and limits
+
+- Local Docker is used rather than upstream's documented Modal provider. No
+  `pro-v2-compatible` or publisher-score reproduction label is claimed.
+- Task trees, locked agent and replay source remain unchanged. The acceptance
+  wrapper invokes real native OracleAgent/NOP and upstream patch capture.
+- First-match replay receives a derived view with one unchanged result/patch
+  per task. Multiple attempts are refused. Missing patches are errors; actually
+  empty patches are preserved.
+- Public `agent-start` verifies owned images and observes installed mini-SWE
+  before inference. `environment-start` precedes container creation in this pin.
+- Synthetic tasks use explicitly prebuilt image IDs: adding a Compose relay
+  changes Harbor's build path/image labels, so its image ID is not assumed to
+  equal the shared native build-cache ID.
+- Pro's verifier EXIT trap can emit 0 early. Native required-test observations
+  are separate facts; missing/ambiguous coverage withholds a complete aggregate
+  while retaining the original reward, without asserting an unobserved cause.
+- HARD-51/full are definitions only. No full 642 oracle/NOP, HARD-51 model run,
+  actual leased model, GPU acceptance or Modal parity is claimed.
+
+## Cross-repository status
+
+infer-stack `be1add2` exposes scientific catalog/lease provenance and passed
+**1201 tests**, 8 skips. Focused tests cover revision, Q4 -> Q5, dtype, context,
+attention, launch arguments, chat template/image changes, placement invariance
+and real SQLite lease descriptor emission. These are configured facts, not
+GPU/weight attestation.
+
+MAGNET `dev/aiq-evals-integration` / `b2311d2` is absent from the local checkout
+and available remotes. Legacy main lacks EvaluationNode and the fake-lease
+hook. No replacement scheduler was created. MAGNET projection/runtime checks
+and full VM acceptance remain open. GPU acceptance is implemented but not run.
+
+## Full VM gate record: 2026-10-05
+
+Command: `dev/ci/swebench_vm_acceptance.sh`. Overall **FAIL**, solely because
+the required MAGNET integration checkout/hook is unavailable. The unmodified
+report, JUnit files and missing-integration diagnostic are retained in
+`docs/planning/evidence/swebench-vm-2026-10-05`. The report identifies the tested
+working-tree source fingerprints; its HEAD field is not a clean-commit claim.
+
+| Gate | Observed result |
+| --- | --- |
+| Engine-free | 219 passed, 4 absent-engine skips; 9.88 seconds |
+| Harbor Phase 0 | 6 passed, no skips; 214.01 seconds |
+| Generic Harbor conformance | 12 passed, no skips; 174.67 seconds |
+| Verified + fresh official regrading | 2 passed, no skips; 386.23 seconds; oracle 5/5, NOP 5 empty |
+| Pro generation + fresh replay | 4 passed, no skips; 816.01 seconds |
+| infer-stack serving provenance | 13 passed, no skips; 0.48 seconds |
+| MAGNET fake lease | FAIL: required integration/hook absent |
+
+GPU acceptance: **NOT RUN**. Later command:
+`AIQ_GPU_ALIAS=<alias> AIQ_VM_REPORT=<passing-report> dev/ci/swebench_gpu_acceptance.sh`.
+The failed VM report cannot authorize that stage. No full benchmark campaign
+was launched. Final engine-free checks also cover the newly retained fourth
+Pro fixture and stale/missing GPU descriptor rejection: **226 passed**, 4
+absent-engine skips and 50 native deselections in 10.39 seconds. Lint, core
+types, native regrade-helper types, shell syntax and wheel checks passed. The
+wheel retains Python >=3.11, only kwconf as its runtime dependency, and the
+frozen HARD-51 data; tests are excluded. After the recorded VM run, the driver
+was adjusted to create fresh per-run environments and raw captures were
+excluded from lint without modifying them.

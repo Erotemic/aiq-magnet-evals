@@ -1,0 +1,68 @@
+{
+    "schema_version": 3,
+    "created_at": "2026-10-06T03:28:36.202114Z",
+    "harbor": {
+        "version": "0.23.0",
+        "is_editable": false
+    },
+    "n_concurrent_trials": 1,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "ApiUsageLimitError",
+            "AgentTimeoutError",
+            "AgentAuthenticationError",
+            "RewardFileNotFoundError",
+            "VerifierOutputParseError",
+            "RewardFileEmptyError",
+            "AgentSafetyRefusalError",
+            "VerifierTimeoutError",
+            "ModelNotFoundError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "schema_version": 2,
+            "task": {
+                "name": "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+                "version": "1.0.0",
+                "type": "local",
+                "digest": "sha256:ea7b418557db53d94e8ff444f91dc45212bdfec1bdd82c7f232d08435451b68c",
+                "path": "/tmp/pytest-of-joncrall-agent/pytest-129/test_locked_mini_swe_runs_insi0/store/attempts/_unkeyed/.aiq-evals-work-gugky5of/native/harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2"
+            },
+            "install_only": false,
+            "timeout_multiplier": 1.0,
+            "agent_setup_timeout_multiplier": 20.0,
+            "agent": {
+                "import_path": "patch_replay:PatchReplayAgent",
+                "model_name": "replay",
+                "skills": [],
+                "resume_trajectory": false,
+                "extra_allowed_hosts": [],
+                "kwargs": {
+                    "source_job": "/tmp/pytest-of-joncrall-agent/pytest-129/test_locked_mini_swe_runs_insi0/store/attempts/_unkeyed/.aiq-evals-work-gugky5of/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+                },
+                "mcp_servers": []
+            },
+            "bridge_inputs": {},
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "disable": false,
+                "environment_mode": "shared"
+            }
+        }
+    ]
+}

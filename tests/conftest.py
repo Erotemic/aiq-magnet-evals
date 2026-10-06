@@ -18,6 +18,9 @@ from pathlib import Path
 import pytest
 
 QUARANTINE_FILE = Path(__file__).with_name('quarantine.txt')
+# Captures include upstream/sandbox test source. Read it as evidence; never
+# collect or execute those files in the host's pytest process.
+collect_ignore = ['fixtures', 'native/harbor_tasks']
 RELEASE_GATE_MODULES = {
     'test_conformance.py',
     'test_native_fixture_regression.py',

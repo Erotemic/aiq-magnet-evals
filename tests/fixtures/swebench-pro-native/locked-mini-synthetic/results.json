@@ -1,0 +1,441 @@
+{
+  "artifacts": [],
+  "diagnostics": {
+    "aggregate_withheld": false,
+    "authoritative_phase": "fresh-replay",
+    "failure": null,
+    "generation_diagnostics": {
+      "aggregate_withheld": false,
+      "failure": null,
+      "infrastructure_error_count": 0,
+      "native_job_id": "982ca88f-d832-4811-80b0-8f668ec38832",
+      "native_job_stats": {
+        "cost_usd": 0.0,
+        "evals": {
+          "mini-swe-agent-locked__fixture-coding__adhoc": {
+            "exception_stats": {},
+            "metrics": [
+              {
+                "mean": 1.0
+              }
+            ],
+            "n_errors": 0,
+            "n_trials": 1,
+            "pass_at_k": {},
+            "reward_stats": {
+              "reward": {
+                "1.0": [
+                  "division__r24KX6y"
+                ]
+              }
+            }
+          }
+        },
+        "n_cache_tokens": 0,
+        "n_cancelled_trials": 0,
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_input_tokens": 20,
+        "n_output_tokens": 8,
+        "n_pending_trials": 0,
+        "n_retries": 0,
+        "n_running_trials": 0
+      },
+      "provenance": "native Harbor job; request revision tokens are not attested by an import"
+    },
+    "infrastructure_error_count": 0,
+    "native_job_id": "7c2f1796-1cbd-4e9f-8681-ab546f4bd80a",
+    "native_job_stats": {
+      "cost_usd": null,
+      "evals": {
+        "patch-replay-agent__replay__adhoc": {
+          "exception_stats": {},
+          "metrics": [
+            {
+              "mean": 1.0
+            }
+          ],
+          "n_errors": 0,
+          "n_trials": 1,
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "1.0": [
+                "division__uco9v3i"
+              ]
+            }
+          }
+        }
+      },
+      "n_cache_tokens": null,
+      "n_cancelled_trials": 0,
+      "n_completed_trials": 1,
+      "n_errored_trials": 0,
+      "n_input_tokens": null,
+      "n_output_tokens": null,
+      "n_pending_trials": 0,
+      "n_retries": 0,
+      "n_running_trials": 0
+    },
+    "protocol": "local-harbor/pro-v2-offline-replay/v1",
+    "provenance": "native Harbor job; request revision tokens are not attested by an import",
+    "verifier_coverage_error_count": 0
+  },
+  "engine": "harbor",
+  "identity": {
+    "algorithm": "aiq-evals-measurement-v3+sha256",
+    "digest": "282f43fdeda6af3c9ad5b90aada2757b02029203fcd737ffc7f997996b8b0a14",
+    "reusable": false,
+    "unknown_reasons": [
+      "installed agent sandbox runtime is not fully pinned"
+    ]
+  },
+  "records": [
+    {
+      "coverage": {
+        "expected": 1,
+        "failed": 0,
+        "processed": 1,
+        "saved": 1,
+        "status": "complete"
+      },
+      "error": null,
+      "metrics": [
+        {
+          "denominator": 1,
+          "group": "patch-replay-agent__replay__adhoc",
+          "metric": "mean",
+          "model_role": "primary",
+          "reducer": "mean",
+          "score": "reward",
+          "scorer": "verifier",
+          "task": "path:/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/tasks",
+          "value": 1.0
+        }
+      ],
+      "model_role": "primary",
+      "native_config": {
+        "agent_setup_timeout_multiplier": 20.0,
+        "agents": [
+          {
+            "import_path": "patch_replay:PatchReplayAgent",
+            "kwargs": {
+              "source_job": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/agent-inputs/0/replay-source"
+            },
+            "model_name": "replay"
+          }
+        ],
+        "job_name": "replay",
+        "jobs_dir": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor",
+        "n_concurrent_trials": 1,
+        "quiet": true,
+        "tasks": [
+          {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/inputs/division"
+          }
+        ]
+      },
+      "native_status": "succeeded",
+      "primary_metric": "mean",
+      "task": "path:/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/tasks"
+    }
+  ],
+  "samples": [
+    {
+      "epoch": null,
+      "model_role": "primary",
+      "native": {
+        "agent_error": null,
+        "agent_info": {
+          "model_info": {
+            "name": "replay",
+            "provider": null
+          },
+          "name": "patch-replay-agent",
+          "version": "1.0.0"
+        },
+        "attempt_id": "19bd367e-629f-412f-90f9-318412be6912",
+        "authoritative_phase": "fresh-replay",
+        "counted_as_model_failure": false,
+        "environment_error": null,
+        "exception_info": null,
+        "exception_phase": null,
+        "generation_native": {
+          "agent_error": null,
+          "agent_info": {
+            "model_info": {
+              "name": "fixture-coding",
+              "provider": "openai"
+            },
+            "name": "mini-swe-agent-locked",
+            "version": "2.4.6"
+          },
+          "attempt_id": "e91133a1-d248-42c8-9af3-362a1f7d861e",
+          "counted_as_model_failure": false,
+          "environment_error": null,
+          "exception_info": null,
+          "exception_phase": null,
+          "native_rewards": {
+            "reward": 1.0
+          },
+          "patch_artifact": "native/harbor/generation/division__r24KX6y/agent/model.patch",
+          "patch_sha256": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+          "result_artifact": "native/harbor/generation/division__r24KX6y/result.json",
+          "task_checksum": "95c9440aa536a7af4710d5f7b92eacc40a19ab3a015a7310f429975389cca6be",
+          "timings": {
+            "agent_execution": {
+              "finished_at": "2026-10-06T02:50:02.173805Z",
+              "started_at": "2026-10-06T02:49:45.291182Z"
+            },
+            "agent_setup": {
+              "finished_at": "2026-10-06T02:49:44.861053Z",
+              "started_at": "2026-10-06T02:49:30.594606Z"
+            },
+            "environment_setup": {
+              "finished_at": "2026-10-06T02:49:30.594552Z",
+              "started_at": "2026-10-06T02:49:26.653574Z"
+            },
+            "verifier": {
+              "finished_at": "2026-10-06T02:50:03.996201Z",
+              "started_at": "2026-10-06T02:50:03.094594Z"
+            }
+          },
+          "trajectory_artifact": "native/harbor/generation/division__r24KX6y/agent/trajectory.json",
+          "trial_id": "e91133a1-d248-42c8-9af3-362a1f7d861e",
+          "trial_name": "division__r24KX6y",
+          "trial_status": "succeeded",
+          "verifier_artifacts": [
+            "native/harbor/generation/division__r24KX6y/verifier/pytest.txt",
+            "native/harbor/generation/division__r24KX6y/verifier/reward.txt",
+            "native/harbor/generation/division__r24KX6y/verifier/test-stdout.txt"
+          ],
+          "verifier_environment_mode": "shared",
+          "verifier_error": null
+        },
+        "generation_rewards": {
+          "reward": 1.0
+        },
+        "generation_trial_id": "e91133a1-d248-42c8-9af3-362a1f7d861e",
+        "generation_trial_name": "division__r24KX6y",
+        "native_rewards": {
+          "reward": 1.0
+        },
+        "patch_bytes": 250,
+        "patch_sha256": "fd7b2255032a44f2daf183e23d61f7506a1a853c0881704ed0ba6f4792448c6b",
+        "protocol": "local-harbor/pro-v2-offline-replay/v1",
+        "replay": {
+          "apply_out": "Checking patch calc.py...\nApplied patch calc.py cleanly.\n",
+          "apply_rc": 0,
+          "patch": "/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/store/attempts/_unkeyed/.aiq-evals-work-mfdxw_i8/native/harbor/replay-inputs/agent-inputs/0/replay-source/instance_0/agent/model.patch",
+          "post_apply_diffstat": " calc.py | 2 ++\n 1 file changed, 2 insertions(+)\n---\n1\n",
+          "task": "division"
+        },
+        "replay_trial_id": "19bd367e-629f-412f-90f9-318412be6912",
+        "result_artifact": "native/harbor/replay/division__uco9v3i/result.json",
+        "task_checksum": "95c9440aa536a7af4710d5f7b92eacc40a19ab3a015a7310f429975389cca6be",
+        "timings": {
+          "agent_execution": {
+            "finished_at": "2026-10-06T02:50:24.999655Z",
+            "started_at": "2026-10-06T02:50:21.652924Z"
+          },
+          "agent_setup": {
+            "finished_at": "2026-10-06T02:50:21.563932Z",
+            "started_at": "2026-10-06T02:50:21.563862Z"
+          },
+          "environment_setup": {
+            "finished_at": "2026-10-06T02:50:21.563816Z",
+            "started_at": "2026-10-06T02:50:17.660077Z"
+          },
+          "verifier": {
+            "finished_at": "2026-10-06T02:50:27.037882Z",
+            "started_at": "2026-10-06T02:50:25.958351Z"
+          }
+        },
+        "trial_id": "19bd367e-629f-412f-90f9-318412be6912",
+        "trial_name": "division__uco9v3i",
+        "trial_status": "succeeded",
+        "verifier_artifacts": [
+          "native/harbor/replay/division__uco9v3i/verifier/pytest.txt",
+          "native/harbor/replay/division__uco9v3i/verifier/reward.txt",
+          "native/harbor/replay/division__uco9v3i/verifier/test-stdout.txt"
+        ],
+        "verifier_environment_mode": "shared",
+        "verifier_error": null,
+        "verifier_observation": {
+          "complete": true
+        }
+      },
+      "sample_id": "division",
+      "scores": {
+        "reward": 1.0
+      },
+      "task": "path:/tmp/pytest-of-joncrall-agent/pytest-118/test_locked_mini_swe_tools_cap0/tasks",
+      "trajectory": {
+        "agent": {
+          "extra": {
+            "agent_config": {
+              "confirm_exit": false,
+              "cost_limit": 0.0,
+              "instance_template": "Please solve this issue: {{task}}\n\nYou can execute bash commands and edit files to implement the necessary changes.\n\n## Recommended Workflow\n\nThis workflow should be done step-by-step so that you can iterate on your changes and any possible problems.\n\n1. Analyze the codebase by finding and reading relevant files\n2. Create a script to reproduce the issue\n3. Edit the source code to resolve the issue\n4. Verify your fix works by running your script again\n5. Test edge cases to ensure your fix is robust\n6. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.\n   Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>\n\n## Command Execution Rules\n\nYou are operating in an environment where\n\n1. You issue at least one command\n2. The system executes the command(s) in a subshell\n3. You see the result(s)\n4. You write your next command(s)\n\nEach response should include:\n\n1. **Reasoning text** where you explain your analysis and plan\n2. At least one tool call with your command\n\n**CRITICAL REQUIREMENTS:**\n\n- Your response SHOULD include reasoning text explaining what you're doing\n- Your response MUST include AT LEAST ONE bash tool call\n- Directory or environment variable changes are not persistent. Every action is executed in a new subshell.\n- However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd /path/to/working/dir && ...` or write/load environment variables from files\n- Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.\n  Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>\n\nExample of a CORRECT response:\n<example_response>\nI need to understand the structure of the repository first. Let me check what files are in the current directory to get a better understanding of the codebase.\n\n[Makes bash tool call with {\"command\": \"ls -la\"} as arguments]\n</example_response>\n\n<system_information>\n{{system}} {{release}} {{version}} {{machine}}\n</system_information>\n\n## Useful command examples\n\n### Create a new file:\n\n```bash\ncat <<'EOF' > newfile.py\nimport numpy as np\nhello = \"world\"\nprint(hello)\nEOF\n```\n\n### Edit files with sed:\n\n{%- if system == \"Darwin\" -%}\n<important>\nYou are on MacOS. For all the below examples, you need to use `sed -i ''` instead of `sed -i`.\n</important>\n{%- endif -%}\n\n```bash\n# Replace all occurrences\nsed -i 's/old_string/new_string/g' filename.py\n\n# Replace only first occurrence\nsed -i 's/old_string/new_string/' filename.py\n\n# Replace first occurrence on line 1\nsed -i '1s/old_string/new_string/' filename.py\n\n# Replace all occurrences in lines 1-10\nsed -i '1,10s/old_string/new_string/g' filename.py\n```\n\n### View file content:\n\n```bash\n# View specific lines with numbers\nnl -ba filename.py | sed -n '10,20p'\n```\n\n### Any other command you want to run\n\n```bash\nanything\n```\n",
+              "max_consecutive_format_errors": 3,
+              "mode": "yolo",
+              "output_path": "/logs/agent/mini-swe-agent.trajectory.json",
+              "step_limit": 0,
+              "system_template": "You are a helpful assistant that can interact with a computer.\n",
+              "wall_time_limit_seconds": 0,
+              "whitelist_actions": []
+            },
+            "original_format": "mini-swe-agent-1.1"
+          },
+          "model_name": "openai/fixture-coding",
+          "name": "mini-swe-agent",
+          "version": "2.4.6"
+        },
+        "final_metrics": {
+          "total_completion_tokens": 8,
+          "total_prompt_tokens": 20,
+          "total_steps": 6
+        },
+        "notes": "Converted from mini-swe-agent trajectory format to ATIF",
+        "schema_version": "ATIF-v1.7",
+        "session_id": "division__r24KX6y__agent",
+        "steps": [
+          {
+            "message": "You are a helpful assistant that can interact with a computer.",
+            "source": "system",
+            "step_id": 1
+          },
+          {
+            "message": "Please solve this issue: Fix `calc.divide`: reject a zero denominator with `ValueError(\"zero denominator\")`.\nPreserve ordinary division. Run the repository tests before finishing.\n\n\nYou can execute bash commands and edit files to implement the necessary changes.\n\n## Recommended Workflow\n\nThis workflow should be done step-by-step so that you can iterate on your changes and any possible problems.\n\n1. Analyze the codebase by finding and reading relevant files\n2. Create a script to reproduce the issue\n3. Edit the source code to resolve the issue\n4. Verify your fix works by running your script again\n5. Test edge cases to ensure your fix is robust\n6. Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.\n   Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>\n\n## Command Execution Rules\n\nYou are operating in an environment where\n\n1. You issue at least one command\n2. The system executes the command(s) in a subshell\n3. You see the result(s)\n4. You write your next command(s)\n\nEach response should include:\n\n1. **Reasoning text** where you explain your analysis and plan\n2. At least one tool call with your command\n\n**CRITICAL REQUIREMENTS:**\n\n- Your response SHOULD include reasoning text explaining what you're doing\n- Your response MUST include AT LEAST ONE bash tool call\n- Directory or environment variable changes are not persistent. Every action is executed in a new subshell.\n- However, you can prefix any action with `MY_ENV_VAR=MY_VALUE cd /path/to/working/dir && ...` or write/load environment variables from files\n- Submit your changes and finish your work by issuing the following command: `echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT`.\n  Do not combine it with any other command. <important>After this command, you cannot continue working on this task.</important>\n\nExample of a CORRECT response:\n<example_response>\nI need to understand the structure of the repository first. Let me check what files are in the current directory to get a better understanding of the codebase.\n\n[Makes bash tool call with {\"command\": \"ls -la\"} as arguments]\n</example_response>\n\n<system_information>\nLinux 6.8.0-142-generic #142-Ubuntu SMP PREEMPT_DYNAMIC Wed Sep  2 14:24:27 UTC 2026 x86_64\n</system_information>\n\n## Useful command examples\n\n### Create a new file:\n\n```bash\ncat <<'EOF' > newfile.py\nimport numpy as np\nhello = \"world\"\nprint(hello)\nEOF\n```\n\n### Edit files with sed:```bash\n# Replace all occurrences\nsed -i 's/old_string/new_string/g' filename.py\n\n# Replace only first occurrence\nsed -i 's/old_string/new_string/' filename.py\n\n# Replace first occurrence on line 1\nsed -i '1s/old_string/new_string/' filename.py\n\n# Replace all occurrences in lines 1-10\nsed -i '1,10s/old_string/new_string/g' filename.py\n```\n\n### View file content:\n\n```bash\n# View specific lines with numbers\nnl -ba filename.py | sed -n '10,20p'\n```\n\n### Any other command you want to run\n\n```bash\nanything\n```",
+            "source": "user",
+            "step_id": 2
+          },
+          {
+            "llm_call_count": 1,
+            "message": "Execute the next fixture step.",
+            "metrics": {
+              "completion_tokens": 2,
+              "prompt_tokens": 5
+            },
+            "model_name": "openai/fixture-coding",
+            "observation": {
+              "results": [
+                {
+                  "content": "{\n  \"returncode\": 0,\n  \"output\": \"def divide(numerator, denominator):\\n    return numerator / denominator\\n\"\n}"
+                }
+              ]
+            },
+            "reasoning_content": "Execute the next fixture step.",
+            "source": "agent",
+            "step_id": 3,
+            "timestamp": "2026-10-06T02:49:57.275033+00:00",
+            "tool_calls": [
+              {
+                "arguments": {
+                  "command": "cd /app && cat calc.py"
+                },
+                "function_name": "bash",
+                "tool_call_id": "call_0"
+              }
+            ]
+          },
+          {
+            "llm_call_count": 1,
+            "message": "Execute the next fixture step.",
+            "metrics": {
+              "completion_tokens": 2,
+              "prompt_tokens": 5
+            },
+            "model_name": "openai/fixture-coding",
+            "observation": {
+              "results": [
+                {
+                  "content": "{\n  \"returncode\": 0,\n  \"output\": \"\"\n}"
+                }
+              ]
+            },
+            "reasoning_content": "Execute the next fixture step.",
+            "source": "agent",
+            "step_id": 4,
+            "timestamp": "2026-10-06T02:49:57.298382+00:00",
+            "tool_calls": [
+              {
+                "arguments": {
+                  "command": "cd /app && python -c 'from pathlib import Path; Path('\"'\"'calc.py'\"'\"').write_text('\"'\"'def divide(numerator, denominator):\\n    if denominator == 0:\\n        raise ValueError(\"zero denominator\")\\n    return numerator / denominator\\n'\"'\"')'"
+                },
+                "function_name": "bash",
+                "tool_call_id": "call_1"
+              }
+            ]
+          },
+          {
+            "llm_call_count": 1,
+            "message": "Execute the next fixture step.",
+            "metrics": {
+              "completion_tokens": 2,
+              "prompt_tokens": 5
+            },
+            "model_name": "openai/fixture-coding",
+            "observation": {
+              "results": [
+                {
+                  "content": "{\n  \"returncode\": 0,\n  \"output\": \"..                                                                       [100%]\\n2 passed in 0.01s\\n\"\n}"
+                }
+              ]
+            },
+            "reasoning_content": "Execute the next fixture step.",
+            "source": "agent",
+            "step_id": 5,
+            "timestamp": "2026-10-06T02:49:57.385164+00:00",
+            "tool_calls": [
+              {
+                "arguments": {
+                  "command": "cd /app && python -m pytest -q test_calc.py"
+                },
+                "function_name": "bash",
+                "tool_call_id": "call_2"
+              }
+            ]
+          },
+          {
+            "llm_call_count": 1,
+            "message": "Execute the next fixture step.",
+            "metrics": {
+              "completion_tokens": 2,
+              "prompt_tokens": 5
+            },
+            "model_name": "openai/fixture-coding",
+            "observation": {
+              "results": [
+                {
+                  "content": "{\n  \"returncode\": -1,\n  \"output\": \"\", \"exception_info\": \"action was not executed\"\n}"
+                }
+              ]
+            },
+            "reasoning_content": "Execute the next fixture step.",
+            "source": "agent",
+            "step_id": 6,
+            "timestamp": "2026-10-06T02:49:57.756505+00:00",
+            "tool_calls": [
+              {
+                "arguments": {
+                  "command": "echo COMPLETE_TASK_AND_SUBMIT_FINAL_OUTPUT"
+                },
+                "function_name": "bash",
+                "tool_call_id": "call_3"
+              }
+            ]
+          }
+        ]
+      },
+      "usage": {
+        "cost_usd": 0.0,
+        "n_cache_tokens": 0,
+        "n_input_tokens": 20,
+        "n_output_tokens": 8
+      }
+    }
+  ],
+  "schema_version": 1,
+  "status": "succeeded"
+}

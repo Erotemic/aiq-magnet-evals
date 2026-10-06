@@ -1,0 +1,17 @@
+{
+  "schema": "aiq-magnet-evals-swebench-vm-acceptance/1",
+  "status": "FAIL",
+  "gates": {
+    "engine-free": "PASS",
+    "harbor-phase0": "PASS",
+    "harbor-conformance": "PASS",
+    "verified": "PASS",
+    "pro-generation-replay": "PASS",
+    "serving-provenance": "PASS",
+    "magnet-fake-lease": "FAIL"
+  },
+  "evals_commit": "5dc94f590971f031b2188871da5d04dcf4ee3cd6",
+  "evals_source_sha256": "983869e4d62248e4cf951e5c17fa5d4772bd37502193ebfc2f5ddeeea24414a9",
+  "infer_stack_source_sha256": "50e551aca7a10ec7ea3bc54234699785408baa57d4354a38d3c09fbcef049964",
+  "magnet_source_sha256": "80cc5780c71af01f1d1c014aa3b7eef97dc857c735c8dc44940fe729bfafb422"
+}

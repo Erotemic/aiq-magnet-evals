@@ -1,0 +1,385 @@
+{
+  "engine": "harbor",
+  "identity_algorithm": "aiq-evals-measurement-v3+sha256",
+  "identity_unknown_reasons": [],
+  "measurement_identity": "744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310",
+  "metadata_checksums": {
+    "attempt.json": "993de8da3c929ab2123b96945ad2ca77e21abf15ecf28eec7064b6a79b4467a7",
+    "resolved_request.json": "5fe0f1b853d61280260de26e1efd883d8235400802f78c49e83701e7d66a8866",
+    "results.json": "b850ccc424a426c37318f3474baa6e6e15a4bcf4ffb66cbe37e23642e3074afc"
+  },
+  "native_artifact_identity": "854f8e295464530fdba813b37180bcbbc3ad7c2b772f57b2436650e120bda5fc",
+  "native_artifacts": [
+    {
+      "path": "aiq_worker/stderr.log",
+      "role": "native",
+      "sha256": "a70892f1a7200c61ecbf651fe2b0ce025ce471a9784e78e4c5fb7cce61f6f1b8",
+      "size_bytes": 147
+    },
+    {
+      "path": "aiq_worker/stdout.log",
+      "role": "native",
+      "sha256": "06cd5dd30dc937c44880a7122c479ef0b6d4e8089392018651d4a27b23e56405",
+      "size_bytes": 310
+    },
+    {
+      "path": "harbor/generation/config.json",
+      "role": "native",
+      "sha256": "b51ee3cb54ae7b31f64d4c451e9616f0ccef7048036ad39c86ab3946c5dae0b8",
+      "size_bytes": 913
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/agent/model.patch",
+      "role": "native",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/artifacts/manifest.json",
+      "role": "native",
+      "sha256": "ded0d7ce10852ffc713c14edac13664f70953cf5e271de31db9e1c64229411d8",
+      "size_bytes": 178
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/config.json",
+      "role": "native",
+      "sha256": "d51e666883479d9ef18320ca5b3f148f3606211b617872cd7a9d3aae8d26363c",
+      "size_bytes": 898
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/lock.json",
+      "role": "native",
+      "sha256": "a3a7984e09e5474c7d411e6ecb4cadfaa7bbdba88f07099ea599417bd64894d0",
+      "size_bytes": 1449
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/result.json",
+      "role": "native",
+      "sha256": "a72d0044f9680817a170d9d568b6457bf186e4ef92b1afa205e2401a284e8bce",
+      "size_bytes": 4980
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/runtime-image.json",
+      "role": "native",
+      "sha256": "f7fd2d02ca3e54120d33f6ae0160f22f4e109c975a5b957585391e4d8d40e6c4",
+      "size_bytes": 295
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/trial.log",
+      "role": "native",
+      "sha256": "5868e519b78e4f2f267470e411fb5e62ab85729eb3642ffbddd64e569930f993",
+      "size_bytes": 34
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/output.json",
+      "role": "native",
+      "sha256": "4ce31ea4e996967f21b80519581880fa107f6d8e8f43a0f809a980ff94efa38b",
+      "size_bytes": 2346
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/reward.txt",
+      "role": "native",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "size_bytes": 2
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/run-script-stderr.txt",
+      "role": "native",
+      "sha256": "f30e28970fbb9a718bb3624b5ece4f51a12032ffc9c59b2037fd1a74aa6b85e5",
+      "size_bytes": 309
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/run-script-stdout.txt",
+      "role": "native",
+      "sha256": "39c6cd3831b5e36f7b53967348706c8d9d472ce23e39fec73e96f917074426cf",
+      "size_bytes": 8970
+    },
+    {
+      "path": "harbor/generation/instance_ansible__ansible-0ea40e__2rDzjkd/verifier/test-stdout.txt",
+      "role": "native",
+      "sha256": "407c2367abac272c153188dcde8500538767861282e715337740d26ed2428294",
+      "size_bytes": 365
+    },
+    {
+      "path": "harbor/generation/job.log",
+      "role": "native",
+      "sha256": "4c2f61ef815b014794e523f9589e9468f2abdbc5587489e5e6cd794691050f4d",
+      "size_bytes": 135
+    },
+    {
+      "path": "harbor/generation/lock.json",
+      "role": "native",
+      "sha256": "e361e53dc46993ca63730e0c8b70ff94adcb0f404c2af7afce930a3193f5b7ce",
+      "size_bytes": 2483
+    },
+    {
+      "path": "harbor/generation/result.json",
+      "role": "native",
+      "sha256": "c3de6a2d86bc15546710f3ce622cb6851454df8096546037b37d783d8cc86ed7",
+      "size_bytes": 1155
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/environment/Dockerfile",
+      "role": "native",
+      "sha256": "f183e215094b9c7f55a72c61f7bc2bc4b212c88ff4e5e8843df962f598db5a5b",
+      "size_bytes": 148
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/instruction.md",
+      "role": "native",
+      "sha256": "0574bd29eb64d79bb66a69a45cb7067e9a3e57b39400f9e7e02623913a1502b8",
+      "size_bytes": 2540
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/solution/gold_patch.diff",
+      "role": "native",
+      "sha256": "59a87bfccdfec081873ba2381668e1af6f336a19d3dc64ae10b9ef976c9856a0",
+      "size_bytes": 1906
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/solution/solve.sh",
+      "role": "native",
+      "sha256": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "size_bytes": 306
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/task.toml",
+      "role": "native",
+      "sha256": "982947294b1d723dcad38400336709106e6d6738ad50f3d2c3770c054bd8f3f5",
+      "size_bytes": 865
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/config.json",
+      "role": "native",
+      "sha256": "59679673433866339642d4e001d21363c24c1c26a49b4e55b35b857e30a82083",
+      "size_bytes": 1642
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/parser.py",
+      "role": "native",
+      "sha256": "0f4ab63305c466c87689bd5d1581f6601666a4175269db58830014464111f761",
+      "size_bytes": 6089
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/run_script.sh",
+      "role": "native",
+      "sha256": "285a6163b889a7867388525f28f4a8c445f2a9a8adaf7cb7addb8cb7909d3453",
+      "size_bytes": 1926
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/test.sh",
+      "role": "native",
+      "sha256": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "size_bytes": 7864
+    },
+    {
+      "path": "harbor/generation-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/test_patch.patch",
+      "role": "native",
+      "sha256": "7de812e77770f2cf22ffe8441294ec99330dc36a20ac01517d606b5c1caaa99f",
+      "size_bytes": 1230
+    },
+    {
+      "path": "harbor/generation-normalized.json",
+      "role": "native",
+      "sha256": "2f6b85b68d9eaab1f55ec86699f6b7d90e272f036ae8f549b90d09cacbc1f690",
+      "size_bytes": 5878
+    },
+    {
+      "path": "harbor/joins.json",
+      "role": "native",
+      "sha256": "5508df13769e8eb8bf770d4ade8cf5b5401fd22de499fdff77936c8ecda0edef",
+      "size_bytes": 387
+    },
+    {
+      "path": "harbor/replay/config.json",
+      "role": "native",
+      "sha256": "a5aa6f7d397d33368b2a42c3378d7ebf49ce625f332e52a865972368b2cd4d06",
+      "size_bytes": 1127
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/agent/replay.json",
+      "role": "native",
+      "sha256": "cc9de05a9c4f00b99489654adc59f222cd94ef022210e989300144e18d57148f",
+      "size_bytes": 135
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/artifacts/manifest.json",
+      "role": "native",
+      "sha256": "ded0d7ce10852ffc713c14edac13664f70953cf5e271de31db9e1c64229411d8",
+      "size_bytes": 178
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/config.json",
+      "role": "native",
+      "sha256": "67c597e495eb7879b647ecead528ba11df04a5e23836ee7366225b741337b71c",
+      "size_bytes": 1112
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/lock.json",
+      "role": "native",
+      "sha256": "26ce3ac94934e2ed98f222fc8ce53e2a80769efe1f68e63582770e3932eb9417",
+      "size_bytes": 1667
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/result.json",
+      "role": "native",
+      "sha256": "65afc866d4700eaf6052491e70152c9f49b2f0c837662c8d5631664083986fcd",
+      "size_bytes": 5174
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/runtime-image.json",
+      "role": "native",
+      "sha256": "3230a0b73c290159bc169225ddb1445923d6b7848f87e52211808a9677326376",
+      "size_bytes": 295
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/trial.log",
+      "role": "native",
+      "sha256": "89ca9caae9c2066e54273150db79cb493f4a64b2f6ce6a70337da688c2d8d311",
+      "size_bytes": 181
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/output.json",
+      "role": "native",
+      "sha256": "03673ef70ad50e0d2daa8c7bcf28da76dee45f8cfd108df858786e13ba24dd29",
+      "size_bytes": 2346
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/reward.txt",
+      "role": "native",
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "size_bytes": 2
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/run-script-stderr.txt",
+      "role": "native",
+      "sha256": "f30e28970fbb9a718bb3624b5ece4f51a12032ffc9c59b2037fd1a74aa6b85e5",
+      "size_bytes": 309
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/run-script-stdout.txt",
+      "role": "native",
+      "sha256": "3b99fba2e82c2a4066a64efd83f02f490ff9c57265c1b539f2f4ea2dbc767c6d",
+      "size_bytes": 9054
+    },
+    {
+      "path": "harbor/replay/instance_ansible__ansible-0ea40e__GLvLsci/verifier/test-stdout.txt",
+      "role": "native",
+      "sha256": "407c2367abac272c153188dcde8500538767861282e715337740d26ed2428294",
+      "size_bytes": 365
+    },
+    {
+      "path": "harbor/replay/job.log",
+      "role": "native",
+      "sha256": "ce468b3c39f24f74363f539b5e912635307a28eec012422aca7ff0bb68c7ca90",
+      "size_bytes": 271
+    },
+    {
+      "path": "harbor/replay/lock.json",
+      "role": "native",
+      "sha256": "1a1034a84642a4d67c00b45076fc4e4c91a6b81f958754f7e3af0203fd9ce000",
+      "size_bytes": 2701
+    },
+    {
+      "path": "harbor/replay/result.json",
+      "role": "native",
+      "sha256": "6486b46f782232aea2f6b9cbc70727ca7464d7f43467b74b7483ab3ed2bb6d85",
+      "size_bytes": 1143
+    },
+    {
+      "path": "harbor/replay-inputs/agent-inputs/0/replay-source/instance_0/agent/model.patch",
+      "role": "native",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "harbor/replay-inputs/agent-inputs/0/replay-source/instance_0/result.json",
+      "role": "native",
+      "sha256": "a72d0044f9680817a170d9d568b6457bf186e4ef92b1afa205e2401a284e8bce",
+      "size_bytes": 4980
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/environment/Dockerfile",
+      "role": "native",
+      "sha256": "f183e215094b9c7f55a72c61f7bc2bc4b212c88ff4e5e8843df962f598db5a5b",
+      "size_bytes": 148
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/instruction.md",
+      "role": "native",
+      "sha256": "0574bd29eb64d79bb66a69a45cb7067e9a3e57b39400f9e7e02623913a1502b8",
+      "size_bytes": 2540
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/solution/gold_patch.diff",
+      "role": "native",
+      "sha256": "59a87bfccdfec081873ba2381668e1af6f336a19d3dc64ae10b9ef976c9856a0",
+      "size_bytes": 1906
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/solution/solve.sh",
+      "role": "native",
+      "sha256": "6d7497394937410135791cc64ba2f32ad48a94daf6308f0f4c64c74d24c50f97",
+      "size_bytes": 306
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/task.toml",
+      "role": "native",
+      "sha256": "982947294b1d723dcad38400336709106e6d6738ad50f3d2c3770c054bd8f3f5",
+      "size_bytes": 865
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/config.json",
+      "role": "native",
+      "sha256": "59679673433866339642d4e001d21363c24c1c26a49b4e55b35b857e30a82083",
+      "size_bytes": 1642
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/parser.py",
+      "role": "native",
+      "sha256": "0f4ab63305c466c87689bd5d1581f6601666a4175269db58830014464111f761",
+      "size_bytes": 6089
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/run_script.sh",
+      "role": "native",
+      "sha256": "285a6163b889a7867388525f28f4a8c445f2a9a8adaf7cb7addb8cb7909d3453",
+      "size_bytes": 1926
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/test.sh",
+      "role": "native",
+      "sha256": "b6f26eecd87c1696a3702ee115d31f9d42f4704cf2116419cd879f66b60976d0",
+      "size_bytes": 7864
+    },
+    {
+      "path": "harbor/replay-inputs/inputs/instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2/tests/test_patch.patch",
+      "role": "native",
+      "sha256": "7de812e77770f2cf22ffe8441294ec99330dc36a20ac01517d606b5c1caaa99f",
+      "size_bytes": 1230
+    },
+    {
+      "path": "harbor/replay-normalized.json",
+      "role": "native",
+      "sha256": "bc840e9faade3f6586e84e0ad1e558c86762c6a9c718de7581b2ee053bf24cdd",
+      "size_bytes": 5826
+    },
+    {
+      "path": "harbor/replay-source/instance_0/agent/model.patch",
+      "role": "native",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size_bytes": 0
+    },
+    {
+      "path": "harbor/replay-source/instance_0/result.json",
+      "role": "native",
+      "sha256": "a72d0044f9680817a170d9d568b6457bf186e4ef92b1afa205e2401a284e8bce",
+      "size_bytes": 4980
+    }
+  ],
+  "normalized_artifact_identity": "c8ff5242c06bae95b629fff94f7d5b38a0a0616846ecb51f8cee8441621291e1",
+  "request_schema_version": 1,
+  "result_schema_version": 1,
+  "reusable": true,
+  "schema_version": 1
+}

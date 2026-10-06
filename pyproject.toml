@@ -52,7 +52,7 @@ Repository = "https://github.com/Erotemic/aiq-magnet-evals"
 include = ["magnet_evals*"]
 
 [tool.setuptools.package-data]
-magnet_evals = ["py.typed"]
+magnet_evals = ["py.typed", "benchmarks/data/*.txt"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -72,7 +72,7 @@ lint.select = ["E", "F", "I"]
 lint.ignore = ["E501"]
 # Captured native sources are immutable evidence, and task repositories are
 # sandbox inputs. Neither is a host-side implementation lint target.
-extend-exclude = ["tests/fixtures/harbor-native", "tests/native/harbor_tasks"]
+extend-exclude = ["tests/fixtures/harbor-native", "tests/fixtures/swebench-pro-native", "tests/fixtures/swebench-pro-agent-native", "tests/fixtures/swebench-verified-native", "tests/native/harbor_tasks"]
 
 # Example task modules import their engine at module level (Inspect's @task and
 # OLMo's @register need it); they only ever load inside that engine's worker.

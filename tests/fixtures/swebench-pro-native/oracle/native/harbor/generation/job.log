@@ -1,0 +1,3 @@
+Agent 'acceptance-oracle-nop-capture' does not declare an options_model; leftover kwargs are ignored
+Agent 'oracle' does not declare an options_model; leftover kwargs are ignored
+Collecting main service artifacts

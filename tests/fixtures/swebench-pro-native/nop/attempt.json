@@ -1,0 +1,98 @@
+{
+  "diagnostics": {
+    "aggregate_withheld": false,
+    "authoritative_phase": "fresh-replay",
+    "failure": null,
+    "generation_diagnostics": {
+      "aggregate_withheld": false,
+      "failure": null,
+      "infrastructure_error_count": 0,
+      "native_job_id": "fe809cf7-2388-424b-a5d9-65e4f4a30c7a",
+      "native_job_stats": {
+        "cost_usd": null,
+        "evals": {
+          "acceptance-oracle-nop-capture__fixture__adhoc": {
+            "exception_stats": {},
+            "metrics": [
+              {
+                "mean": 0.0
+              }
+            ],
+            "n_errors": 0,
+            "n_trials": 1,
+            "pass_at_k": {},
+            "reward_stats": {
+              "reward": {
+                "0.0": [
+                  "instance_ansible__ansible-0ea40e__2rDzjkd"
+                ]
+              }
+            }
+          }
+        },
+        "n_cache_tokens": null,
+        "n_cancelled_trials": 0,
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_input_tokens": null,
+        "n_output_tokens": null,
+        "n_pending_trials": 0,
+        "n_retries": 0,
+        "n_running_trials": 0
+      },
+      "provenance": "native Harbor job; request revision tokens are not attested by an import"
+    },
+    "infrastructure_error_count": 0,
+    "native_job_id": "2995e6fe-181c-4786-b211-7c33ae02cb10",
+    "native_job_stats": {
+      "cost_usd": null,
+      "evals": {
+        "patch-replay-agent__replay__adhoc": {
+          "exception_stats": {},
+          "metrics": [
+            {
+              "mean": 0.0
+            }
+          ],
+          "n_errors": 0,
+          "n_trials": 1,
+          "pass_at_k": {},
+          "reward_stats": {
+            "reward": {
+              "0.0": [
+                "instance_ansible__ansible-0ea40e__GLvLsci"
+              ]
+            }
+          }
+        }
+      },
+      "n_cache_tokens": null,
+      "n_cancelled_trials": 0,
+      "n_completed_trials": 1,
+      "n_errored_trials": 0,
+      "n_input_tokens": null,
+      "n_output_tokens": null,
+      "n_pending_trials": 0,
+      "n_retries": 0,
+      "n_running_trials": 0
+    },
+    "protocol": "local-harbor/pro-v2-offline-replay/v1",
+    "provenance": "native Harbor job; request revision tokens are not attested by an import",
+    "verifier_coverage_error_count": 0
+  },
+  "execution_context": {
+    "env_keys": [],
+    "model_endpoint_roles": [],
+    "output_dir": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/20261006T024217884499Z-96d7b4fd",
+    "timeout_seconds": null,
+    "worker_python": "/tmp/aiq-harbor-roadmap/venv/bin/python"
+  },
+  "schema_version": 1,
+  "source_attempt": {
+    "native_artifact_identity": "854f8e295464530fdba813b37180bcbbc3ad7c2b772f57b2436650e120bda5fc",
+    "normalized_artifact_identity": "c8ff5242c06bae95b629fff94f7d5b38a0a0616846ecb51f8cee8441621291e1",
+    "path": "/tmp/pytest-of-joncrall-agent/pytest-117/test_pro_gold_and_nop_are_scor1/store/attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/20261006T024217884499Z-96d7b4fd",
+    "relative_path": "attempts/74/744c447d8ecc73f3f1df494fe80cf8770995dda157a364b86c69aa8359d23310/20261006T024217884499Z-96d7b4fd"
+  },
+  "status": "succeeded"
+}
