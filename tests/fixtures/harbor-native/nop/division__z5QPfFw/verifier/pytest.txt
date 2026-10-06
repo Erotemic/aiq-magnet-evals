@@ -1,0 +1,22 @@
+.F                                                                       [100%]
+=================================== FAILURES ===================================
+____________________________ test_zero_denominator _____________________________
+
+    def test_zero_denominator():
+        with pytest.raises(ValueError, match="^zero denominator$"):
+>           divide(3, 0)
+
+test_calc.py:12: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+numerator = 3, denominator = 0
+
+    def divide(numerator, denominator):
+>       return numerator / denominator
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       ZeroDivisionError: division by zero
+
+calc.py:2: ZeroDivisionError
+=========================== short test summary info ============================
+FAILED test_calc.py::test_zero_denominator - ZeroDivisionError: division by zero
+1 failed, 1 passed in 0.02s

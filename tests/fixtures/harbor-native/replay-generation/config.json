@@ -1,0 +1,11 @@
+{
+    "job_name": "31c408b178e6",
+    "jobs_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/replay-generation",
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "tasks": [
+        {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-88/test_exact_patch_replay_in_fre0/instance_division"
+        }
+    ]
+}

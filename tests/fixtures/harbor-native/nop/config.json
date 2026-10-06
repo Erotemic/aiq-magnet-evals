@@ -1,0 +1,16 @@
+{
+    "job_name": "512abc82ef5a",
+    "jobs_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/nop",
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "agents": [
+        {
+            "name": "nop"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+        }
+    ]
+}

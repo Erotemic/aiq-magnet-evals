@@ -1,0 +1,14 @@
+{
+    "job_name": "2897c1cb0a3e",
+    "jobs_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure",
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "tasks": [
+        {
+            "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+        },
+        {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-88/test_partial_verifier_failure_0/broken-verifier"
+        }
+    ]
+}

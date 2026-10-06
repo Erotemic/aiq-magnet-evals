@@ -8,6 +8,7 @@ evidence, and open gates.
 - `aiq-evals-plan.md` - implementation work owned by this repository.
 - `aiq-magnet-integration-plan.md` - integration work intentionally owned by MAGNET.
 - `swe-bench-harbor-roadmap.md` - roadmap for Harbor, SWE-bench Verified/Pro V2, local-model provenance, and quantization campaigns.
+- `harbor-evidence.md` - native Harbor/SWE-bench implementation probes and remaining gates.
 - `phase1-evidence.md` - canonical phase-1 validation ledger.
 - `phase2-phase3-evidence.md` - phase-2/3 implementation evidence and open acceptance gates.
 - `phase4-evidence.md` - Inspect adapter implementation evidence and native gates.

@@ -2,6 +2,10 @@
 
 Status: proposed implementation roadmap, 2026-10-05
 
+Implementation is underway. Native Phase 0 synthetic Docker probes are recorded
+in [harbor-evidence.md](harbor-evidence.md); these do not yet establish a Harbor
+backend or SWE-bench benchmark support.
+
 This document plans the work required to make `aiq-magnet-evals` a trustworthy
 runtime for repository-level coding benchmarks, with particular emphasis on
 Harbor and SWE-bench Pro V2. It also defines the cross-repository work needed
@@ -1642,19 +1646,19 @@ Owner: `aiq-magnet-evals`
 
 Environment: Docker-capable Linux VM; GPU explicitly not required.
 
-- [ ] Pin Harbor candidate version and revision.
-- [ ] Capture Harbor job/trial fixture.
-- [ ] Build/reuse deterministic transport endpoint.
-- [ ] Build scripted tool-calling endpoint.
-- [ ] Add the tiny synthetic SWE-like repository task.
-- [ ] Prove nested Harbor sandbox -> deterministic endpoint reachability using
+- [x] Pin Harbor candidate version and revision.
+- [x] Capture Harbor job/trial fixture.
+- [x] Build/reuse deterministic transport endpoint.
+- [x] Build scripted tool-calling endpoint.
+- [x] Add the tiny synthetic SWE-like repository task.
+- [x] Prove nested Harbor sandbox -> deterministic endpoint reachability using
       the intended infer-stack bridge design.
-- [ ] Prove allowlisted endpoint succeeds while unlisted local/LAN and Internet
+- [x] Prove allowlisted endpoint succeeds while unlisted local/LAN and Internet
       targets fail.
-- [ ] Capture cancellation and partial-failure native artifacts.
+- [x] Capture cancellation and partial-failure native artifacts.
 - [ ] Pin Inspect-Evals/SWE-bench versions for Verified.
-- [ ] Pin Pro V2 repository revision/checksums.
-- [ ] Decide Harbor Python API versus CLI worker implementation.
+- [x] Pin Pro V2 repository revision/checksums.
+- [x] Decide Harbor Python API versus CLI worker implementation.
 
 Gate: no core implementation before result layout, cancellation, nested-container
 routing, and network policy are evidenced on the VM. Absence of a GPU cannot fail

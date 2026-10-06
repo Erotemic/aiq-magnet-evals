@@ -1,0 +1,128 @@
+{
+    "id": "c5d29bb1-0f76-4856-876f-aaccb931cb3d",
+    "task_name": "division",
+    "trial_name": "division__ZyLZtxf",
+    "trial_uri": "file:///tmp/aiq-harbor-roadmap/phase0-artifacts/scripted/e2114b12df90/division__ZyLZtxf",
+    "task_id": {
+        "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+    },
+    "source": null,
+    "task_checksum": "6bbdf11ff8eb607d26353251b1fea4d346a370ef1b14ddc5c1f6efe9480b0acb",
+    "config": {
+        "task": {
+            "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "division__ZyLZtxf",
+        "trials_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/scripted/e2114b12df90",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "tests.native.harbor_probe_agent:ProbeAgent",
+            "model_name": "openai/fixture-coding",
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [
+                "model-relay"
+            ],
+            "kwargs": {
+                "targets": {
+                    "allowed": "http://model-relay:8080/v1/models",
+                    "unlisted": "http://172.17.0.1:35369/v1/models",
+                    "internet": "https://example.com/"
+                }
+            },
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [
+                "/tmp/pytest-of-joncrall-agent/pytest-88/test_allowlist_bridge_tool_exe0/bridge.json"
+            ],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "1d040740-03d8-4fe3-bb65-85470443d069",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "aiq-harbor-phase0-probe",
+        "version": "1",
+        "model_info": {
+            "name": "fixture-coding",
+            "provider": "openai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 20,
+        "n_cache_tokens": null,
+        "n_output_tokens": 8,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "verifier_environment_mode": "shared",
+    "exception_info": null,
+    "started_at": "2026-10-06T01:27:02.822941Z",
+    "finished_at": "2026-10-06T01:27:30.823037Z",
+    "environment_setup": {
+        "started_at": "2026-10-06T01:27:02.827976Z",
+        "finished_at": "2026-10-06T01:27:09.174425Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-06T01:27:09.174463Z",
+        "finished_at": "2026-10-06T01:27:09.907180Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-06T01:27:09.907336Z",
+        "finished_at": "2026-10-06T01:27:16.717659Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-06T01:27:17.659537Z",
+        "finished_at": "2026-10-06T01:27:18.875650Z"
+    },
+    "step_results": null
+}

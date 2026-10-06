@@ -1,0 +1,25 @@
+{
+    "task": {
+        "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+    },
+    "trial_name": "division__cQtx5H6",
+    "trials_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/no-network/50916cbd58e4",
+    "agent": {
+        "import_path": "tests.native.harbor_probe_agent:ProbeAgent",
+        "kwargs": {
+            "targets": {
+                "allowed": "http://model-relay:8080/v1/models",
+                "unlisted": "http://172.17.0.1:1/",
+                "internet": "https://example.com/"
+            },
+            "chat": false
+        }
+    },
+    "environment": {
+        "type": "docker",
+        "extra_docker_compose": [
+            "/tmp/pytest-of-joncrall-agent/pytest-88/test_no_network_denies_all_and0/bridge.json"
+        ]
+    },
+    "job_id": "5ab10092-3bb1-4c4d-8e84-5ade38b6728d"
+}

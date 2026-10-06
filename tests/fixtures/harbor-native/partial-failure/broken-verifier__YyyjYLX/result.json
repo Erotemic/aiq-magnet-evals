@@ -1,0 +1,116 @@
+{
+    "id": "f9f66dd1-48bb-40f0-b0b2-c300cc1592e4",
+    "task_name": "broken-verifier",
+    "trial_name": "broken-verifier__YyyjYLX",
+    "trial_uri": "file:///tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX",
+    "task_id": {
+        "path": "/tmp/pytest-of-joncrall-agent/pytest-88/test_partial_verifier_failure_0/broken-verifier"
+    },
+    "source": null,
+    "task_checksum": "ff7892151b98a2b8b97818db834eb6654d2c854bdab063745b38422502a0393e",
+    "config": {
+        "task": {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-88/test_partial_verifier_failure_0/broken-verifier",
+            "git_url": null,
+            "git_commit_id": null,
+            "name": null,
+            "ref": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": null
+        },
+        "trial_name": "broken-verifier__YyyjYLX",
+        "trials_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e",
+        "install_only": false,
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": "oracle",
+            "import_path": null,
+            "model_name": null,
+            "n_concurrent": null,
+            "concurrency_group": null,
+            "skills": [],
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "resume_trajectory": false,
+            "load_trajectory": null,
+            "extra_allowed_hosts": [],
+            "kwargs": {},
+            "mcp_servers": []
+        },
+        "user_agent": null,
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "cpu_enforcement_policy": "auto",
+            "memory_enforcement_policy": "auto",
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "override_tpu": null,
+            "mounts": null,
+            "extra_docker_compose": [],
+            "kwargs": {},
+            "extra_allowed_hosts": []
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "extra_instruction_paths": [],
+        "extra_instructions": [],
+        "job_id": "a48216a9-3832-4574-8c5a-69dde6a7bce5",
+        "source_trial": null
+    },
+    "agent_info": {
+        "name": "oracle",
+        "version": "1.0.0",
+        "model_info": null
+    },
+    "agent_result": {
+        "n_input_tokens": null,
+        "n_cache_tokens": null,
+        "n_output_tokens": null,
+        "cost_usd": null,
+        "model_usage": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": null,
+    "verifier_environment_mode": "shared",
+    "exception_info": {
+        "exception_type": "RewardFileNotFoundError",
+        "exception_message": "No reward file found at /tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX/verifier/reward.txt or /tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX/verifier/reward.json",
+        "exception_traceback": "Traceback (most recent call last):\n  File \"/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 418, in run\n    await self._run()\n  File \"/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 52, in _run\n    await self._run_verifier()\n  File \"/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/single_step.py\", line 106, in _run_verifier\n    self.result.verifier_result = await self._run_shared_verifier(\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/trial.py\", line 783, in _run_shared_verifier\n    return await asyncio.wait_for(\n           ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/asyncio/tasks.py\", line 520, in wait_for\n    return await fut\n           ^^^^^^^^^\n  File \"/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/verifier/verifier.py\", line 262, in verify\n    raise RewardFileNotFoundError(\nharbor.verifier.verifier.RewardFileNotFoundError: No reward file found at /tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX/verifier/reward.txt or /tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX/verifier/reward.json\n",
+        "occurred_at": "2026-10-06T01:28:32.813975Z"
+    },
+    "started_at": "2026-10-06T01:28:21.427079Z",
+    "finished_at": "2026-10-06T01:28:45.190397Z",
+    "environment_setup": {
+        "started_at": "2026-10-06T01:28:21.429133Z",
+        "finished_at": "2026-10-06T01:28:27.787917Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-10-06T01:28:27.787956Z",
+        "finished_at": "2026-10-06T01:28:27.788024Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-10-06T01:28:27.788132Z",
+        "finished_at": "2026-10-06T01:28:31.105209Z"
+    },
+    "verifier": {
+        "started_at": "2026-10-06T01:28:32.074946Z",
+        "finished_at": "2026-10-06T01:28:32.812957Z"
+    },
+    "step_results": null
+}

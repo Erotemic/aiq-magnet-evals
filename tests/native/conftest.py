@@ -13,6 +13,9 @@ import pytest
 
 REPO = str(Path(__file__).resolve().parents[2])
 
+# Harbor task repositories are sandbox inputs, not host-side pytest modules.
+collect_ignore = ['harbor_tasks']
+
 
 @pytest.fixture(autouse=True, scope='session')
 def _repo_on_worker_path():

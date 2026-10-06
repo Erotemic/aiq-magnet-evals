@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+    },
+    "trial_name": "division__3cJSXb5",
+    "trials_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/cancellation/86fd81d83063/cancelled",
+    "agent": {
+        "import_path": "tests.native.harbor_sleep_agent:SleepAgent"
+    },
+    "job_id": "d305fd5f-bfd1-4be9-a4c0-95123970a669"
+}

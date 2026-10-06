@@ -1,0 +1,20 @@
+{
+    "job_name": "e00363a4bd1f",
+    "jobs_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/fresh-replay",
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "agents": [
+        {
+            "import_path": "patch_replay:PatchReplayAgent",
+            "model_name": "replay",
+            "kwargs": {
+                "source_job": "/tmp/aiq-harbor-roadmap/phase0-artifacts/replay-generation/31c408b178e6"
+            }
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-88/test_exact_patch_replay_in_fre0/instance_division"
+        }
+    ]
+}

@@ -1,0 +1,52 @@
+{
+    "schema_version": 2,
+    "task": {
+        "name": "division",
+        "type": "local",
+        "digest": "sha256:5885fedcd8a669c21aed8a5fa62ca5744ec71af37c65a153067c18f340ff0c79",
+        "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+    },
+    "install_only": false,
+    "timeout_multiplier": 1.0,
+    "agent": {
+        "import_path": "tests.native.harbor_probe_agent:ProbeAgent",
+        "model_name": "openai/fixture-coding",
+        "skills": [],
+        "resume_trajectory": false,
+        "extra_allowed_hosts": [
+            "model-relay"
+        ],
+        "kwargs": {
+            "targets": {
+                "allowed": "http://model-relay:8080/v1/models",
+                "unlisted": "http://172.17.0.1:35369/v1/models",
+                "internet": "https://example.com/"
+            }
+        },
+        "mcp_servers": []
+    },
+    "bridge_inputs": {},
+    "skills": [],
+    "environment": {
+        "type": "docker",
+        "force_build": false,
+        "delete": true,
+        "cpu_enforcement_policy": "auto",
+        "memory_enforcement_policy": "auto",
+        "extra_docker_compose": [
+            "/tmp/pytest-of-joncrall-agent/pytest-88/test_allowlist_bridge_tool_exe0/bridge.json"
+        ],
+        "kwargs": {},
+        "extra_allowed_hosts": []
+    },
+    "extra_docker_compose": [
+        {
+            "path": "/tmp/pytest-of-joncrall-agent/pytest-88/test_allowlist_bridge_tool_exe0/bridge.json",
+            "digest": "sha256:20305a8143d619a622fbc9f63480ff2f67b03aeea0464de5f04dfb388d48262c"
+        }
+    ],
+    "verifier": {
+        "disable": false,
+        "environment_mode": "shared"
+    }
+}

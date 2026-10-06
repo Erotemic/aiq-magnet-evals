@@ -1,0 +1,39 @@
+{
+    "id": "1d040740-03d8-4fe3-bb65-85470443d069",
+    "started_at": "2026-10-05T21:27:02.794882",
+    "updated_at": "2026-10-05T21:27:30.827623",
+    "finished_at": "2026-10-05T21:27:30.827623",
+    "n_total_trials": 1,
+    "stats": {
+        "n_completed_trials": 1,
+        "n_errored_trials": 0,
+        "n_running_trials": 0,
+        "n_pending_trials": 0,
+        "n_cancelled_trials": 0,
+        "n_retries": 0,
+        "evals": {
+            "aiq-harbor-phase0-probe__fixture-coding__adhoc": {
+                "n_trials": 1,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "pass_at_k": {},
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "division__ZyLZtxf"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        },
+        "n_input_tokens": 20,
+        "n_cache_tokens": null,
+        "n_output_tokens": 8,
+        "cost_usd": null
+    }
+}

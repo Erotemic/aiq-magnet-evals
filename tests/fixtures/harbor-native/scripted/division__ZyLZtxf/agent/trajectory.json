@@ -1,0 +1,20 @@
+[
+  {
+    "command": "cd /app && cat calc.py",
+    "return_code": 0,
+    "stdout": "def divide(numerator, denominator):\n    return numerator / denominator\n",
+    "stderr": null
+  },
+  {
+    "command": "cd /app && python -c 'from pathlib import Path; Path('\"'\"'calc.py'\"'\"').write_text('\"'\"'def divide(numerator, denominator):\\n    if denominator == 0:\\n        raise ValueError(\"zero denominator\")\\n    return numerator / denominator\\n'\"'\"')'",
+    "return_code": 0,
+    "stdout": null,
+    "stderr": null
+  },
+  {
+    "command": "cd /app && python -m pytest -q test_calc.py",
+    "return_code": 0,
+    "stdout": "..                                                                       [100%]\n2 passed in 0.01s\n",
+    "stderr": null
+  }
+]

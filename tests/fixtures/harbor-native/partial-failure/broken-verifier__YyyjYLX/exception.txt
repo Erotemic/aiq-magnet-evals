@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 418, in run
+    await self._run()
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/single_step.py", line 52, in _run
+    await self._run_verifier()
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/single_step.py", line 106, in _run_verifier
+    self.result.verifier_result = await self._run_shared_verifier(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 783, in _run_shared_verifier
+    return await asyncio.wait_for(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/verifier/verifier.py", line 262, in verify
+    raise RewardFileNotFoundError(
+harbor.verifier.verifier.RewardFileNotFoundError: No reward file found at /tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX/verifier/reward.txt or /tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX/verifier/reward.json

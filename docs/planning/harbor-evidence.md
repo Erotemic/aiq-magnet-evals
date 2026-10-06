@@ -1,0 +1,95 @@
+# Harbor and SWE-bench implementation evidence
+
+This ledger records native evidence for the roadmap, not general upstream
+capability claims. Phase 0 was run on 2026-10-05 (America/New_York).
+
+## Pinned sources and environment
+
+- Harbor candidate `0.23.0`, release tag commit
+  `1e5c5c6db929a10a140d05e606882c671ae20729`; CPython 3.12.3.
+- Worker dependency constraints: `dev/environments/harbor-py312-constraints.txt`.
+- SWE-bench Pro source: `66f92766bba642462d4bbe5479e83f91f9211862`.
+  `v2/SHA256SUMS` SHA256:
+  `9d84f8507c89241d42d8b3ef911600a1ec75dbbb32687ce9b45b93318502c0bd`.
+  `cd v2 && sha256sum -c SHA256SUMS --quiet` passed.
+- Docker 29.1.3; daemon kernel `6.8.0-142-generic`; bridge gateway `172.17.0.1`.
+  Harbor's native kernel-support probe returned true. The actual native egress
+  sidecar started healthy and enforced phase changes.
+- Synthetic repository and relay base image: `python:3.12-alpine` digest
+  `sha256:4c47124a8391cb7a9f571164147d154777cf012a4ece5f86097130d7a4478111`.
+- Inspect-Evals candidate source inspected:
+  `9080b5e9f1647ed14e45de8cb01e3d43411c0163` (requires Inspect >=0.3.261).
+  Its Verified task pins dataset revision
+  `c104f840cc67f8b6eec6f759ebc8b2693d585d4a`. No Verified native acceptance
+  has been performed; this is a candidate, not a supported pin.
+
+## Reproduction and observed gates
+
+```bash
+dev/ci/harbor_phase0.sh
+```
+
+Observed: **6 passed**, no skipped tests, 221.29 seconds. This command is a
+Phase 0 probe suite; it is not `swebench_vm_acceptance.sh`.
+
+| Evidence | Native observation |
+| --- | --- |
+| Local repository task | Oracle reward 1; NOP reward 0. Both used real Harbor Docker trials and native pytest verification. |
+| Endpoint transport and executed tools | The scripted OpenAI-compatible endpoint drove file inspection, source editing, and pytest execution in the sandbox. The three executed commands and observations were captured in the trajectory. Four actual chat requests reported 20 input tokens. |
+| Patch capture | The captured diff matches `tests/native/harbor_tasks/division/solution/model.patch` byte for byte. Repository ignore rules exclude pytest caches/bytecode from this diff. |
+| Allowlist and nested routing | The task reached the named fixed-upstream relay, which forwarded to the host's loopback-only endpoint. It could not reach the unlisted local HTTP listener or `https://example.com/`. Both negative targets were reachable during the public setup phase. |
+| Phase enforcement | With no allowlist, agent-phase access to the relay and Internet was denied. Public verifier access was restored. With the relay allowlisted, verifier access to all three targets was restored. |
+| Cancellation | The existing worker-group SIGINT path interrupted a native sleeping sandbox command. Harbor wrote `CancelledError`, preserved the start diagnostic, and removed its owned containers; the worker process group disappeared. No reward or successful publication marker existed. |
+| Partial failure | Two oracle trials: one reward 1, one `RewardFileNotFoundError` with null verifier result. Native completed count 2, errored count 1. |
+| Fresh replay | The unchanged upstream `patch_replay:PatchReplayAgent` applied the captured synthetic patch in a different native trial/sandbox. `apply_rc=0`; native verifier reward 1. |
+
+These observations cover the synthetic task and test scaffold only. They do not
+establish built-in mini-SWE-agent, Verified, Pro V2 task-image, full oracle/NOP,
+Modal parity, MAGNET lease, or real-model/GPU support.
+
+## API and artifact decisions justified by the probes
+
+Use Harbor's supported `await Job.create(JobConfig)` and `await job.run()`.
+Constructing `Job(config)` directly is rejected in this pin. Jobs contain
+`config.json`, `lock.json`, `result.json`, `job.log`, and per-trial directories.
+Each trial contains config/lock/result, agent logs, verifier logs/reward,
+and an artifact manifest. Job `result.json` need not embed trial results;
+read the individual trial result files.
+
+After SIGINT, the captured job's `finished_at` remains null even though its one
+trial has a finished timestamp and `CancelledError`, completed/cancelled counts
+are 1, and pending/running counts are 0. A cancelled job must not be classified
+as successful from completed counts or its numeric mean (which is 0).
+
+Native `TrialResult.exception_info`, timing boundaries, `agent_result` usage,
+and nullable `verifier_result.rewards` must be retained. Harbor job stats in
+the partial-failure fixture report `mean=0.5` despite the only observed reward
+being 1: the upstream aggregate includes the verifier error in its denominator.
+Keep that statistic as native diagnostics; never present it as a complete
+model score or synthesize a zero reward for the failed trial.
+
+The selected bridge uses Harbor's `extra_docker_compose` extension point.
+A separate fixed-upstream relay service explicitly joins the project network;
+the sandbox continues to share Harbor's egress-control sidecar network namespace.
+Only the relay hostname is allowlisted. A second, attempt-owned host HTTP hop
+binds to the Docker bridge gateway and forwards to loopback. No container port
+is published, and the sandbox does not use host networking. Both hops close
+after the job. This design needs production hardening and adapter integration
+before it can be used for benchmark runs.
+
+The upstream replay agent searches `instance_*/result.json`; the fresh-replay
+fixture therefore uses task name `instance_division`. It selects the first
+matching source task, so multi-attempt joins must be made unambiguous by the
+benchmark profile rather than silently replaying the wrong trial.
+
+## Remaining gates
+
+- Generic Harbor backend resolution, identity, execution, engine-free import,
+  normalization, cancellation fallback, and shared conformance.
+- Production endpoint bridge integration and cleanup tests.
+- Pinned Inspect-Evals/official SWE-bench worker acceptance and patch export.
+- Actual Pro V2 oracle/NOP, locked mini-SWE generation, replay joins and profiles.
+- infer-stack scientific serving provenance and MAGNET preflight/runtime checks.
+- Full VM acceptance command, then the separate small GPU acceptance command.
+
+No supported Harbor adapter pin or complete SWE-bench capability is claimed yet.

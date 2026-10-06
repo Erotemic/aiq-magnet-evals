@@ -1,0 +1,11 @@
+{
+    "job_name": "7d96256f3515",
+    "jobs_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/oracle",
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "tasks": [
+        {
+            "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+{
+    "task": {
+        "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+    },
+    "trial_name": "division__z5QPfFw",
+    "trials_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/nop/512abc82ef5a",
+    "agent": {
+        "name": "nop"
+    },
+    "job_id": "b8ee4559-8ff8-4d20-ada5-b53106698c45"
+}

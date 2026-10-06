@@ -1,0 +1,9 @@
+Agent 'oracle' does not declare an options_model; leftover kwargs are ignored
+Skipping image OS validation for hb__872ff0fe631248d746161fb273b3cd7e: docker inspect returned 1
+Collecting main service artifacts
+Agent 'oracle' does not declare an options_model; leftover kwargs are ignored
+Skipping image OS validation for hb__872ff0fe631248d746161fb273b3cd7e: docker inspect returned 1
+Collecting main service artifacts
+Trial broken-verifier__YyyjYLX failed: No reward file found at /tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX/verifier/reward.txt or /tmp/aiq-harbor-roadmap/phase0-artifacts/partial-failure/2897c1cb0a3e/broken-verifier__YyyjYLX/verifier/reward.json
+Exception RewardFileNotFoundError is in exclude_exceptions, not retrying
+Not retrying trial because the exception is not in include_exceptions or the maximum number of retries has been reached

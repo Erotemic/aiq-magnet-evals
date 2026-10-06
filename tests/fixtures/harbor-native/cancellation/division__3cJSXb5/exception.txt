@@ -1,0 +1,32 @@
+Traceback (most recent call last):
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 418, in run
+    await self._run()
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/single_step.py", line 41, in _run
+    await self._run_agent()
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/single_step.py", line 77, in _run_agent
+    await self._run_agent_phase(
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/trial/trial.py", line 554, in _run_agent_phase
+    await asyncio.wait_for(
+  File "/usr/lib/python3.12/asyncio/tasks.py", line 520, in wait_for
+    return await fut
+           ^^^^^^^^^
+  File "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_sleep_agent.py", line 18, in run
+    await environment.exec(command="sleep 90", timeout_sec=100)
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 1249, in exec
+    return await self._compose_exec(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 1326, in _compose_exec
+    return await self._run_docker_compose_command(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/tmp/aiq-harbor-roadmap/venv/lib/python3.12/site-packages/harbor/environments/docker/docker.py", line 672, in _run_docker_compose_command
+    process = await asyncio.create_subprocess_exec(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/subprocess.py", line 224, in create_subprocess_exec
+    transport, protocol = await loop.subprocess_exec(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 1744, in subprocess_exec
+    transport = await self._make_subprocess_transport(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/unix_events.py", line 218, in _make_subprocess_transport
+    await waiter
+asyncio.exceptions.CancelledError

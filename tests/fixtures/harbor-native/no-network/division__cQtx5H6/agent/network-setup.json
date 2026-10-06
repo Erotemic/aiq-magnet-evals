@@ -1,0 +1,1 @@
+{"allowed": {"reachable": true}, "unlisted": {"reachable": false, "exception": "URLError"}, "internet": {"reachable": true}}

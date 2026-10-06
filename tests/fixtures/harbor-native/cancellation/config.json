@@ -1,0 +1,16 @@
+{
+    "job_name": "cancelled",
+    "jobs_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/cancellation/86fd81d83063",
+    "n_concurrent_trials": 1,
+    "quiet": true,
+    "agents": [
+        {
+            "import_path": "tests.native.harbor_sleep_agent:SleepAgent"
+        }
+    ],
+    "tasks": [
+        {
+            "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+        }
+    ]
+}

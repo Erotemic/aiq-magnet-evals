@@ -1,0 +1,28 @@
+{
+    "task": {
+        "path": "/home/local/KHQ/jon.crall/code/aiq-magnet-evals/tests/native/harbor_tasks/division"
+    },
+    "trial_name": "division__ZyLZtxf",
+    "trials_dir": "/tmp/aiq-harbor-roadmap/phase0-artifacts/scripted/e2114b12df90",
+    "agent": {
+        "import_path": "tests.native.harbor_probe_agent:ProbeAgent",
+        "model_name": "openai/fixture-coding",
+        "extra_allowed_hosts": [
+            "model-relay"
+        ],
+        "kwargs": {
+            "targets": {
+                "allowed": "http://model-relay:8080/v1/models",
+                "unlisted": "http://172.17.0.1:35369/v1/models",
+                "internet": "https://example.com/"
+            }
+        }
+    },
+    "environment": {
+        "type": "docker",
+        "extra_docker_compose": [
+            "/tmp/pytest-of-joncrall-agent/pytest-88/test_allowlist_bridge_tool_exe0/bridge.json"
+        ]
+    },
+    "job_id": "1d040740-03d8-4fe3-bb65-85470443d069"
+}
