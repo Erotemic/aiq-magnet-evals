@@ -67,8 +67,15 @@ class ModelBinding:
     revision: str | None = None
     cache_token: str | None = None
     provider_options: Mapping[str, Any] = field(default_factory=dict)
+    identity_unknown_reasons: tuple[str, ...] = ()
 
     def __post_init__(self) -> None:
+        reasons = self.identity_unknown_reasons
+        if not isinstance(reasons, (tuple, list)) or any(
+            not isinstance(reason, str) or not reason.strip() for reason in reasons
+        ):
+            raise RequestValidationError('model identity_unknown_reasons must be non-empty strings')
+        object.__setattr__(self, 'identity_unknown_reasons', tuple(dict.fromkeys(reasons)))
         if not self.role.strip():
             raise RequestValidationError('model role must be non-empty')
         if not self.model.strip():
@@ -82,7 +89,7 @@ class ModelBinding:
             )
 
     def to_dict(self) -> dict[str, JSONValue]:
-        return {
+        data: dict[str, JSONValue] = {
             'role': self.role,
             'model': self.model,
             'provider': self.provider,
@@ -90,10 +97,15 @@ class ModelBinding:
             'cache_token': self.cache_token,
             'provider_options': normalize_json(self.provider_options),
         }
+        # Preserve existing serialized requests when no uncertainty is supplied.
+        if self.identity_unknown_reasons:
+            data['identity_unknown_reasons'] = list(self.identity_unknown_reasons)
+        return data
 
     @classmethod
     def from_dict(cls, data: Mapping[str, Any]) -> 'ModelBinding':
-        allowed = {'role', 'model', 'provider', 'revision', 'cache_token', 'provider_options'}
+        allowed = {'role', 'model', 'provider', 'revision', 'cache_token', 'provider_options',
+                   'identity_unknown_reasons'}
         _reject_unknown(data, allowed, 'model binding')
         return cls(
             role=str(data['role']),
@@ -102,6 +114,7 @@ class ModelBinding:
             revision=None if data.get('revision') is None else str(data['revision']),
             cache_token=None if data.get('cache_token') is None else str(data['cache_token']),
             provider_options=dict(data.get('provider_options') or {}),
+            identity_unknown_reasons=data.get('identity_unknown_reasons', ()),
         )
 
 

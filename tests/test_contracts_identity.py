@@ -75,6 +75,20 @@ def test_unknown_identity_disables_reuse():
     assert any('data revision' in reason for reason in identity.unknown_reasons)
 
 
+def test_model_uncertainty_disables_reuse_even_with_revision_and_token():
+    model = replace(make_request().primary_model, cache_token='scientific-config-digest',
+                    identity_unknown_reasons=('serving image is mutable',))
+    request = make_request(models=(model,))
+    assert EvaluationRequest.from_dict(request.to_dict()) == request
+    identity = build_measurement_identity(request, adapter_version='0.1', engine_version='1',
+                                          native_config={}, resolved_facts={'engine_version': '1'})
+    assert not identity.reusable
+    assert identity.unknown_reasons == ("model role 'primary': serving image is mutable",)
+    assert 'identity_unknown_reasons' not in make_request().primary_model.to_dict()
+    with pytest.raises(RequestValidationError, match='identity_unknown_reasons'):
+        replace(model, identity_unknown_reasons='not a sequence of reasons')
+
+
 def test_request_allows_required_secret_names_but_not_values():
     request = make_request(
         engine_options={

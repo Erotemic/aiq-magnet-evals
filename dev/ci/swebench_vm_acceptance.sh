@@ -58,6 +58,8 @@ else
 fi
 if [ -x "$MAGNET_DIR/dev/ci/swebench_vm_acceptance.sh" ]; then
     run_gate magnet-fake-lease env AIQ_VM_MAGNET_CHECKS="$REPORT_DIR/magnet-checks.json" \
+        AIQ_MAGNET_EVALS_DIR="$EVAL_ROOT" INFER_STACK_DIR="$INFER_STACK_DIR" \
+        AIQ_MAGNET_HARBOR_CAPTURE_DIR="$REPORT_DIR/magnet-native" \
         "$MAGNET_DIR/dev/ci/swebench_vm_acceptance.sh"
 else
     run_gate magnet-fake-lease bash -c 'echo "MAGNET EvaluationNode integration checkout and VM acceptance hook are unavailable; see the roadmap integration-branch requirement" >&2; exit 1'

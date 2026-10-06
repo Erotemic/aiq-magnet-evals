@@ -113,6 +113,7 @@ def _unknown_identity_reasons(
     if not request.data_revision:
         reasons.append('data revision is unknown')
     for model in request.models:
+        reasons.extend(f'model role {model.role!r}: {reason}' for reason in model.identity_unknown_reasons)
         if not (model.revision or model.cache_token):
             reasons.append(f'model role {model.role!r} has no immutable revision/cache token')
     if not resolved_facts.get('engine_revision') and not resolved_facts.get('engine_version'):
