@@ -13,3 +13,4 @@ phase1-artifacts/
 # >>> llm_resource_tally local state (managed) >>>
 /.llm_resource_tally/local/
 # <<< llm_resource_tally local state (managed) <<<
+*.tar.gz
