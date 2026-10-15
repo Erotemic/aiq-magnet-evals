@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source
-      uses: actions/checkout@v6.0.2
+      uses: actions/checkout@v7.0.1
     - name: Set up Python 3.13 for linting
       uses: actions/setup-python@v6.2.0
       with:
@@ -57,7 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout source
-      uses: actions/checkout@v6.0.2
+      uses: actions/checkout@v7.0.1
     - name: Set up Python 3.13
       uses: actions/setup-python@v6.2.0
       with:
@@ -133,7 +133,7 @@ jobs:
         - auto
     steps:
     - name: Checkout source
-      uses: actions/checkout@v6.0.2
+      uses: actions/checkout@v7.0.1
     - name: Setup Python
       uses: actions/setup-python@v6.2.0
       with:
@@ -200,7 +200,7 @@ jobs:
           use-lockfile: 'false'
     steps:
     - name: Checkout source
-      uses: actions/checkout@v6.0.2
+      uses: actions/checkout@v7.0.1
     - name: Setup Python
       uses: actions/setup-python@v6.2.0
       with:
