@@ -28,7 +28,7 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v6.0.2
     - name: Set up Python 3.11
-      uses: actions/setup-python@v6.2.0
+      uses: actions/setup-python@v7.0.0
       with:
         python-version: '3.11'
     - name: Native Inspect (inspect-ai 0.3.272)
@@ -44,7 +44,7 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v6.0.2
     - name: Set up Python 3.12
-      uses: actions/setup-python@v6.2.0
+      uses: actions/setup-python@v7.0.0
       with:
         python-version: '3.12'
     - name: Native OLMo Eval (73ade80, locked worker)
@@ -60,7 +60,7 @@ jobs:
     - name: Checkout source
       uses: actions/checkout@v6.0.2
     - name: Set up Python 3.12
-      uses: actions/setup-python@v6.2.0
+      uses: actions/setup-python@v7.0.0
       with:
         python-version: '3.12'
     - name: Native HELM (crfm-helm 0.5.14)
