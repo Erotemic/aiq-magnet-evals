@@ -25,6 +25,18 @@ the existing runner/worker interface. The example deliberately leaves the model
 realization unresolved. Its fixed agent protocol uses temperature 0, output
 limit 4096, message limit 30 and one sandbox at a time.
 
+The optional task argument `agent_protocol: minimal-edit/v1` is an experimental
+prompt/environment intervention. It retains the upstream agent, tools and
+scorer, adds generic minimal-change and independent-testing guidance, and sets
+UTF-8, noninteractive Git and one-process Django test defaults inside the task
+container. The default `upstream` protocol leaves prompts and container
+environment unchanged. The alternative requires `solver: agent`; oracle and
+NOP remain on the upstream protocol. The protocol option and task source hash
+participate in measurement identity. Neither gold patches nor hidden tests or
+hints enter the added guidance. A pinned-image Docker probe verified the
+environment settings; real-model performance under this protocol is untested.
+See the [protocol experiment journal](../dev/journals/codex.md).
+
 Before the agent runs, the task resets the repository to the dataset's exact
 base commit and removes untracked files with `git clean -fd`. This explicit
 `git-reset-clean/v1` protocol avoids capturing pre-existing build files or mode

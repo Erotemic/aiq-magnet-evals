@@ -135,3 +135,45 @@ independent-testing scaffold, with noninteractive/UTF-8/bounded test execution,
 is a better candidate to compare against the retained 200-message baseline.
 Exact gold fixes and hidden regression expectations belong in this analyst
 audit, not in a subsequent benchmark prompt.
+
+## 2026-11-04 — Prepare the minimal-edit protocol comparison
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+The next authorized step was to prepare a generic scaffold experiment from
+the audit. Added the opt-in Verified task argument
+`agent_protocol: minimal-edit/v1`. The default upstream path is preserved.
+The candidate keeps upstream agent/tools/scoring and adds issue-independent
+guidance on minimal edits, independent tests, targeted checks, stateful shell
+use and offline dependency handling. It configures UTF-8, noninteractive Git,
+`DJANGO_TEST_PROCESSES=1`, and single-thread BLAS/OpenMP inside the container.
+The prompt is constructed only from a fixed instruction prefix and the task
+input. Gold/test patches and hints are not consulted.
+
+The protocol option is part of the request and changes measurement identity;
+the task module's source digest also covers the prompt and environment. Oracle
+and NOP reject the intervention. Unit checks exercise default-path preservation,
+unchanged solver/scorer/setup, hidden-metadata independence, unsupported protocol
+rejection and identity separation.
+
+A real Docker probe used the pinned upload-permissions benchmark image through
+Inspect's public ComposeConfig. On the guest, its default environment reported
+ASCII and 120 test processes; the candidate reported UTF-8, Git pager `cat`,
+and one test process. This verifies environment delivery, not model performance.
+The operator retains Compose configurations, logs and `observation.json` under
+`benchmark_results/swebench-protocol-validation-20261104/`. Both probe containers
+were removed. No model or benchmark grading was run for this probe.
+
+The caller-owned launcher selects this protocol with the retained baseline's
+TP=4, concurrency=4 and 200-message budget. After official regrading it writes
+a paired comparison of resolved status, tool calls and limit hits. The readout
+rejects request differences beyond the explicit protocol, configured serving
+changes, instance-set changes and inconsistent grading coverage. It does not
+attest prepared weight contents. A GPU rerun is prepared for the host but has
+not been launched; the measured baseline remains 2/5.
+
+Validation: the clean engine-free CI script passed lint and 244 tests, with
+four absent-engine skips and 51 native deselections. Paired-readout checks
+accepted an otherwise identical protocol change and rejected changed generation,
+serving image and inconsistent grading summary. These checks and the container
+probe establish readiness to try the candidate, not a measured capability gain.
