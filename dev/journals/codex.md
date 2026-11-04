@@ -177,3 +177,55 @@ four absent-engine skips and 51 native deselections. Paired-readout checks
 accepted an otherwise identical protocol change and rejected changed generation,
 serving image and inconsistent grading summary. These checks and the container
 probe establish readiness to try the candidate, not a measured capability gain.
+
+## 2026-11-04 — Minimal-edit protocol host result: 3/5
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+Reviewed the operator's completed `minimal-edit/v1` host run and native bundle
+`benchmark_results/swebench-hyperqwen-va9rBhIb/`. The paired-readout guard passed:
+otherwise identical requests and configured serving catalog, five matching
+instances, TP=4, four concurrent problems, 200 messages and 4,096 output tokens
+per response. Prepared weights remain unattested. Evaluator source was
+`d599cdca5ed7a436242408808ac4576629882de5`, with infer-stack unchanged at
+`0d3fc3445618b11b263e5310291037a6062d20c6`.
+
+| Instance | Upstream | Minimal-edit | Tool calls, before -> after |
+| --- | --- | --- | ---: |
+| `django__django-10554` | Unresolved, capped | Unresolved, capped, empty patch | 89 -> 101 |
+| `django__django-10880` | Resolved, capped | Resolved, submitted normally | 100 -> 46 |
+| `django__django-10914` | Unresolved, capped | Resolved, submitted normally | 99 -> 47 |
+| `django__django-10999` | Unresolved | Unresolved | 24 -> 24 |
+| `psf__requests-1142` | Resolved | Resolved | 35 -> 43 |
+
+Official aggregate: 3/5 resolved, four nonempty predictions graded, one empty
+prediction counted as failed, no errors or incomplete predictions. Inspect
+agreed. Total message-recorded tool calls fell 347 -> 261 (24.8%); cap hits
+fell three -> one. Generation readiness passed at 12:21:04 EST, cleanup at
+12:47:16: 26m12s including evaluation and official grading. The lease was
+released and model container removed. These are single runs over five selected
+problems, with both prompt and environment changed; they do not isolate a
+specific intervention or establish general model quality or repeatable speedup.
+
+Patch review supports the intended upload-permission improvement: the agent
+kept the directory permission default unchanged and all selected tests passed.
+However it also changed the storage fallback to
+`self._file_permissions_mode or settings.FILE_UPLOAD_PERMISSIONS`. That could
+replace an explicitly requested zero mode with the default; this behavior lies
+outside the selected checks. A passing benchmark patch is not automatically
+a generally correct fix.
+
+The union agent again investigates SQLite/PostgreSQL reproduction and reaches
+the cap without a repository patch. Near the end it fixes its own temporary
+fuzz harness, observes the ordering error, and resumes inspecting shared query
+structures. The duration agent submits the same production regex change as
+the baseline, retaining the audited whole-duration sign error. Both remain
+unresolved; no analyst corrections were applied to model predictions.
+
+Verified native-bundle checksums and the protocol marker on all five samples.
+SHA256 of the native Inspect `.eval`:
+`c45368301d5938e25ad5c74666d132266715ef2a738f18407bd2f3ebe11a55c8`.
+SHA256 of the official aggregate JSON:
+`2ba092ab35a82f441385d9e32bd21c97ed1906beec5651e25a691e7ce9c1f854`.
+The run's `comparison.json` retains per-instance outcomes, tool counts and
+limit records. No new GPU job was launched during this review.

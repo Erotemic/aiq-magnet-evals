@@ -34,7 +34,9 @@ environment unchanged. The alternative requires `solver: agent`; oracle and
 NOP remain on the upstream protocol. The protocol option and task source hash
 participate in measurement identity. Neither gold patches nor hidden tests or
 hints enter the added guidance. A pinned-image Docker probe verified the
-environment settings; real-model performance under this protocol is untested.
+environment settings. One matched five-instance real-model run scored 3/5,
+versus the retained upstream protocol's 2/5, with no lost successes. This is
+an exploratory single-run observation, not evidence of a general improvement.
 See the [protocol experiment journal](../dev/journals/codex.md).
 
 Before the agent runs, the task resets the repository to the dataset's exact
