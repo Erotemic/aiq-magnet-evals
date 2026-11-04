@@ -229,3 +229,43 @@ SHA256 of the official aggregate JSON:
 `2ba092ab35a82f441385d9e32bd21c97ed1906beec5651e25a691e7ce9c1f854`.
 The run's `comparison.json` retains per-instance outcomes, tool counts and
 limit records. No new GPU job was launched during this review.
+
+## 2026-11-04 — Prepare the frozen 25-instance screening stage
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+The requested continuation was broader evaluation after the 3/5 protocol
+experiment. Kept the selection already frozen in
+`dev/environments/swebench-verified-selection.json`: the previous five plus
+the original twenty hash-ranked additions. Verified its exact membership and
+ranking against the cached 500-row dataset at the recorded revision.
+
+Added a 25-entry image-pin file. The five smoke pins remain unchanged; the
+twenty new pins resolve DockerHub manifests for linux/amd64 and verify the
+registry's digest against the returned manifest bytes. The pinning helper reads
+metadata only and does not download layers. Registry metadata is retained by
+the operator under `benchmark_results/screening-preparation/`; its unique
+compressed layers total about 10.16 GiB before considering existing cache.
+This is not an estimate of expanded disk use or proof of offline execution.
+
+The caller-owned screening launcher prepares the pinned worker and images,
+then runs the existing native oracle/NOP test with the 25-image manifest.
+Both modes must pass all instances and fresh official grading before GPU
+leasing. The native test still defaults to the original five pins. Model
+requests retain minimal-edit/v1, TP=4, four concurrent problems, 200 messages
+and 4,096 output tokens. Summaries separate the previous five from the
+additional twenty; no five-versus-25 protocol comparison is emitted.
+The official regrade helper retains its old one-hour budget for sets up to
+five and scales its subprocess timeout for larger selections.
+
+Preparation checks cover exact frozen membership, preservation of smoke pins,
+architecture selection and registry-checksum rejection. The actual host request
+builder was exercised for both 5 and 25 instances with generation/budget held
+fixed. No new model job was launched, and the full 25-instance native gate has
+not run here. `runtime_verified_ids` remains the original five. Any offline
+grading failure must be diagnosed without dropping or replacing selected tasks.
+
+Validation: the clean engine-free CI script passed lint and 247 tests, with
+four absent-engine skips and 51 native deselections. Caller shell syntax and
+profile request construction passed. The screening preflight requires exact
+JUnit evidence for both oracle/NOP cases, rejecting skipped or missing cases.

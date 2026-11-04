@@ -22,7 +22,8 @@ from magnet_evals.jsonutil import sha256_json
 from magnet_evals.store import ResultStore
 
 pytestmark = [pytest.mark.native, pytest.mark.docker_sandbox, pytest.mark.release_gate]
-IMAGES_PATH = Path(__file__).parents[2] / 'dev/environments/swebench-verified-images.json'
+IMAGES_PATH = Path(os.environ.get('AIQ_VERIFIED_IMAGES',
+    str(Path(__file__).parents[2] / 'dev/environments/swebench-verified-images.json')))
 
 
 @pytest.mark.parametrize('solver,reward', [('oracle', 1), ('nop', 0)])

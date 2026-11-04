@@ -62,10 +62,21 @@ patch. It verifies the source bundle before writing.
 
 `dev/environments/swebench-verified-selection.json` freezes the five-instance
 smoke and a deterministic 25-instance screening selection before any model
-comparisons. Only the smoke set has runtime evidence and image pins. Screening
-execution needs its remaining images pinned and its offline verifier behavior
-validated first. Some unselected Requests instances require Internet access
+comparisons. `dev/environments/swebench-verified-screening-images.json` now pins
+all 25 images; the existing five pins are preserved. The additional 20 are
+linux/amd64 manifest digests resolved and checksum-checked on 2026-11-04.
+Only the smoke set currently has completed runtime acceptance. To validate
+screening with the existing pinned worker, set `AIQ_VERIFIED_IMAGES` to the
+screening image JSON when running `tests/native/test_swebench_verified.py`.
+Both oracle and NOP must pass across all 25 instances, including fresh official
+grading, before reporting screening model performance. No selected instance is
+dropped or replaced if validation fails. Some unselected Requests instances require Internet access
 even with the gold patch; their offline capability remains unverified.
+
+`dev/pin_verified_screening_images.py` regenerates the candidate screening pins
+from registry metadata without downloading image layers. Pinning is preparation,
+not runtime acceptance; `runtime_verified_ids` remains the original five until
+the broader native gate has actual evidence.
 
 ## SWE-bench Pro V2 with Harbor
 

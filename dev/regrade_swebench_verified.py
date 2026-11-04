@@ -48,7 +48,8 @@ def regrade(run_dir: Path, output: Path):
         '--max_workers', '1', '--run_id', 'acceptance', '--instance_ids', *ids,
         '--instance_image_tag', tag, '--timeout', '600', '--cache_level', 'instance', '--clean', 'False']
     with (output / 'grader.log').open('w') as log:
-        subprocess.run(command, cwd=output, stdout=log, stderr=subprocess.STDOUT, timeout=3600, check=True)
+        subprocess.run(command, cwd=output, stdout=log, stderr=subprocess.STDOUT,
+                       timeout=(3600 if len(ids) <= 5 else 900 * len(ids)), check=True)
     reports = list(output.glob('*.acceptance.json'))
     if len(reports) != 1:
         raise ArtifactError('official grader did not retain exactly one report')
