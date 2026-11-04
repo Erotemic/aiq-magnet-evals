@@ -1,0 +1,100 @@
+# Codex journal
+
+## 2026-11-04 — Real-model SWE-bench Verified GPU smoke
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+The objective was to complete a locally served, tool-using SWE-bench evaluation
+on a GPU host. The operator ran the jobs on November 3; this entry records
+the retained native bundles, official grader reports and host logs reviewed
+on November 4. Execution used this repository's existing Verified request,
+Inspect adapter and official regrade helper through a caller-owned tmux
+launcher and infer-stack leases. No new evaluation engine was needed.
+
+### Observed runs
+
+Both completed runs used HyperQwen's prepared W4A16 serving recipe, Inspect
+0.3.272, Inspect-Evals `9080b5e9f1647ed14e45de8cb01e3d43411c0163`, SWE-bench
+3.0.15 and the five digest-pinned images in
+`dev/environments/swebench-verified-images.json`. Dataset revision was
+`c104f840cc67f8b6eec6f759ebc8b2693d585d4a`; generation used temperature 0 and
+4096 maximum output tokens per model response. Evaluator source was
+`6492c6c1158fa58a5ec18d379f4b52f3758a7689`; infer-stack source was
+`0d3fc3445618b11b263e5310291037a6062d20c6`.
+
+| Configuration | Official result | Patches | Agent limits |
+| --- | --- | --- | --- |
+| TP=1, one concurrent problem, 30-message budget | 0/5 resolved | Four empty; one 497-byte patch | All five reached the message cap |
+| TP=4, four concurrent problems, 200-message budget | 2/5 resolved | Five nonempty | Three reached the message cap |
+
+The TP=1 agent made 74 tool calls with no recorded tool or parsing errors.
+The TP=4 per-instance results were:
+
+| Instance | Official verdict | Tool calls | Reached 200-message cap |
+| --- | --- | --- | --- |
+| `django__django-10554` | Unresolved | 89 | Yes |
+| `django__django-10880` | Resolved | 100 | Yes |
+| `django__django-10914` | Unresolved | 99 | Yes |
+| `django__django-10999` | Unresolved | 24 | No |
+| `psf__requests-1142` | Resolved | 35 | No |
+
+Both native evaluations recorded `succeeded`. Exported model patches were
+checked in fresh official grader containers, with no grading errors or
+incomplete predictions; official verdicts agreed with Inspect. Empty patches
+in the first run were retained as failed predictions. For TP=4, model
+readiness passed at 18:13:55 EST and cleanup finished at 18:41:52 EST: 27m57s
+including evaluation and official regrading. Host logs show placement on four
+GPUs, generation readiness, lease release and removal of the model container.
+The changed agent budget and concurrency prevent attributing a speed or
+quality difference to TP alone.
+
+### Setup failure and execution details
+
+The first attempt started the model but failed before any samples because
+the worker lacked Inspect's optional OpenAI SDK. An isolated reproduction
+confirmed that Inspect 0.3.272 requires OpenAI SDK >=3.1.0; installing 3.1.0
+allowed provider initialization. The caller's launcher now performs that
+initialization without an HTTP request before acquiring a GPU lease. Native
+execution errors are also included in its terminal failure message.
+
+The custom HyperQwen container command consumes `EXTRA_ARGS`; infer-stack's
+stock vLLM flags are not automatically appended to that command. TP=4 therefore
+requires both `runtime.tensor_parallel_size: 4` for GPU placement and
+`--tensor-parallel-size=4` in the launcher's `EXTRA_ARGS`. Its `MAX_SEQS`,
+Inspect's `max_samples`, and `max_sandboxes` were raised to four. A derived
+endpoint in a run-local catalog preserved the operator's existing recipe.
+The observed startup HTTP 500s occurred before generation readiness and did
+not persist into the completed evaluations.
+
+### Evidence and scope
+
+The operator retains artifacts outside this repository under
+`benchmark_results/swebench-hyperqwen-m3Q7VQa3/` (TP=1) and
+`benchmark_results/swebench-hyperqwen-eAnqbabA/` (TP=4). Each includes the request,
+source revisions, native bundle, exported predictions, official report and
+regrade protocol. SHA256 fingerprints reviewed here:
+
+| Artifact | SHA256 |
+| --- | --- |
+| TP=1 native Inspect `.eval` | `2a20671fde322b21190ae28942fa83220108cc471f46b5c24cd4404c7297bf2e` |
+| TP=1 official aggregate JSON | `d9c444bcde37da2b2fdc4ec8485f8e13cc0518c1e7b3aba5b30742bb887f01cd` |
+| TP=4 native Inspect `.eval` | `7adb1697e661a0feb8058c750b28482509a96d3068bdc6c5101b1aa17be868e5` |
+| TP=4 official aggregate JSON | `35283573033ab1d4e8ba177e17f2925f523ddfd6a6f240eda6cc856f4782d730` |
+
+This is real-model evidence for five Verified instances. Prepared weight
+contents lack an immutable manifest, so reuse was disabled. The captures have
+not been promoted into committed native regression fixtures or a new release
+gate. Full Verified, Pro GPU execution and comparative TP speed remain unproven.
+
+A separate November 4 invocation of the broad CPU/Docker acceptance suite
+passed engine-free, Harbor Phase 0, Harbor conformance and Verified grading.
+It failed Pro image-ID validation, serving provenance (the current infer-stack
+branch lacks that API/test), and MAGNET cases requiring that API. The dedicated
+`dev/ci/swebench_gpu_acceptance.sh` gate remains unrun; the successful Verified
+measurements above do not imply that the broader suite passed.
+
+The practical lessons are to initialize the chosen provider before leasing
+expensive resources, align evaluator concurrency with server sequence capacity,
+and distinguish protocol completion from a model solving the selected tasks.
+The remaining scientific question is how much additional agent budget helps
+the three capped tasks; answering it needs another explicitly recorded request.
