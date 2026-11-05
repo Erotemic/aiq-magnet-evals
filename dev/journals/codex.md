@@ -364,3 +364,41 @@ Validation: clean engine-free CI passed lint and 251 tests, with four
 absent-engine skips and 51 native deselections. The full 25-instance oracle,
 NOP and fresh official grading must still pass on the operator host before
 GPU leasing. The frozen selection and image pins are unchanged.
+
+
+## 2026-11-04 — Prepared an unattended paired screening follow-up
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+After the operator started the corrected 25-instance minimal-edit screening,
+prepared a caller-owned follow-up that waits for successful official grading
+and lease cleanup, then runs the upstream agent on the same frozen set. The
+baseline keeps TP=4, concurrency four, 200 messages, temperature zero and
+4,096 output tokens. It repeats oracle/NOP acceptance before model leasing.
+This tests whether the exploratory five-instance protocol difference extends
+to the additional twenty, without introducing new task membership or budgets.
+
+The caller records separate run paths and a descriptive paired comparison.
+It checks requests except protocol, serving recipes, native task and
+registration source hashes, engine/adapter versions, and complete official
+grading. Prepared weight contents remain unattested. No earlier native score
+is changed. The wait stops on failed preflight or a launcher that exits
+without a complete result; a per-candidate lock prevents duplicate active
+follow-ups. The wait is bounded at twelve hours. Source changes since the
+candidate prevent launching a nominally matched baseline.
+
+Validation: eight caller regression tests cover failure/abandonment gates,
+lease-cleanup waiting, exact launcher tracking, source mismatch, incomplete
+official grading, valid zero-success results and baseline/candidate selection.
+The extended comparison helper reproduced the retained smoke pairing: two
+both-resolved, one candidate-only, zero baseline-only and two neither-resolved.
+Strict source matching correctly rejected those historical runs, whose task
+sources differed. Shell syntax and Python lint passed. No new GPU run was
+launched from the guest. The current screening and paired model results are
+still pending.
+
+Timing is an estimate: the measured five-instance minimal-edit run took
+26m12s including official regrading. Linear extrapolation is about two hours
+for 25, before CPU/Docker acceptance and startup. Budget 2–4 hours for one
+screening and 4–8 hours for the pair until the broader run supplies actual
+timing.
