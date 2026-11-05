@@ -51,11 +51,13 @@ def verified_sandbox_environment(repo, *, clean_repository=True, agent_protocol=
 
 
 def _verified_task(*, instance_ids, images, solver='agent', tool_timeout=210,
-                   clean_repository=True, agent_protocol='upstream'):
+                   clean_repository=True, agent_protocol='upstream', sandbox_owner=None):
     if agent_protocol not in AGENT_PROTOCOLS:
         raise RequestValidationError(f'unknown Verified agent_protocol: {agent_protocol!r}')
     if agent_protocol != 'upstream' and solver != 'agent':
         raise RequestValidationError('agent_protocol requires solver=agent')
+    if sandbox_owner is not None and (not isinstance(sandbox_owner, str) or not sandbox_owner):
+        raise RequestValidationError('sandbox_owner must be a nonempty string')
     native_solver = importlib.import_module('inspect_ai.solver').solver
     util = importlib.import_module('inspect_ai.util')
     upstream = importlib.import_module('inspect_evals.swe_bench')
@@ -84,6 +86,8 @@ def _verified_task(*, instance_ids, images, solver='agent', tool_timeout=210,
             'network_mode': 'none'}
         environment = verified_sandbox_environment(sample.metadata.get('repo'),
             clean_repository=clean_repository, agent_protocol=agent_protocol)
+        if sandbox_owner:
+            environment.update(AIQ_EVAL_OWNER=sandbox_owner, AIQ_EVAL_INSTANCE=str(sample.id))
         if environment:
             service['environment'] = environment
         compose = util.ComposeConfig.model_validate({'services': {'default': service}})

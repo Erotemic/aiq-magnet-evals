@@ -20,7 +20,7 @@ from magnet_evals.jsonutil import sha256_json
 from magnet_evals.outputs import load_run
 
 
-def regrade(run_dir: Path, output: Path):
+def regrade(run_dir: Path, output: Path, *, run_id='acceptance', image_tag=None):
     from datasets import load_dataset
 
     if importlib.metadata.version('swebench') != '3.0.15':
@@ -39,18 +39,18 @@ def regrade(run_dir: Path, output: Path):
         raise ArtifactError('official dataset selection does not match the request')
     dataset_path = output / 'dataset.json'
     dataset_path.write_text(json.dumps(selected))
-    tag = 'aiq-verified-' + sha256_json(images)[:16]
+    tag = image_tag or 'aiq-verified-' + sha256_json(images)[:16]
     for image in images.values():
         subprocess.run(['docker', 'image', 'inspect', image], check=True, stdout=subprocess.DEVNULL)
         subprocess.run(['docker', 'tag', image, image.split('@')[0] + ':' + tag], check=True)
     command = [sys.executable, '-m', 'swebench.harness.run_evaluation',
         '--dataset_name', str(dataset_path.resolve()), '--predictions_path', str(predictions.resolve()),
-        '--max_workers', '1', '--run_id', 'acceptance', '--instance_ids', *ids,
+        '--max_workers', '1', '--run_id', run_id, '--instance_ids', *ids,
         '--instance_image_tag', tag, '--timeout', '600', '--cache_level', 'instance', '--clean', 'False']
     with (output / 'grader.log').open('w') as log:
         subprocess.run(command, cwd=output, stdout=log, stderr=subprocess.STDOUT,
                        timeout=(3600 if len(ids) <= 5 else 900 * len(ids)), check=True)
-    reports = list(output.glob('*.acceptance.json'))
+    reports = list(output.glob(f'*.{run_id}.json'))
     if len(reports) != 1:
         raise ArtifactError('official grader did not retain exactly one report')
     report = json.loads(reports[0].read_text())

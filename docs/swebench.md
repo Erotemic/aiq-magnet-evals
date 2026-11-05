@@ -216,3 +216,30 @@ The gains were Django 10914 and 15268. The first five contribute 2/5 versus
 3/5 and the additional twenty 13/20 versus 14/20. This does not convert the
 failed raw pair into an unqualified success. One observation per protocol
 and unattested prepared weight contents limit the comparison.
+
+
+The full Verified manifest is prepared in
+`dev/environments/swebench-verified-full-selection.json` and
+`swebench-verified-full-images.json`: exactly 500 unique instances at the same
+pinned dataset revision. Ordering keeps the accepted 25 first, followed by
+SHA256-ranked remaining IDs. All existing pins are preserved. New pins name
+linux/amd64 child manifests from Docker Hub metadata; runtime digest pulls
+verify their content. `dev/pin_verified_full_images.py` regenerates them with
+checkpointed metadata lookups. Image pinning does not establish runtime
+acceptance of the other 475 instances.
+
+For caller-owned cancellation cleanup, `verified_task` optionally accepts
+`sandbox_owner`. It adds `AIQ_EVAL_OWNER` and `AIQ_EVAL_INSTANCE` to the container
+environment using the supported Compose API. Defaults and prompts are
+unchanged. The caller can identify its containers by that exact marker without
+removing unrelated work. The official regrade helper accepts optional `run_id`
+and `image_tag` arguments to isolate caller-owned grader names and tags;
+existing callers retain their previous defaults.
+
+A native Requests 1142 probe passed oracle and NOP plus fresh official grading
+with the owner marker and cache exclusion. Repeating its checkpoint made no
+new evaluation or grading attempt. A Docker ownership probe removed only its
+marked container; a separate toy-file probe validated content hashing and
+rejected a modified file. These probes do not validate full-campaign GPU
+throughput or all 500 environments. The caller's full campaign retains blocked
+instances and withholds a full score until all 500 model predictions are graded.

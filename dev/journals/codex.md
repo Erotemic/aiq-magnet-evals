@@ -514,3 +514,69 @@ reductions cannot create extra audit predictions. Nine caller tests passed,
 including explicit duplicate counting and conflict rejection. The qualified
 readout executed against the retained native and host audit artifacts. No
 additional model work or host command is needed to obtain this comparison.
+
+
+## 2026-11-05 — Full Verified manifests and resumable caller campaign prepared
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+Frozen all 500 IDs from the cached dataset at the existing revision. The
+accepted 25 remain first, followed by SHA256(seed:instance_id) order for the
+remaining 475. Added 500 linux/amd64 image digests, preserving every accepted
+pin. Registry GET lookups resolved 100 additions before throttling; the
+remaining metadata came from Docker Hub's architecture-specific tag records.
+A checkpointed resolver retries transient failures; digest pulls on the host
+verify image content. No case was removed after pinning difficulty.
+
+Added optional ownership metadata through supported Compose environment fields,
+not unsupported ComposeService labels. The default task remains unchanged.
+Official regrading now accepts caller-specific run IDs and image tags to avoid
+container/tag collisions and support scoped cleanup. This adds no MAGNET claim
+logic or core engine dependency.
+
+The private caller prepares one frozen campaign, snapshots both package sources
+and the pinned upstream task checkout, installs an isolated constrained worker,
+and records source/dependency and serving-input fingerprints. Per-instance
+oracle/NOP acceptance precedes that instance's model work. Twenty groups of
+25 bound image storage and GPU lease lifetimes; four model jobs run concurrently.
+All 500 remain in the manifest and partial summary. Failed checks retain native
+artifacts and remain blocked; no full score is emitted unless all 500 are graded.
+Completed checkpoints are hash-verified on resume; native results can be reused
+within the frozen campaign when their attested model binding is unchanged.
+
+The serving child hashes its actual weight files and image content before and
+after each model batch, pins the observed image for later starts, and refuses
+changed realization. This mechanism is prepared for the operator model but not
+yet exercised against that model. A cached CPU-image fixture with toy weight
+files verified the hashing path, repeated-content acceptance and changed-byte
+rejection. The model message budget remains 200, temperature zero and 4,096
+output tokens. Native model execution has a 24-hour infrastructure timeout per
+problem, rather than the previous six-hour timeout for an entire campaign.
+
+Each batch lease uses a 30-day backstop and stop-on-reclaim. Normal exit,
+failure and cancellation release the exact lease. Recovery also discovers
+leases by the exact campaign owner if interruption preceded descriptor capture.
+Cleanup identifies only campaign-marked native containers, uniquely named
+official graders and caller-created image tags; images cached before the
+campaign are preserved. There is no global prune, evict-all or release-all.
+The same entry command resumes pending/failed cases; explicit cleanup is
+available after a hard interruption. GPU work remains on the operator host.
+
+Native evidence retained by the caller under
+`benchmark_results/swebench-full-native-check-20261105`: Requests 1142 oracle
+and NOP both matched fresh official verdicts (1 and 0), and checkpoint resume
+created no additional attempt. Oracle manifest SHA256
+`1977168910b30bad4650f74488c386b5622bd449ea22c08fb47e9706a155bd32`,
+official report `f92b81a6df06fd49be199d9118514cc9c07934d7561291fd90343de285ca74ff`;
+NOP manifest `c33365ab52d4cfd9563d0756c4cd5caad396d8041a5dec9c94508975fc339d23`,
+official `3c14759e7de25945f5cc1c39601b3c066e01c12169d3c50a84841bb8333afc98`.
+A real Docker probe removed an owned container while preserving a different
+owner. Existing inference-lifecycle tests passed five real signal cases,
+covering SIGINT/SIGTERM during child work and readiness with lease release.
+
+Validation: 264 engine-free tests passed, four absent-engine skips and 51
+native deselections; lint passed. Fourteen caller tests cover all-500 coverage,
+partial-score refusal, checkpoint corruption, cache reuse, per-case isolation,
+TP forwarding, owned cleanup, failure recovery and acquisition interruption.
+Shell and Python syntax checks passed. Full 500-instance runtime acceptance,
+operator-model attestation and GPU throughput remain pending.

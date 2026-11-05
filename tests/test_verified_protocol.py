@@ -139,3 +139,19 @@ def test_setup_excludes_untracked_python_cache_from_captured_patch(native, tmp_p
     patch = subprocess.check_output(['git', '-C', str(tmp_path), 'diff', '--cached', commit], text=True)
     assert '__pycache__' not in patch
     assert '-old\n+new\n' in patch
+
+
+def test_owner_marker_uses_supported_compose_environment_without_prompt_changes(native):
+    configured = task(sandbox_owner='owned-campaign')
+    sample = configured.dataset[0]
+    service = sample.sandbox.config['services']['default']
+    assert service['environment']['AIQ_EVAL_OWNER'] == 'owned-campaign'
+    assert service['environment']['AIQ_EVAL_INSTANCE'] == sample.id
+    assert 'labels' not in service
+    assert sample.input == 'Fix the stated issue.'
+
+
+@pytest.mark.parametrize('owner', ['', {}, 7])
+def test_invalid_owner_is_rejected_before_native_import(owner):
+    with pytest.raises(RequestValidationError, match='sandbox_owner'):
+        task(sandbox_owner=owner)
