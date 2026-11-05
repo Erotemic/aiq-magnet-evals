@@ -24,7 +24,7 @@ def test_screening_pins_preserve_smoke_and_exact_frozen_membership():
     assert all(re.fullmatch(r'swebench/sweb\.eval\.x86_64\..+@sha256:[0-9a-f]{64}', image)
                for image in screening.values())
     # Pins are preparation evidence, not new native runtime acceptance.
-    assert selection['runtime_verified_ids'] == selection['smoke']
+    assert selection['runtime_verified_ids'] == selection['screening']
 
 
 def response(value, *, bad_digest=False):

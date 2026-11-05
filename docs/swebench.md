@@ -72,7 +72,9 @@ smoke and a deterministic 25-instance screening selection before any model
 comparisons. `dev/environments/swebench-verified-screening-images.json` now pins
 all 25 images; the existing five pins are preserved. The additional 20 are
 linux/amd64 manifest digests resolved and checksum-checked on 2026-11-04.
-Only the smoke set currently has completed runtime acceptance. To validate
+All 25 screening instances passed oracle/NOP and fresh official acceptance
+on the operator host with task source at `5b19d19`. The first real-model
+screening completed with 17/25 official resolutions and exact Inspect agreement. To validate
 screening with the existing pinned worker, set `AIQ_VERIFIED_IMAGES` to the
 screening image JSON when running `tests/native/test_swebench_verified.py`.
 Both oracle and NOP must pass across all 25 instances, including fresh official
@@ -82,8 +84,8 @@ even with the gold patch; their offline capability remains unverified.
 
 `dev/pin_verified_screening_images.py` regenerates the candidate screening pins
 from registry metadata without downloading image layers. Pinning is preparation,
-not runtime acceptance; `runtime_verified_ids` remains the original five until
-the broader native gate has actual evidence.
+not runtime acceptance; `runtime_verified_ids` now lists the 25 instances
+covered by the recorded host gate.
 
 ## SWE-bench Pro V2 with Harbor
 
@@ -185,3 +187,22 @@ projection/rescheduling and fake-lease acceptance passed the full VM gate.
 These CPU fixtures establish protocol and scheduling behavior, not actual
 loaded weights or model performance. Mini-SWE runtime closure remains mutable
 and nonreusable. Full Verified/Pro runs and Modal protocol parity remain untested.
+
+
+The November 5 upstream-agent screening exposed a patch replay failure:
+Inspect's textual `git diff` captured an untracked temporary `.pyc.<number>`
+file as a binary placeholder with no payload. SWE-bench 3.0.15's fallback
+sequence partly applied the source edits with `git apply --reject`, then GNU
+patch reversed them. The grader tested the original production code and
+reported a disagreement. Ordinary export now refuses binary placeholders
+before grading. Repository setup excludes untracked `__pycache__/` directories
+through `.git/info/exclude`, keeping generated caches out of future patches.
+This changes task source identity; prior bundles are not relabeled.
+
+`dev/audit_verified_bytecode_patch.py` provides an explicit diagnostic for a
+completed native run whose retained official grading disagrees. It creates
+separate predictions omitting only new temporary CPython cache placeholders,
+records original/derived patch checksums and omitted block identity, and
+regrades the mismatched instances in fresh official containers. Unknown binary
+changes are refused. Audit results are transformed-prediction evidence and do
+not overwrite original scores, reports or the failed pair status.

@@ -97,3 +97,34 @@ def test_export_refuses_tampered_native_artifact(tmp_path):
     next((bundle / 'native').rglob('*.eval')).write_bytes(b'tampered')
     with pytest.raises(ArtifactError, match='checksum mismatch'):
         export_predictions(bundle, tmp_path / 'predictions.jsonl')
+
+
+BYTECODE = ('diff --git a/pkg/__pycache__/mod.cpython-311.pyc.123 '
+            'b/pkg/__pycache__/mod.cpython-311.pyc.123\n'
+            'new file mode 100644\nindex 0000000000..b091390dc9\n'
+            'Binary files /dev/null and b/pkg/__pycache__/mod.cpython-311.pyc.123 differ\n')
+TEXT = 'diff --git a/source.py b/source.py\n--- a/source.py\n+++ b/source.py\n@@ -1 +1 @@\n-old\n+new\n'
+
+
+def test_uncaptured_binary_payload_is_refused_before_official_fallback():
+    with pytest.raises(ArtifactError, match='unreplayable binary diff'):
+        prediction_records(run(sample(BYTECODE + TEXT)))
+
+
+def test_explicit_bytecode_audit_preserves_source_patch_exactly():
+    from magnet_evals.benchmarks.swe_bench_verified import omit_transient_bytecode
+    patch, omitted = omit_transient_bytecode(BYTECODE + TEXT)
+    assert patch == TEXT
+    assert omitted == [{'path': 'pkg/__pycache__/mod.cpython-311.pyc.123',
+                        'captured_block_sha256': hashlib.sha256(BYTECODE.encode()).hexdigest()}]
+
+
+@pytest.mark.parametrize('bad', [
+    BYTECODE.replace('mod.cpython-311.pyc.123', 'mod.cpython-311.pyc'),
+    BYTECODE.replace('__pycache__', 'source_assets'),
+    BYTECODE.replace('new file mode', 'deleted file mode'),
+])
+def test_bytecode_audit_refuses_other_binary_changes(bad):
+    from magnet_evals.benchmarks.swe_bench_verified import omit_transient_bytecode
+    with pytest.raises(ArtifactError, match='unknown or non-temporary'):
+        omit_transient_bytecode(bad + TEXT)

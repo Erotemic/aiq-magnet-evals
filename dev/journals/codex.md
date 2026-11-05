@@ -402,3 +402,66 @@ Timing is an estimate: the measured five-instance minimal-edit run took
 for 25, before CPU/Docker acceptance and startup. Budget 2–4 hours for one
 screening and 4–8 hours for the pair until the broader run supplies actual
 timing.
+
+
+## 2026-11-05 — 17/25 screening completed; baseline patch fallback reversed a fix
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+The corrected minimal-edit screening completed on the operator host: 17/25
+resolved with exact Inspect/official agreement, no native errors and no
+incomplete official predictions. The earlier smoke contributed 3/5 and the
+additional twenty contributed 14/20. Oracle/NOP and fresh official acceptance
+passed across all 25; `runtime_verified_ids` now records those instances.
+The native model run made 1,754 tool calls and nine samples hit a limit.
+Readiness was November 4 22:33:31 EST and cleanup November 5 00:29:15, about
+1h56m including native work, fresh grading and cleanup. CPU acceptance took
+2,911 seconds. This is a selected 25-instance result, not full Verified.
+
+The matched upstream-agent baseline completed all 25 native samples with no
+errors, 1,835 tool calls and eleven limit hits. Its CPU gate passed in 4,523
+seconds. Fresh grading stopped publication: native resolved 15, official 14,
+with one disagreement, `matplotlib__matplotlib-24627`. Both runs used evals
+`09a2444`, serving code `0d3fc34`, and task source SHA256
+`7910f7b46d054203a34d93c334494d51e7962441ffaaaf4e9bf0e2230390e9f3`.
+Both serving leases were removed. The failed paired campaign is retained;
+no valid paired result has been published.
+
+The baseline's 2,523-byte captured patch contains a 296-byte placeholder for
+an untracked `__pycache__/lines.cpython-311.pyc.<number>` file, plus 2,227
+bytes of production source changes. The textual diff contains no binary
+payload. Official logs show `git apply` failed atomically, `git apply --reject`
+failed after applying the source changes, then GNU patch reported the edits
+already applied and reversed them. Its recorded production diff was empty.
+It tested the original source and failed the target regression (776 other
+tests passed). This explains the disagreement without rerunning inference.
+
+A local Git/GNU patch probe reproduced the same upstream sequence: exit codes
+1/1/0, source states original/fixed/original. The caller retains that probe
+under `benchmark_results/swebench-bytecode-fallback-audit-20261105`.
+Ordinary export now refuses uncaptured binary placeholders before grading.
+Future setup excludes untracked Python cache directories using Git's local
+exclude file, without adding harness changes to production patches. The task
+source identity changes; completed native records are not relabeled.
+
+Prepared a CPU-only diagnostic that creates a separate prediction omitting
+only a newly created temporary CPython bytecode placeholder. Unknown binary
+changes are refused. It records the original/derived patch hashes and omitted
+block identity, verifies retained dataset/image lineage, and runs fresh
+upstream official grading for the mismatch only. This is explicit transformed
+prediction evidence; original native scores, predictions, official reports
+and the failed pair status remain intact. Its host result is pending.
+
+Evidence: candidate native log SHA256
+`fc79bb776757b08fe1f296a223ee0192e09260faf5cb0bb36c728399068d372e`,
+official report `45087cd47cba080a231bcece967a881b332c8ee046051c4cbbab884b4219d7aa`;
+baseline native `bd29a6bbcc0cbcb7b08315b5bf282bb976e61f173c453dfd73d5ee1a2f231954`,
+official `d18bc4c26865015a238f5fd9642dfdac899ea73834f4aefbf61dcc188481bca4`.
+
+Validation: the new tests reject incomplete binary exports, require exact
+source-patch preservation and refuse non-temporary binary omissions. A real
+Git setup probe confirms that cache exclusion prevents the transient file
+from entering the staged patch while preserving source edits. Engine-free CI
+passed lint and 257 tests (four absent-engine skips, 51 native deselections).
+The saved actual baseline patch exercised the narrow transform: exactly one
+temporary cache block was omitted. No new model run was launched.

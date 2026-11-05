@@ -110,7 +110,9 @@ def _verified_task(*, instance_ids, images, solver='agent', tool_timeout=210,
             if not re.fullmatch(r'[0-9a-f]{40}', commit):
                 raise RequestValidationError('Verified dataset base_commit is not a full git SHA')
             sample.setup = ('#!/bin/bash\nset -e\ncd /testbed\ngit reset --hard '
-                            + commit + '\ngit clean -fd\n' + (sample.setup or ''))
+                            + commit + '\ngit clean -fd\n'
+                            + "printf '\\n__pycache__/\\n' >> .git/info/exclude\n"
+                            + (sample.setup or ''))
             sample.metadata['aiq_repository_setup'] = 'git-reset-clean/v1'
     if solver == 'oracle':
         task.solver = upstream.swe_bench_oracle_solver()

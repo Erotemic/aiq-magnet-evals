@@ -117,3 +117,25 @@ def test_clean_sphinx_keeps_per_test_reporting_out_of_model_patch(native, protoc
     untouched = task(agent_protocol=protocol, clean_repository=False)
     environment = untouched.dataset[0].sandbox.config['services']['default'].get('environment', {})
     assert 'PYTEST_ADDOPTS' not in environment and 'TOX_OVERRIDE' not in environment
+
+
+def test_setup_excludes_untracked_python_cache_from_captured_patch(native, tmp_path):
+    import subprocess
+
+    subprocess.run(['git', 'init', '-q', str(tmp_path)], check=True)
+    subprocess.run(['git', '-C', str(tmp_path), 'config', 'user.email', 'test@example.invalid'], check=True)
+    subprocess.run(['git', '-C', str(tmp_path), 'config', 'user.name', 'Test'], check=True)
+    (tmp_path / 'source.py').write_text('old\n')
+    subprocess.run(['git', '-C', str(tmp_path), 'add', 'source.py'], check=True)
+    subprocess.run(['git', '-C', str(tmp_path), 'commit', '-qm', 'base'], check=True)
+    commit = subprocess.check_output(['git', '-C', str(tmp_path), 'rev-parse', 'HEAD'], text=True).strip()
+    setup = task().dataset[0].setup.replace('/testbed', str(tmp_path)).replace('a' * 40, commit)
+    subprocess.run(['bash', '-c', setup], check=True, stdout=subprocess.DEVNULL)
+    cache = tmp_path / 'pkg/__pycache__'
+    cache.mkdir(parents=True)
+    (cache / 'mod.cpython-311.pyc.123').write_bytes(b'\0binary')
+    (tmp_path / 'source.py').write_text('new\n')
+    subprocess.run(['git', '-C', str(tmp_path), 'add', '-A'], check=True)
+    patch = subprocess.check_output(['git', '-C', str(tmp_path), 'diff', '--cached', commit], text=True)
+    assert '__pycache__' not in patch
+    assert '-old\n+new\n' in patch

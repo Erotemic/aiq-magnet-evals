@@ -50,6 +50,9 @@ def prediction_records(run: RunBundle) -> tuple[list[dict], list[dict]]:
         patch = patches[0]
         if patch and not patch.startswith('diff --git '):
             raise ArtifactError(f'captured model_patch is not a git diff: {instance}')
+        if re.search(r'^Binary files .+ differ$', patch, re.MULTILINE):
+            raise ArtifactError(f'captured model_patch has an unreplayable binary diff: {instance}; '
+                                'retain the capture and audit it before grading')
         rows.append({'instance_id': instance, 'model_name_or_path': model, 'model_patch': patch})
         lineage.append({'instance_id': instance, 'epoch': sample.epoch,
                         'native_log': sample.native.get('log_location'),
@@ -76,3 +79,29 @@ def export_predictions(run_dir: str | Path, output: str | Path) -> Path:
     target.with_suffix(target.suffix + '.provenance.json').write_text(
         json.dumps(source, indent=2, sort_keys=True) + '\n')
     return target
+
+
+def omit_transient_bytecode(patch: str) -> tuple[str, list[dict]]:
+    """Explicit diagnostic transform; never used by ordinary prediction export.
+
+    Only a newly created CPython temporary cache with no captured binary payload
+    may be omitted. Other binary changes require their original contents.
+    """
+    retained, omitted = [], []
+    pattern = re.compile(
+        r'diff --git a/(?P<path>(?:[A-Za-z0-9_.-]+/)*__pycache__/'
+        r'[A-Za-z0-9_.-]+\.pyc\.[0-9]+) b/(?P=path)\n'
+        r'new file mode 100644\nindex 0+\.\.[0-9a-f]+\n'
+        r'Binary files /dev/null and b/(?P=path) differ\n?')
+    for block in re.split(r'(?=^diff --git )', patch, flags=re.MULTILINE):
+        if not block:
+            continue
+        match = pattern.fullmatch(block)
+        if match:
+            omitted.append({'path': match['path'],
+                            'captured_block_sha256': hashlib.sha256(block.encode()).hexdigest()})
+        elif re.search(r'^Binary files .+ differ$', block, re.MULTILINE):
+            raise ArtifactError('refusing to omit an unknown or non-temporary binary change')
+        else:
+            retained.append(block)
+    return ''.join(retained), omitted
