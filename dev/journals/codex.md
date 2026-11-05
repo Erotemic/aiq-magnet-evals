@@ -580,3 +580,47 @@ partial-score refusal, checkpoint corruption, cache reuse, per-case isolation,
 TP forwarding, owned cleanup, failure recovery and acquisition interruption.
 Shell and Python syntax checks passed. Full 500-instance runtime acceptance,
 operator-model attestation and GPU throughput remain pending.
+
+
+## 2026-11-05 — Full-campaign packaging and cancellation checks completed
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+Exercised the frozen-source installation path in a separate worker with the
+retained operator catalog as a read-only fixture. All 142 packages installed,
+source fingerprints survived the build, the OpenAI provider initialized without
+HTTP, and the cached dataset matched the complete 500-instance manifest. The
+upstream archive needs an editable installation to preserve task resource
+files; the pinned source commit is independently checked and SCM build metadata
+retains its observed version. The final single-instance request also passed
+native oracle plus fresh official regrading from that frozen worker. No GPU
+lease or real model execution was involved in these guest checks.
+
+Working package edits and new package modules can be frozen without changing
+the live checkout; snapshots record a working-content fingerprint alongside
+the commit. The upstream task checkout remains required to match its exact pin.
+A real Git fixture covered tracked changes, a newly added module and replacing
+a tracked symlink, while unrelated untracked files stayed out of the snapshot.
+
+The serving-content probe now also checks the live MODEL path and ownership
+marker. A cached CPU-image fixture accepted repeated identical content, rejected
+modified bytes and rejected a different owner. This tests the mechanism with
+toy files, not attestation of the operator's prepared weights. The user-facing
+entry command acquires an exclusion lock that survives exec into its frozen
+worker. A signal during child-process creation is deferred until ownership is
+registered, preventing an orphaned acquisition or task process.
+
+Checkpoint validation covers native files, normalized results, requests,
+official reports and the campaign model realization. Completed zero outcomes
+are retained; resuming retries incomplete work and records native/grading
+attempt counts. Summaries include finish reasons, truncation fraction and
+native limit hits beside coverage and score.
+
+Validation totals: 264 engine-free tests, 20 full-campaign caller tests,
+nine existing paired-campaign tests and five real inference-lifecycle signal
+tests passed. The caller tests include real timeout termination, a real signal
+during child creation and inherited-lock behavior across worker exec. Shell
+syntax, Python compilation and lint passed. Captures are retained under the
+caller's full-preparation and full-native-check directories. Full 500-instance
+runtime acceptance, operator-model attestation and GPU throughput remain
+pending on the host; no full score is claimed from these probes.
