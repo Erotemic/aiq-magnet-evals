@@ -284,8 +284,8 @@ The GPU stage was not entered, and the frozen membership remains unchanged.
 The assertion reported only `all(...) == False`, and capture ran only at the
 end of a successful test. Consequently, the failed oracle's native artifacts
 remained in the host's pytest temporary directory while the shared output
-contained only NOP evidence. Specific failing instances and causes cannot yet
-be inferred from the available report. A caller-owned collector is prepared
+contained only NOP evidence. At that point the shared report did not identify the failing instances
+or their causes. A caller-owned collector is prepared
 to recover the existing host files; no expensive preflight rerun is needed
 to inspect them if those temporary files still exist.
 
@@ -295,3 +295,34 @@ unexpected scores. The caller now keeps pytest work under its shared output,
 uses a short traceback, and stops at the first failure. The existing gate still
 requires both oracle and NOP to pass before GPU leasing. This changes diagnostics,
 not acceptance criteria. No image, task membership, grader or score was changed.
+
+
+## 2026-11-04 — Recovered screening oracle failures; focused replay prepared
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+The recovered 25-sample oracle bundle scored 21/25. Four gold patches scored
+zero: `sphinx-doc__sphinx-8595`, `sphinx-doc__sphinx-8638`,
+`sphinx-doc__sphinx-9229`, and `sphinx-doc__sphinx-9281`. There were no native
+sample errors. This is a failed environment/grading acceptance gate, not a
+model result. The common repository suggests a shared setup issue, but does
+not establish its cause.
+
+Read the recovered native `.eval` as well as normalized trajectories. Inspect
+0.3.272's sandbox event logger truncates file contents to the first 20 lines;
+all four captured test outputs end during pip setup, before test diagnostics.
+The scorer consumed the full output, but the saved event did not preserve it.
+No traceback or dependency diagnosis can be recovered from these events.
+
+Added a diagnostic replay helper for only failed captured oracle samples. It
+uses the request's pinned images, networking disabled, the same repository
+reset/cleanup, each actual captured solver patch and the upstream native eval
+script. Full output is written directly to a caller-owned artifact directory;
+image, patch, script, exit code and replay verdict are retained. Container
+cleanup is scoped to containers it creates. This does not change a request,
+accept a failing oracle, or replace a selected instance. The caller supplies a
+zero-placeholder host command that selects the latest failed oracle bundle.
+
+Validation: Python compilation and lint. Native replay is pending on the
+operator host, where the four images are cached. No new model run or GPU
+lease was launched, and the 25-instance acceptance gate remains blocked.
