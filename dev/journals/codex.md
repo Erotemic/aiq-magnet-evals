@@ -465,3 +465,52 @@ from entering the staged patch while preserving source edits. Engine-free CI
 passed lint and 257 tests (four absent-engine skips, 51 native deselections).
 The saved actual baseline patch exercised the narrow transform: exactly one
 temporary cache block was omitted. No new model run was launched.
+
+
+## 2026-11-05 — Bytecode-free audit passed; qualified screening comparison saved
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+The operator's fresh official audit of Matplotlib 24627 passed after explicitly
+omitting the captured temporary bytecode placeholder. No source changes were
+altered. Original patch SHA256 is
+`b7b8c7046e04a5c6bfd6e9381d08264415a15ffa52f7bbb5d9b0c2ed39a7c69e`;
+derived patch `2dba8f58539cb7b3b41aa002a2df4329d63c5224bf4e6cee0faaa47e99ff90e5`;
+the fresh official audit report is
+`0387f5fd87511a5dc16f003abeae34425e6a9d7818b03f2efcf6a608b0a2fb42`.
+It submitted exactly that one instance, resolved it, and reported no errors
+or incomplete predictions. The original 14/25 official result remains intact.
+
+Validated and saved a caller-owned qualified comparison, using the original
+24 agreeing baseline verdicts and the one explicit transformed-prediction
+audit verdict: baseline 15/25 versus minimal-edit 17/25 (60% versus 68%).
+Fifteen resolved under both, two under minimal-edit only, none under baseline
+only, and eight under neither. The additional successes were Django 10914
+and 15268. The original smoke contributes 2/5 versus 3/5; the additional
+twenty contribute 13/20 versus 14/20. Calls were 1,835 versus 1,754 and limit
+hits 11 versus nine. These are descriptive paired observations on the selected
+25, not full Verified performance or evidence of a repeatable effect.
+
+The caller's readout verifies completed native bundles, identical requests
+except protocol, task/registration source hashes and engine/adapter versions,
+selected serving recipes, exact membership, original grading coverage,
+retained dataset/image lineage, and the exact supported patch transform and
+checksums. The result explicitly labels the baseline audit and retains hashes
+of the original report, audit, derived predictions and new report. It is saved
+as `comparison-audited.json`, while the failed raw pair status and ordinary
+comparison path are unchanged. Prepared weights remain unattested.
+
+The first audit accidentally included an identical epoch-reduction record
+alongside the native sample, duplicating its prediction and lineage entry.
+The official report still submitted and resolved exactly one unique instance.
+Fixed the helper to select native samples only and refuse genuinely repeated
+samples. The historical readout accepts only byte-identical duplicate rows,
+records their counts, and rejects conflicting entries. No audit was rerun to
+correct this bookkeeping, and no original artifact was edited.
+
+Validation: 258 engine-free tests passed, with four absent-engine skips and
+51 native deselections; lint passed. A regression test verifies that epoch
+reductions cannot create extra audit predictions. Nine caller tests passed,
+including explicit duplicate counting and conflict rejection. The qualified
+readout executed against the retained native and host audit artifacts. No
+additional model work or host command is needed to obtain this comparison.

@@ -206,3 +206,13 @@ records original/derived patch checksums and omitted block identity, and
 regrades the mismatched instances in fresh official containers. Unknown binary
 changes are refused. Audit results are transformed-prediction evidence and do
 not overwrite original scores, reports or the failed pair status.
+
+
+The operator's fresh bytecode-free audit passed Matplotlib 24627. A separate
+qualified paired readout combines the other 24 original official verdicts
+with this transformed-prediction verdict: baseline 15/25, minimal-edit 17/25;
+15 both-resolved, two minimal-edit-only, zero baseline-only and eight neither.
+The gains were Django 10914 and 15268. The first five contribute 2/5 versus
+3/5 and the additional twenty 13/20 versus 14/20. This does not convert the
+failed raw pair into an unqualified success. One observation per protocol
+and unattested prepared weight contents limit the comparison.

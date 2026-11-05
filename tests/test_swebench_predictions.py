@@ -128,3 +128,20 @@ def test_bytecode_audit_refuses_other_binary_changes(bad):
     from magnet_evals.benchmarks.swe_bench_verified import omit_transient_bytecode
     with pytest.raises(ArtifactError, match='unknown or non-temporary'):
         omit_transient_bytecode(bad + TEXT)
+
+
+
+def test_bytecode_audit_does_not_export_epoch_reductions_as_predictions():
+    import importlib.util
+
+    path = Path(__file__).parents[1] / 'dev/audit_verified_bytecode_patch.py'
+    spec = importlib.util.spec_from_file_location('bytecode_audit', path)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    native = sample(BYTECODE + TEXT)
+    reduction = replace(native, epoch=None, native={**native.native, 'kind': 'epoch_reduction'})
+    rows, lineage = module.derived_predictions(run(native, reduction), {native.sample_id})
+    assert len(rows) == len(lineage) == 1
+    assert rows[0]['model_patch'] == TEXT
+    with pytest.raises(ValueError, match='Ambiguous repeated'):
+        module.derived_predictions(run(native, native), {native.sample_id})

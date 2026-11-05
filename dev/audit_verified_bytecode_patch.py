@@ -17,6 +17,30 @@ from magnet_evals.jsonutil import sha256_json
 from magnet_evals.outputs import load_run
 
 
+def derived_predictions(run, mismatches):
+    rows, lineage, seen = [], [], set()
+    for sample in run.result.samples:
+        if sample.native.get('kind') != 'sample' or sample.sample_id not in mismatches:
+            continue
+        if sample.sample_id in seen:
+            raise ValueError(f'Ambiguous repeated native sample: {sample.sample_id}')
+        seen.add(sample.sample_id)
+        patch = sample.scores['swe_bench_scorer']['metadata']['model_patch']
+        derived, omitted = omit_transient_bytecode(patch)
+        if not omitted or not derived.startswith('diff --git '):
+            raise ValueError(f'Mismatch has no supported transient-bytecode transform: {sample.sample_id}')
+        rows.append({'instance_id': sample.sample_id,
+                     'model_name_or_path': run.resolved.request.primary_model.model,
+                     'model_patch': derived})
+        lineage.append({'instance_id': sample.sample_id,
+            'captured_patch_sha256': hashlib.sha256(patch.encode()).hexdigest(),
+            'derived_patch_sha256': hashlib.sha256(derived.encode()).hexdigest(),
+            'omitted': omitted})
+    if seen != mismatches:
+        raise ValueError('Native samples do not cover all mismatches')
+    return rows, lineage
+
+
 def audit(run_root: Path, output: Path):
     if importlib.metadata.version('swebench') != '3.0.15':
         raise ValueError('Requires the pinned SWE-bench worker')
@@ -34,21 +58,7 @@ def audit(run_root: Path, output: Path):
     mismatches = native_ids ^ set(original['resolved_ids'])
     if not mismatches:
         raise ValueError('No native/official mismatch to audit')
-    rows, lineage = [], []
-    for sample in run.result.samples:
-        if sample.sample_id not in mismatches:
-            continue
-        patch = sample.scores['swe_bench_scorer']['metadata']['model_patch']
-        derived, omitted = omit_transient_bytecode(patch)
-        if not omitted or not derived.startswith('diff --git '):
-            raise ValueError(f'Mismatch has no supported transient-bytecode transform: {sample.sample_id}')
-        rows.append({'instance_id': sample.sample_id,
-                     'model_name_or_path': run.resolved.request.primary_model.model,
-                     'model_patch': derived})
-        lineage.append({'instance_id': sample.sample_id,
-            'captured_patch_sha256': hashlib.sha256(patch.encode()).hexdigest(),
-            'derived_patch_sha256': hashlib.sha256(derived.encode()).hexdigest(),
-            'omitted': omitted})
+    rows, lineage = derived_predictions(run, mismatches)
     output.mkdir(parents=True, exist_ok=False)
     predictions = output / 'derived-predictions.jsonl'
     predictions.write_text(''.join(json.dumps(row) + '\n' for row in rows))
