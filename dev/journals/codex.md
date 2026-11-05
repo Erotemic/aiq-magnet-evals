@@ -616,7 +616,7 @@ are retained; resuming retries incomplete work and records native/grading
 attempt counts. Summaries include finish reasons, truncation fraction and
 native limit hits beside coverage and score.
 
-Validation totals: 264 engine-free tests, 20 full-campaign caller tests,
+Validation totals: 264 engine-free tests, 21 full-campaign caller tests,
 nine existing paired-campaign tests and five real inference-lifecycle signal
 tests passed. The caller tests include real timeout termination, a real signal
 during child creation and inherited-lock behavior across worker exec. Shell
