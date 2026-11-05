@@ -29,8 +29,8 @@ The optional task argument `agent_protocol: minimal-edit/v1` is an experimental
 prompt/environment intervention. It retains the upstream agent, tools and
 scorer, adds generic minimal-change and independent-testing guidance, and sets
 UTF-8, noninteractive Git and one-process Django test defaults inside the task
-container. The default `upstream` protocol leaves prompts and container
-environment unchanged. The alternative requires `solver: agent`; oracle and
+container. The default `upstream` protocol leaves prompts unchanged; Sphinx reporting
+settings below apply to both protocols when repository cleanup is enabled. The alternative requires `solver: agent`; oracle and
 NOP remain on the upstream protocol. The protocol option and task source hash
 participate in measurement identity. Neither gold patches nor hidden tests or
 hints enter the added guidance. A pinned-image Docker probe verified the
@@ -42,7 +42,14 @@ See the [protocol experiment journal](../dev/journals/codex.md).
 Before the agent runs, the task resets the repository to the dataset's exact
 base commit and removes untracked files with `git clean -fd`. This explicit
 `git-reset-clean/v1` protocol avoids capturing pre-existing build files or mode
-changes from benchmark images. The agent, scorer and grader remain upstream.
+changes from benchmark images. For Sphinx, the reset also removes the image's tracked `tox.ini` edit that
+adds `pytest -rA`. Without per-test reporting, the upstream parser can score
+an entirely passing suite as zero because it finds no test IDs. The task
+restores reporting through `PYTEST_ADDOPTS=-rA` and
+`TOX_OVERRIDE=testenv.pass_env+=PYTEST_ADDOPTS` in the container environment,
+without changing tracked files. This applies to all solvers and both agent
+protocols when cleanup is enabled. It changes the task source identity.
+The agent, scorer and grader remain upstream.
 The task uses a public ComposeConfig rather than a shared per-instance YAML
 cache and disables sandbox Internet access.
 

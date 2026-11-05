@@ -100,3 +100,20 @@ def test_protocol_changes_measurement_identity():
                   for r in (baseline, candidate)]
     assert identities[0].digest != identities[1].digest
     assert baseline.to_dict() == before
+
+
+@pytest.mark.parametrize('protocol', ['upstream', 'minimal-edit/v1'])
+def test_clean_sphinx_keeps_per_test_reporting_out_of_model_patch(native, protocol):
+    hidden, scorer, solver = native
+    hidden['repo'] = 'sphinx-doc/sphinx'
+    configured = task(agent_protocol=protocol)
+    environment = configured.dataset[0].sandbox.config['services']['default']['environment']
+    assert environment['PYTEST_ADDOPTS'] == '-rA'
+    assert environment['TOX_OVERRIDE'] == 'testenv.pass_env+=PYTEST_ADDOPTS'
+    assert configured.scorer is scorer and configured.solver is solver
+    assert 'tox.ini' not in configured.dataset[0].setup
+    if protocol == 'minimal-edit/v1':
+        assert environment['DJANGO_TEST_PROCESSES'] == '1'
+    untouched = task(agent_protocol=protocol, clean_repository=False)
+    environment = untouched.dataset[0].sandbox.config['services']['default'].get('environment', {})
+    assert 'PYTEST_ADDOPTS' not in environment and 'TOX_OVERRIDE' not in environment

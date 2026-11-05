@@ -326,3 +326,41 @@ zero-placeholder host command that selects the latest failed oracle bundle.
 Validation: Python compilation and lint. Native replay is pending on the
 operator host, where the four images are cached. No new model run or GPU
 lease was launched, and the 25-instance acceptance gate remains blocked.
+
+
+## 2026-11-04 — Sphinx gold failures were missing per-test reporting
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+The operator's focused replay completed all four Sphinx cases. Actual test
+summaries were 1, 35, 14 and 39 passed for instances 8595, 8638, 9229 and 9281,
+respectively: 89 passed, no failed tests. All four native verdicts remained
+zero. Running SWE-bench 3.0.15's actual Sphinx log parser against those full
+logs returned no test IDs in every case.
+
+The image build specification edits tracked `tox.ini` to add `pytest -rA`.
+Our `git-reset-clean/v1` setup resets that file, removing the per-test report
+the grader expects. Compact progress dots and a suite total cannot supply
+individual FAIL_TO_PASS/PASS_TO_PASS outcomes. This was a harness setup bug,
+not evidence that the gold fixes or installed Sphinx dependencies failed.
+
+The task now supplies `PYTEST_ADDOPTS=-rA` and tox's public
+`testenv.pass_env+=PYTEST_ADDOPTS` override for Sphinx whenever cleanup is
+enabled. It leaves tracked files clean and keeps the upstream solver,
+patch capture and scorer. It applies equally to oracle, NOP and agent, and
+combines with minimal-edit environment defaults. The task module source hash
+changes measurement identity. Existing native bundles retain their original
+scores; none are relabeled. The diagnostic helper can opt into the current
+environment and records that difference alongside its source and replay score.
+
+A local reporting probe with tox 4.16.0, tox-current-env 0.0.11, pytest 8.3.3
+and SWE-bench 3.0.15 exercised one passing and one deliberately failing test.
+Without the fix the parser found only the failure; with it both IDs and
+statuses were recognized. Probe output is retained by the caller under
+`benchmark_results/swebench-sphinx-reporting-validation-20261104`. This probe
+uses Python 3.12 and a temporary project, not the host's Sphinx images.
+
+Validation: clean engine-free CI passed lint and 251 tests, with four
+absent-engine skips and 51 native deselections. The full 25-instance oracle,
+NOP and fresh official grading must still pass on the operator host before
+GPU leasing. The frozen selection and image pins are unchanged.

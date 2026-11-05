@@ -11,10 +11,14 @@ from magnet_evals.benchmarks.swe_bench_verified import INSPECT_EVALS_REVISION
 from magnet_evals.outputs import load_run
 
 
-def replay(run_path: Path, output: Path):
+def replay(run_path: Path, output: Path, *, current_environment=False):
     from inspect_evals.swe_bench.scorers import (
         get_eval_script,
         get_score_and_explanation_from_test_output,
+    )
+
+    from magnet_evals.benchmarks.inspect_verified_task import (
+        verified_sandbox_environment,
     )
 
     run = load_run(run_path)
@@ -37,6 +41,7 @@ def replay(run_path: Path, output: Path):
         'inspect_ai': importlib.metadata.version('inspect-ai'),
         'swebench': importlib.metadata.version('swebench'),
         'inspect_evals': importlib.metadata.version('inspect-evals'),
+        'current_environment': current_environment,
         'instance_ids': [sample.sample_id for sample in samples]}, indent=2) + '\n')
     summary = []
     for sample in samples:
@@ -51,8 +56,13 @@ def replay(run_path: Path, output: Path):
         (case / 'eval_script').write_text(script)
         subprocess.run(['docker', 'image', 'inspect', image], check=True,
                        stdout=subprocess.DEVNULL)
+        environment = (verified_sandbox_environment(metadata['repo'],
+            clean_repository=request.task_options['clean_repository'],
+            agent_protocol=request.task_options.get('agent_protocol', 'upstream'))
+            if current_environment else {})
+        env_args = [item for key, value in environment.items() for item in ('--env', f'{key}={value}')]
         container = subprocess.check_output(['docker', 'create', '--network', 'none',
-            '--workdir', '/testbed', image, 'sleep', 'infinity'], text=True).strip()
+            '--workdir', '/testbed', *env_args, image, 'sleep', 'infinity'], text=True).strip()
         print(f'Replaying {sample.sample_id}; full output: {case / "grader.log"}', flush=True)
         try:
             subprocess.run(['docker', 'start', container], check=True, stdout=subprocess.DEVNULL)
@@ -75,6 +85,7 @@ def replay(run_path: Path, output: Path):
             value, explanation = get_score_and_explanation_from_test_output(log_text,
                 SimpleNamespace(sample_id=sample.sample_id, metadata=metadata, input='oracle replay'))
             row = {'instance_id': sample.sample_id, 'image': image,
+                   'environment': environment,
                    'original_score': sample.scores['swe_bench_scorer']['value'],
                    'replay_score': value, 'script_exit_code': completed.returncode,
                    'explanation': explanation}
@@ -94,9 +105,10 @@ def main(argv=True):
     class Config(kwconf.Config):
         run = kwconf.Value(None, required=True)
         output = kwconf.Value(None, required=True)
+        current_environment = kwconf.Value(False, isflag=True)
 
     args = Config.cli(argv=argv, strict=True, special_options=False)
-    replay(Path(args.run), Path(args.output))
+    replay(Path(args.run), Path(args.output), current_environment=args.current_environment)
 
 
 if __name__ == '__main__':

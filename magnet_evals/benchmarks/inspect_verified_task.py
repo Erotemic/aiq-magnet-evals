@@ -39,6 +39,17 @@ MINIMAL_EDIT_ENV = {
 }
 
 
+def verified_sandbox_environment(repo, *, clean_repository=True, agent_protocol='upstream'):
+    environment = dict(MINIMAL_EDIT_ENV) if agent_protocol == 'minimal-edit/v1' else {}
+    if clean_repository and repo == 'sphinx-doc/sphinx':
+        # git-reset-clean/v1 removes the image's tracked tox.ini pre-install
+        # edit (pytest -rA). Restore per-test reporting through tox's public
+        # environment overrides without adding harness edits to model.patch.
+        environment.update({'PYTEST_ADDOPTS': '-rA',
+                            'TOX_OVERRIDE': 'testenv.pass_env+=PYTEST_ADDOPTS'})
+    return environment
+
+
 def _verified_task(*, instance_ids, images, solver='agent', tool_timeout=210,
                    clean_repository=True, agent_protocol='upstream'):
     if agent_protocol not in AGENT_PROTOCOLS:
@@ -71,8 +82,10 @@ def _verified_task(*, instance_ids, images, solver='agent', tool_timeout=210,
         service = {
             'image': image, 'command': 'sleep infinity', 'working_dir': '/testbed',
             'network_mode': 'none'}
-        if agent_protocol == 'minimal-edit/v1':
-            service['environment'] = dict(MINIMAL_EDIT_ENV)
+        environment = verified_sandbox_environment(sample.metadata.get('repo'),
+            clean_repository=clean_repository, agent_protocol=agent_protocol)
+        if environment:
+            service['environment'] = environment
         compose = util.ComposeConfig.model_validate({'services': {'default': service}})
         return util.SandboxEnvironmentSpec(type=sandbox_type, config=compose)
 
