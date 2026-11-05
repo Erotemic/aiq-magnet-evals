@@ -4,6 +4,7 @@ from __future__ import annotations
 import importlib.metadata
 import json
 import os
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -24,6 +25,20 @@ from magnet_evals.store import ResultStore
 pytestmark = [pytest.mark.native, pytest.mark.docker_sandbox, pytest.mark.release_gate]
 IMAGES_PATH = Path(os.environ.get('AIQ_VERIFIED_IMAGES',
     str(Path(__file__).parents[2] / 'dev/environments/swebench-verified-images.json')))
+
+
+@pytest.fixture(autouse=True)
+def capture_native_attempt(tmp_path, request):
+    """Keep failed oracle diagnostics as well as successful captures."""
+    try:
+        yield
+    finally:
+        destination = os.environ.get('AIQ_VERIFIED_CAPTURE_DIR')
+        if destination:
+            solver = request.node.callspec.params['solver']
+            target = Path(destination) / solver / tmp_path.name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copytree(tmp_path, target)
 
 
 @pytest.mark.parametrize('solver,reward', [('oracle', 1), ('nop', 0)])
@@ -50,7 +65,9 @@ def test_verified_patches_regrade_in_fresh_official_containers(tmp_path, solver,
     samples = [s for s in outcome.run.result.samples if s.native.get('kind') == 'sample']
     assert {s.sample_id for s in samples} == set(ids)
     assert all(s.native.get('error') is None for s in samples)
-    assert all(s.scores['swe_bench_scorer']['value'] == reward for s in samples)
+    unexpected = {s.sample_id: s.scores['swe_bench_scorer']['value'] for s in samples
+                  if s.scores['swe_bench_scorer']['value'] != reward}
+    assert not unexpected, f'{solver} expected reward {reward}; unexpected scores: {unexpected}'
     predictions = export_predictions(outcome.run.path, tmp_path / 'predictions.jsonl')
     prediction_rows = [json.loads(line) for line in predictions.read_text().splitlines()]
     assert {row['instance_id'] for row in prediction_rows} == set(ids)
@@ -93,8 +110,3 @@ def test_verified_patches_regrade_in_fresh_official_containers(tmp_path, solver,
         'dataset_sha256': sha256_json(frozen), 'images': images,
         'swebench_version': '3.0.15', 'swebench_revision': 'b524f150d5d76f188c741d75669025f718c89c2e',
         'repository_setup': 'git-reset-clean/v1', 'grader_command': command}, indent=2))
-    destination = os.environ.get('AIQ_VERIFIED_CAPTURE_DIR')
-    if destination:
-        import shutil
-        target = Path(destination) / solver / tmp_path.name
-        shutil.copytree(tmp_path, target)

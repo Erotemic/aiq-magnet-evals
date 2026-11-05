@@ -269,3 +269,29 @@ Validation: the clean engine-free CI script passed lint and 247 tests, with
 four absent-engine skips and 51 native deselections. Caller shell syntax and
 profile request construction passed. The screening preflight requires exact
 JUnit evidence for both oracle/NOP cases, rejecting skipped or missing cases.
+
+## 2026-11-04 — Screening preflight blocked on an oracle reward mismatch
+
+Author: GPT-6 (Codex; exact weights/configuration variant undetermined).
+
+The operator's first 25-instance CPU/Docker preflight finished with one failure
+and one pass after 2,041.67 seconds. Oracle native execution completed with
+all 25 samples and no recorded sample errors, but at least one gold patch
+received a score other than one. It stopped at the reward assertion before
+fresh official oracle regrading. NOP completed and passed official grading.
+The GPU stage was not entered, and the frozen membership remains unchanged.
+
+The assertion reported only `all(...) == False`, and capture ran only at the
+end of a successful test. Consequently, the failed oracle's native artifacts
+remained in the host's pytest temporary directory while the shared output
+contained only NOP evidence. Specific failing instances and causes cannot yet
+be inferred from the available report. A caller-owned collector is prepared
+to recover the existing host files; no expensive preflight rerun is needed
+to inspect them if those temporary files still exist.
+
+Moved native capture into fixture teardown so assertions cannot discard
+failure evidence, and replaced the aggregate reward assertion with per-instance
+unexpected scores. The caller now keeps pytest work under its shared output,
+uses a short traceback, and stops at the first failure. The existing gate still
+requires both oracle and NOP to pass before GPU leasing. This changes diagnostics,
+not acceptance criteria. No image, task membership, grader or score was changed.
