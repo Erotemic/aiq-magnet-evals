@@ -643,3 +643,27 @@ driver and source fingerprints were repaired with backups and a diff; all
 50 preflight checkpoint hashes were preserved. Evaluation sources, problem
 membership, model settings and content-hashing logic were unchanged. Resume
 and actual operator-weight attestation remain for the GPU host.
+
+### 2026-11-06 — Direct benchmark execution
+
+The host campaign reached 88 officially graded agent predictions, 62 resolved.
+Its 102 successful oracle/NOP pairs consumed 5.3 hours before image downloads
+and failures. The caller serialized those checks and held each batch's model
+execution until all checks finished. This was an avoidable throughput cost.
+
+At the operator's request, the caller now runs agents without oracle/NOP gates.
+Four workers fetch task images and execute agents under the serving lease.
+Native scoring and fresh official grading remain attached to each prediction;
+case failures are recorded while other workers continue. Pull failures no
+longer enter a 24-hour retry loop. Historical gate failures do not block work
+or determine current coverage status. Problem membership and model settings
+are unchanged.
+
+The next launch migrates the saved caller drivers under exclusion locks, with
+backups and updated source fingerprints. A copied-campaign migration probe
+verified those fingerprints and idempotence; all 88 existing agent checkpoints
+passed integrity verification. No live campaign files were modified by the
+probe. All 39 caller tests passed, including direct agent entry without gate
+checkpoints, captured live failures, continued work after a case failure and
+absence of pull backoff. The host must restart its existing process to load
+the new drivers.
