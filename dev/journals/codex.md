@@ -624,3 +624,22 @@ syntax, Python compilation and lint passed. Captures are retained under the
 caller's full-preparation and full-native-check directories. Full 500-instance
 runtime acceptance, operator-model attestation and GPU throughput remain
 pending on the host; no full score is claimed from these probes.
+
+### 2026-11-05 — First full-campaign startup and interpreter repair
+
+The caller's first 500-instance campaign passed native oracle/NOP and fresh
+official grading for its first 25 instances: 50 completed preflight checkpoints.
+Serving generation verification passed, but the caller's content-attestation
+probe exited 127 because it assumed `python3` was on the container's PATH.
+No agent evaluation started. The scoped GPU lease release returned zero.
+
+The caller now discovers a usable Python interpreter from the serving venv,
+PATH or running processes, and retains Docker inspection diagnostics. Two real
+CPU-container probes removed Python from PATH, reproduced exit 127, then
+successfully discovered the venv or process interpreter and hashed fixture
+bytes. These test interpreter discovery, not operator-weight attestation.
+All 35 caller campaign regression tests passed. The idle campaign's frozen
+driver and source fingerprints were repaired with backups and a diff; all
+50 preflight checkpoint hashes were preserved. Evaluation sources, problem
+membership, model settings and content-hashing logic were unchanged. Resume
+and actual operator-weight attestation remain for the GPU host.
