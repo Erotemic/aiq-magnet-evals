@@ -11,6 +11,7 @@ import os
 import platform
 import re
 import subprocess
+import traceback
 from pathlib import Path
 
 from magnet_evals.backends.harbor.bridge import endpoint_bridge
@@ -363,7 +364,8 @@ class HarborBackend:
         return await self.execute_job(resolved, context)
 
     async def execute_job(self, resolved: ResolvedEvaluation, context: ExecutionContext, *,
-                          job_name='evaluation', environment_started_hook=None, agent_started_hook=None):
+                          job_name='evaluation', environment_started_hook=None, agent_started_hook=None,
+                          egress_response_timeout=None):
         """One owned native job; execution protocols may compose named phases."""
         if not re.fullmatch(r'[A-Za-z0-9_-]+', job_name):
             raise RequestValidationError('invalid owned Harbor job name')
@@ -409,7 +411,8 @@ class HarborBackend:
         with contextlib.ExitStack() as stack:
             if endpoint:
                 if resolved.resolved_facts.get('endpoint_location') == 'sandbox':
-                    compose, endpoint = stack.enter_context(endpoint_bridge(inputs_root / 'bridge', endpoint))
+                    compose, endpoint = stack.enter_context(endpoint_bridge(
+                        inputs_root / 'bridge', endpoint, egress_response_timeout=egress_response_timeout))
                     native['environment']['extra_docker_compose'] = [str(compose)]
                     native['agents'][0]['extra_allowed_hosts'] = ['model-relay']
                 native['agents'][0]['env'] = {'OPENAI_API_BASE': endpoint, 'OPENAI_BASE_URL': endpoint,
@@ -434,7 +437,9 @@ class HarborBackend:
             except asyncio.CancelledError:
                 forced_status = 'cancelled'
             except Exception as exc:
-                forced_status, failure = 'failed', f'{type(exc).__name__}: {exc}'
+                forced_status, failure = 'failed', ''.join(traceback.format_exception(exc)).strip()
+                job_dir.mkdir(parents=True, exist_ok=True)
+                (job_dir / 'exception.txt').write_text(failure + '\n')
             if not (job_dir / 'result.json').is_file():
                 raise ArtifactError(f'Harbor did not publish a native job result: {failure or forced_status}')
             return normalize_harbor_job(job_dir, identity=resolved.identity, fallback_task=resolved.request.task,

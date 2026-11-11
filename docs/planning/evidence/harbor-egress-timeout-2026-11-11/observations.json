@@ -1,0 +1,28 @@
+{
+  "scope": "CPU-only transparent HTTP egress reproduction in an isolated Linux network namespace",
+  "image": "gogost/gost:3.2.7-nightly.20260602@sha256:afc0137758ab4ce399d47a299f9abbacbf522b52a17e59cbb4b4e7a1a66e9196",
+  "image_manifest": "sha256:c41758e5be07bd07b062cafe301d5dfe34ebc1529888be8e9c7224500f26b7ac",
+  "layer": "sha256:4d2ccb820b6fac8b1c4a05120a12f2a0427fc0187fe2efc7e298967ac874bbee",
+  "binary_sha256": "9e722e2424134f720690cac05812d947a0d2fa654e25d23c369e3b2720163181",
+  "results": [
+    {
+      "case": "stock-short",
+      "status": 200,
+      "body": "{\"ok\": true}",
+      "elapsed": 1.00939183216542
+    },
+    {
+      "case": "stock-long",
+      "exception": "RemoteDisconnected",
+      "message": "Remote end closed connection without response",
+      "elapsed": 15.020049134967849
+    },
+    {
+      "case": "fixed-long",
+      "status": 200,
+      "body": "{\"ok\": true}",
+      "elapsed": 18.00939752208069
+    }
+  ],
+  "coverage": "Pinned GOST binary and red-handler behavior; full Harbor model execution remains a separate host test"
+}

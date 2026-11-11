@@ -25,6 +25,7 @@ from magnet_evals.jsonutil import sha256_file
 PRO_REVISION = '66f92766bba642462d4bbe5479e83f91f9211862'
 PRO_CHECKSUMS = '9d84f8507c89241d42d8b3ef911600a1ec75dbbb32687ce9b45b93318502c0bd'
 PROTOCOL = 'local-harbor/pro-v2-offline-replay/v1'
+PRO_RESPONSE_TIMEOUT = 3600
 SMOKE_TASK = 'instance_ansible__ansible-0ea40e09d1b35bcb69ff4d9cecf3d0defa4b36e8-v30a923fb5c164d6cd18280c02422f75e611e8fb2'
 
 
@@ -300,7 +301,10 @@ class ProV2Protocol:
                     raise RuntimeError('observed installed mini-SWE agent differs from its requested version')
 
         generation = await backend.execute_job(resolved, context, job_name='generation',
-            agent_started_hook=partial(check_image, job_name='generation'))
+            agent_started_hook=partial(check_image, job_name='generation'),
+            # Native GOST defaults to a 15-second HTTP response-header wait.
+            # Non-streaming reasoning requests need the agent's hour budget.
+            egress_response_timeout=PRO_RESPONSE_TIMEOUT)
         if generation.status != 'succeeded':
             return replace(generation, records=tuple(replace(r, metrics=(), primary_metric=None) for r in generation.records),
                 diagnostics={**generation.diagnostics, 'protocol': PROTOCOL, 'authoritative_phase': None, 'aggregate_withheld': True})

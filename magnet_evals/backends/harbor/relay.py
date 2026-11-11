@@ -14,7 +14,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 
 @contextlib.contextmanager
-def relay(upstream: str, bind: str, port: int = 0):
+def relay(upstream: str, bind: str, port: int = 0, *, timeout: int = 600):
     upstream = upstream.rstrip("/")
     opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
@@ -37,7 +37,7 @@ def relay(upstream: str, bind: str, port: int = 0):
                 if key in self.headers:
                     request.add_header(key, self.headers[key])
             try:
-                response = opener.open(request, timeout=600)
+                response = opener.open(request, timeout=timeout)
             except urllib.error.HTTPError as exc:
                 response = exc
             except urllib.error.URLError:

@@ -667,3 +667,34 @@ probe. All 39 caller tests passed, including direct agent entry without gate
 checkpoints, captured live failures, continued work after a case failure and
 absence of pull backoff. The host must restart its existing process to load
 the new drivers.
+
+### 2026-11-11 — Fifteen-second native egress header deadline
+
+Model: GPT-6 (Codex; exact serving variant unavailable), tool-enabled session.
+The operator asked why a successful one-task real-model smoke did not scale to
+concurrent tasks, and supplied gateway logs. Successful agent responses all
+arrived within roughly fifteen seconds, while the gateway kept completing
+longer requests. Client retries accumulated work at the model server.
+
+Harbor 0.23.0's network sidecar uses GOST's HTTP-sniffing red handler without
+setting `readTimeout`. That handler defaults to a fifteen-second response-header
+deadline. A localhost reproduction used the exact binary extracted from
+Harbor's pinned GOST image in an isolated network namespace: a short response
+succeeded, an 18-second response disconnected at 15.02 seconds, and the same
+long response succeeded at 18.01 seconds after setting `readTimeout: 3600s`.
+
+Pro generation now opts into a read-only mounted copy of the stock sidecar
+config with only that deadline changed. Both bridge hops use the same budget
+as the native agent's model request. Allowlisting, sniffing, nftables, task
+images, agent prompts, patch replay and grading remain native. Generic bridge
+calls keep their prior behavior; they do not receive a sidecar-only Compose
+service when no native egress sidecar exists. The effective override is retained
+with job inputs and participates in the adapter source identity.
+
+Also preserve nested native ExceptionGroup tracebacks in `exception.txt` and
+normalized failure diagnostics; an opaque group heading was hiding separate
+pre-agent failures. Forty-three focused bridge, streaming, ownership, validation,
+normalization and Pro tests pass. The exact-binary CPU observation is recorded
+under `docs/planning/evidence/harbor-egress-timeout-2026-11-11`; the repaired full
+model path still needs a host invocation. Reproduce a transport regression at
+the actual intermediate hop before tuning model behavior.

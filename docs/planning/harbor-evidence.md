@@ -387,3 +387,28 @@ installed runtime closure remains mutable and nonreusable. GPU acceptance,
 25-instance Verified screening, HARD-51, full 500/642 runs, comparison campaigns,
 Modal/publisher protocol parity and the separate hosted heavy-engine integration
 job remain unrun. The candidate adapters remain experimental.
+
+## 2026-11-11 — Native GOST response-header timeout
+
+Harbor 0.23.0's pinned egress-sidecar binary was exercised in an isolated Linux
+network namespace, with a delayed local HTTP server and the native `red`
+handler/allowlist configuration. Observed behavior:
+
+| Configuration | Server response delay | Client result |
+|---|---:|---|
+| Stock header timeout | 1 second | HTTP 200 at 1.01 seconds |
+| Stock header timeout | 18 seconds | RemoteDisconnected at 15.02 seconds |
+| `readTimeout: 3600s` | 18 seconds | HTTP 200 at 18.01 seconds |
+
+[Captured observations and binary hashes](evidence/harbor-egress-timeout-2026-11-11/observations.json).
+Generator: `dev/reproduce_harbor_egress_timeout.py`, run as root in a fresh
+network namespace with the pinned GOST binary. The script refuses the initial
+network namespace. Image:
+`gogost/gost:3.2.7-nightly.20260602@sha256:afc0137758ab4ce399d47a299f9abbacbf522b52a17e59cbb4b4e7a1a66e9196`.
+
+Pro generation mounts a recorded copy of stock GOST settings with the header
+wait raised to the native model-request budget. It retains native allowlisting
+and phase network transitions. Generic bridge calls retain their existing
+configuration. This observation covers the CPU egress hop; a complete repaired
+Harbor/model run remains to be observed. It does not change native grading or
+turn the transport probe into a model benchmark score.
