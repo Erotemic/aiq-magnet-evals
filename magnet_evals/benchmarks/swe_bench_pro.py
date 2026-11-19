@@ -96,7 +96,7 @@ def replay_source(source: Path, destination: Path, expected_names: list[str]) ->
 
 
 def verifier_observation(trial: Path, task: Path) -> dict:
-    """Record native test coverage; an early trap's zero is not a scored trial."""
+    """Retain native coverage without rejecting a completed failing verdict."""
     config = read_object(task / 'tests/config.json')
     required = set()
     for key in ('fail_to_pass', 'pass_to_pass'):
@@ -119,11 +119,16 @@ def verifier_observation(trial: Path, task: Path) -> dict:
         raise ArtifactError('invalid native Pro parser test output')
     observed = {t.get('name') for t in tests if t.get('status') in ('PASSED', 'FAILED', 'ERROR', 'SKIPPED')}
     missing = required - observed
-    complete = bool(required) and not missing and 'RESULT: ' in stdout.read_text()
+    # Missing named tests can be the upstream reason for RESULT: FAILED (e.g.
+    # a patch breaks compilation or a test times out). That is a native zero,
+    # not an unfinished verifier. An early setup trap still has no RESULT line.
+    terminal = any(line.strip() in ('RESULT: PASSED', 'RESULT: FAILED')
+                   for line in stdout.read_text().splitlines())
+    complete = bool(required) and terminal
     return {'complete': complete, 'required': sorted(required),
             'observed': sorted(n for n in observed if isinstance(n, str)),
             'missing': sorted(missing),
-            'reason': None if complete else 'native verifier coverage is unavailable or ambiguous'}
+            'reason': None if complete else 'native verifier did not publish its final verdict'}
 
 
 def join_replay(generation, replay, joins: dict, *, replay_root: Path, tasks: dict[str, Path],

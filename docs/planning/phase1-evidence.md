@@ -710,3 +710,20 @@ on purpose: the identity algorithm `aiq-evals-measurement-v2+sha256`, native
 log metadata keys such as `aiq_evals_measurement_identity`, and the committed
 fixtures. The repository and directory will be renamed to `aiq-magnet-evals`
 separately.
+
+## 2026-11-19: completed native verifier failures with missing tests
+
+Retained Harbor 0.23.0 replay output shows the official Pro verifier reaching
+`RESULT: FAILED`, returning reward zero, with nine of ten required tests passed
+and one absent. Required-test presence is a diagnostic, not an additional
+condition for accepting this completed native verdict. Missing tests can be the
+reason the upstream verifier fails a patch. An early setup trap without the
+native final RESULT line remains incomplete.
+
+Evidence: `tests/fixtures/swebench-pro-verifier-failed/capture.json` lists hashes
+of the retained stdout, parsed test results, reward and task test configuration.
+No agent trajectory, model configuration or execution environment is included.
+`test_completed_native_failure_keeps_its_missing_test_diagnostics` reads this
+capture without running Harbor or tests. Existing oracle/NOP/native replay
+fixtures still normalize to their original rewards; an additional regression
+retains the incomplete status when a final verdict is absent.

@@ -1,0 +1,52 @@
+{
+  "tests": [
+    {
+      "name": "TestPollerCloseIdempotent",
+      "status": "PASSED"
+    },
+    {
+      "name": "TestPollerNoUpdateAfterClose",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_Store_String",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_Store_SelfSignedSkipTLS",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_Store_SelfSignedCABytes",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_Store_String",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_Store",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_Store_String",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_FS_Prefix",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_Store_String",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_SourceString",
+      "status": "PASSED"
+    },
+    {
+      "name": "Test_SourceSubscribe",
+      "status": "PASSED"
+    }
+  ]
+}

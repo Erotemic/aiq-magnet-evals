@@ -64,6 +64,25 @@ def test_native_early_verifier_zero_has_no_completed_test_observation(tmp_path):
     assert verifier_observation(trial, task)['complete']
 
 
+def test_completed_native_failure_keeps_its_missing_test_diagnostics():
+    source = Path(__file__).parent / 'fixtures/swebench-pro-verifier-failed'
+    capture = json.loads((source / 'capture.json').read_text())
+    for name, digest in capture['sha256'].items():
+        assert sha256_file(source / name) == digest
+    observation = verifier_observation(source, source / 'task')
+    assert observation['complete']
+    assert observation['missing'] == ['TestPollerCloseWaitsForGoroutine']
+    assert len(observation['required']) == 10
+    assert (source / 'verifier/reward.txt').read_text().strip() == '0'
+
+
+def test_incomplete_native_verifier_with_output_but_no_final_verdict(tmp_path):
+    source = Path(__file__).parent / 'fixtures/swebench-pro-verifier-failed'
+    shutil.copytree(source, tmp_path / 'capture')
+    (tmp_path / 'capture/verifier/test-stdout.txt').write_text('Applying test patch...\n')
+    assert not verifier_observation(tmp_path / 'capture', tmp_path / 'capture/task')['complete']
+
+
 @pytest.mark.parametrize('root', [PRO_FIXTURES, AGENT_FIXTURES])
 def test_native_pro_capture_integrity(root):
     capture = json.loads((root / 'capture.json').read_text())

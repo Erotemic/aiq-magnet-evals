@@ -1,0 +1,11 @@
+{
+  "source": "retained native Harbor 0.23.0 fresh replay verifier output",
+  "benchmark_revision": "66f92766bba642462d4bbe5479e83f91f9211862",
+  "observation": "Official verifier finished FAILED with 9 of 10 required tests passed and one missing test",
+  "sha256": {
+    "verifier/test-stdout.txt": "5141e18c18b663ce303a730f47a0a7c7988ebcce4e9d8af339ff28cdbe45f533",
+    "verifier/reward.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "verifier/output.json": "fc364d5919580296675eca5d3d5a5dacf57108581f2c178693f1f20838fbc936",
+    "task/tests/config.json": "26313342b4d30e0377689d94aee43866c4e1a7dbbfe76e865d845802d70217d1"
+  }
+}
