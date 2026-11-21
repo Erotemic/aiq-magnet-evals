@@ -1,5 +1,29 @@
 # SWE-bench experimental protocols
 
+## Caller-selected Verified requests
+
+`magnet_evals.benchmarks.swe_bench_verified.profile_request(instance_ids,
+image_pins, model, ...)` builds a standard EvaluationRequest for a selected
+set. `profile_requests(..., shard_size=1)` partitions it into independently
+reusable requests. Inputs are ordinary `ModelBinding`, instance IDs and
+digest-pinned images; no engine is imported or work scheduled by these helpers.
+Defaults preserve the smoke protocol (upstream agent, 30 messages, temperature
+0 and 4096 output tokens). Agent protocol, message budget, tool timeout and
+generation settings can be specified explicitly.
+
+The caller may supply a larger image-pin map; each request retains only its
+selected pins. This supports full selections without embedding an evaluation
+cohort or campaign policy in the package. MAGNET/kwdagger schedules the
+requests through EvaluationNode. A successful individual request is reused
+after interruption; failed attempts remain inspectable and are not reused.
+Inspect sample-level native resume remains unimplemented.
+
+These requests retain the existing Inspect-Evals agent, tools and scorer.
+They do not add a second grading pass. Oracle/NOP and fresh-replay fixtures
+remain integration diagnostics, not work repeated for each production model.
+
+## Recorded protocol acceptance
+
 SWE-bench Verified uses the maintained Inspect-Evals task and scorer in an
 isolated worker. The native acceptance currently covers the five instances in
 `dev/environments/swebench-verified-images.json`, with gold oracle patches and

@@ -4,10 +4,12 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 
 from magnet_evals.artifacts import RunBundle
-from magnet_evals.errors import ArtifactError
+from magnet_evals.contracts import EvaluationRequest, ModelBinding
+from magnet_evals.errors import ArtifactError, RequestValidationError
 from magnet_evals.jsonutil import sha256_file
 from magnet_evals.outputs import load_run
 
@@ -15,6 +17,62 @@ INSPECT_EVALS_REVISION = '9080b5e9f1647ed14e45de8cb01e3d43411c0163'
 VERIFIED_DATASET = 'princeton-nlp/SWE-bench_Verified'
 VERIFIED_REVISION = 'c104f840cc67f8b6eec6f759ebc8b2693d585d4a'
 SWEBENCH_CANDIDATE_VERSION = '3.0.15'
+
+
+def profile_request(instance_ids: Sequence[str], image_pins: Mapping[str, str],
+                    model: ModelBinding, *, agent_protocol: str = 'upstream',
+                    message_limit: int = 30, tool_timeout: int = 210,
+                    generation: Mapping | None = None) -> EvaluationRequest:
+    """Build a standard Verified request for a caller-selected, digest-pinned set.
+
+    Selection and concurrency belong to the caller. This retains the existing
+    upstream agent/scorer and smoke defaults; it performs no execution or grading.
+    An image map may include other instances; only selected pins enter identity.
+    """
+    from magnet_evals.benchmarks.inspect_verified_task import AGENT_PROTOCOLS
+
+    ids = list(instance_ids)
+    if (not ids or len(set(ids)) != len(ids) or any(
+            not isinstance(i, str) or not re.fullmatch(r'[A-Za-z0-9_.-]+__[A-Za-z0-9_.-]+-\d+', i)
+            for i in ids)):
+        raise RequestValidationError('Verified selection requires unique nonempty instance IDs')
+    if agent_protocol not in AGENT_PROTOCOLS:
+        raise RequestValidationError('unknown Verified agent protocol')
+    if not isinstance(message_limit, int) or message_limit < 1:
+        raise RequestValidationError('message_limit must be positive')
+    if not isinstance(tool_timeout, int) or tool_timeout < 1:
+        raise RequestValidationError('tool_timeout must be positive')
+    images = {i: image_pins.get(i) for i in ids}
+    if any(not isinstance(pin, str) or not re.search(r'@sha256:[0-9a-f]{64}$', pin)
+           for pin in images.values()):
+        raise RequestValidationError('pin an immutable task image for every selected instance')
+    return EvaluationRequest(engine='inspect_ai',
+        task='python:magnet_evals.benchmarks.inspect_verified_task:verified_task',
+        task_revision=INSPECT_EVALS_REVISION, data_revision=VERIFIED_REVISION,
+        models=(model,), task_options={'instance_ids': ids, 'images': images,
+            'solver': 'agent', 'clean_repository': True, 'tool_timeout': tool_timeout,
+            'agent_protocol': agent_protocol},
+        generation={'temperature': 0, 'max_tokens': 4096, **dict(generation or {})},
+        engine_options={'registration_modules': ['inspect_evals.swe_bench.scorers',
+            'inspect_evals.swe_bench.solvers', 'inspect_evals.swe_bench.swe_bench'],
+            'required_secrets': ['OPENAI_API_KEY'],
+            'eval_options': {'max_sandboxes': 1, 'max_tasks': 1, 'max_samples': 1,
+                'message_limit': message_limit, 'epochs': 1, 'sandbox_cleanup': True}})
+
+
+def profile_requests(instance_ids: Sequence[str], image_pins: Mapping[str, str],
+                     model: ModelBinding, *, shard_size: int = 1, **settings) -> tuple[EvaluationRequest, ...]:
+    """Partition a selection into independently reusable requests, without scheduling.
+
+    With shard_size=1, the outer scheduler/store can reuse each completed
+    instance after interruption without needing Inspect's native sample resume.
+    """
+    request = profile_request(instance_ids, image_pins, model, **settings)
+    if not isinstance(shard_size, int) or shard_size < 1:
+        raise RequestValidationError('shard_size must be positive')
+    ids = request.task_options['instance_ids']
+    return tuple(profile_request(ids[start:start + shard_size], image_pins, model, **settings)
+                 for start in range(0, len(ids), shard_size))
 
 
 def prediction_records(run: RunBundle) -> tuple[list[dict], list[dict]]:

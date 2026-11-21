@@ -698,3 +698,24 @@ normalization and Pro tests pass. The exact-binary CPU observation is recorded
 under `docs/planning/evidence/harbor-egress-timeout-2026-11-11`; the repaired full
 model path still needs a host invocation. Reproduce a transport regression at
 the actual intermediate hop before tuning model behavior.
+
+## 2026-11-21 12:25:57 -0500
+
+Model: GPT-6 (Codex); exact serving variant/configuration unavailable.
+
+The user approved reusable Verified request construction in place of more
+campaign-specific execution code. Added profile_request/profile_requests
+next to the existing benchmark exports. They construct selected, image-pinned
+requests and partition them for caller-owned scheduling. Defaults retain the
+existing smoke protocol; the caller can specify agent and generation settings.
+A larger input image map is reduced to selected pins so unrelated instances
+cannot alter a request's identity.
+
+The native agent/scorer and core execution path are unchanged. Per-instance
+restart uses existing ensure/store semantics, not a nested retry controller
+or a new claim that Inspect implements sample resume. All 56 focused request,
+store, patch-export and protocol tests pass without engine dependencies.
+The consumer's real Inspect synthetic probe verifies successful zero scores,
+failed-attempt retention and reuse; it does not establish new GPU or full-set
+benchmark capability. The useful boundary is pure request construction here,
+with scheduling and evidence reduction remaining in MAGNET/kwdagger.
