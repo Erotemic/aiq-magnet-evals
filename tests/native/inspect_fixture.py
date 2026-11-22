@@ -67,6 +67,18 @@ def tool_task():
     )
 
 
+@task
+def proxy_context_task():
+    """Exercise the upstream ReAct context-stop path before ordinary scoring."""
+    from inspect_ai.agent import react
+
+    return Task(
+        dataset=[Sample(input="Use double on two.", target="4")],
+        solver=react(tools=[double()]),
+        scorer=match(),
+    )
+
+
 @solver
 def auxiliary_probe():
     async def solve(state, generate):

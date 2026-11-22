@@ -727,3 +727,22 @@ No agent trajectory, model configuration or execution environment is included.
 capture without running Harbor or tests. Existing oracle/NOP/native replay
 fixtures still normalize to their original rewards; an additional regression
 retains the incomplete status when a final verdict is absent.
+
+## 2026-11-22: native Inspect LiteLLM Proxy context termination
+
+Inspect 0.3.272 with OpenAI 3.1.0 ran two local HTTP fixtures through the
+existing `litellm-proxy` provider. Both read proxy model metadata and execute
+a real ReAct tool call. Ordinary submission scores one; an HTTP-400
+`litellm.ContextWindowExceededError` with code `400` becomes `model_length`
+and reaches native scoring with a valid zero. Neither case leaves a sample
+error. This tests the SDK/client integration, not live model inference or a
+benchmark score. No adapter implementation changed.
+
+Command (inside the pinned Inspect worker):
+`python -m pytest tests/native/test_inspect_litellm_proxy.py -q`: 2 passed.
+Retained output: ignored `phase1-artifacts/inspect-proxy-context-20261122/`.
+Its `capture.json` hashes the native bundles; SHA256:
+`c1556531b28f9767d31aa6500044229ebf3ffbbe54fcb06d2783220a0cccca3b`.
+The fixture declares a 131072-token context and high reasoning, and checks
+metadata lookup and forwarding of the requested effort. It does not establish
+live proxy authentication, network recovery or arbitrary upstream models.

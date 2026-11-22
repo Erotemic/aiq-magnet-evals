@@ -719,3 +719,17 @@ The consumer's real Inspect synthetic probe verifies successful zero scores,
 failed-attempt retention and reuse; it does not establish new GPU or full-set
 benchmark capability. The useful boundary is pure request construction here,
 with scheduling and evidence reduction remaining in MAGNET/kwdagger.
+
+## 2026-11-22: native proxy context-stop evidence
+
+Model: GPT-6 (Codex); exact serving variant/configuration unavailable.
+
+A downstream native run hit its context window, but the generic OpenAI client
+raised the proxy's HTTP-status error envelope instead of stopping the agent
+normally. The pinned Inspect LiteLLM Proxy client already handles that error.
+Added two native HTTP fixtures exercising real ReAct tool use and metadata
+lookup: ordinary submission scores one; context stop scores zero. Both pass
+with Inspect 0.3.272 / OpenAI 3.1.0. Evidence and retained capture hashes are in
+the phase-1 ledger. Production adapters are unchanged; provider selection
+already exists in ModelBinding. This is local client evidence, not live-model
+or benchmark evidence.
