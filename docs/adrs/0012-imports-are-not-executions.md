@@ -2,6 +2,8 @@
 
 Status: Accepted (2026-09-29). Refines ADR-0011; supersedes its rule that an
 import may seed the canonical run.
+The scheduling-time content-identification requirement below is superseded by
+[ADR-0013](0013-offline-command-planning.md).
 
 ## Context
 
@@ -43,6 +45,7 @@ A review of ADR-0011 found two problems with native imports:
 - Seeding a store with previously computed runs is an explicit import, and
   it is reused only as that import (for example by a MAGNET node that
   declares `import_source`), never as an execution.
-- MAGNET passes its scheduled `import_identity`, so a node imports exactly the
-  content it was scheduled for or publishes nothing.
+- MAGNET may pass an `import_identity` identified by the executing acquisition
+  operation, so an import publishes exactly that content or nothing. Identifying
+  native content is not a prerequisite for constructing its command (ADR-0013).
 - `ResultStore.seed_canonical` is removed.

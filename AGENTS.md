@@ -21,6 +21,14 @@ engine when computation is required.
 
 Before architectural review or broad refactoring, read `docs/adrs/README.md` and the accepted ADRs it indexes. Those records are authoritative for the target architecture; planning checkboxes and the current implementation do not override them.
 
+**Command planning must work without the execution environment.** Do not call
+native resolution, launch a worker, query serving configuration or inspect
+target inputs from configuration getters, hashing or command construction.
+Resolution and native store reuse belong inside the generated job when it
+executes. Mandatory pre-compilation preparation is the same boundary violation;
+batching or caching it is not a correction. See
+[ADR-0013](docs/adrs/0013-offline-command-planning.md).
+
 This repository owns evaluation facts and execution mechanics. It does **not**
 own MAGNET claim semantics.
 

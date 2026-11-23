@@ -37,6 +37,10 @@ validate and reuse                          execute native engine
 The result is a record of what the evaluation engine did. `aiq-magnet-evals` does not
 turn that record into a MAGNET claim or verdict.
 
+This is the lifecycle of an **executing acquisition operation**, not a required
+preparation stage for constructing scheduler commands. Command construction
+must work without the native runtime or execution hardware (ADR-0013).
+
 ## Accepted decisions
 
 - [ADR-0001](0001-package-boundary.md): `aiq-magnet-evals` is an independent evaluation runtime and artifact layer.
@@ -50,6 +54,7 @@ turn that record into a MAGNET claim or verdict.
 - [ADR-0012](0012-imports-are-not-executions.md): an import never becomes the canonical (executed) result; it reads its source once and can be pinned to identified content.
 - [ADR-0011](0011-single-flight-and-content-keyed-imports.md): acquiring a reusable measurement is single-flight in the store; explicit imports are keyed by native content.
 - [ADR-0010](0010-no-freeze-before-release.md): no API/schema freeze until a PyPI release; data-safety rules (version rejection, identity algorithms, tamper detection) stay.
+- [ADR-0013](0013-offline-command-planning.md): command construction uses declared configuration; native resolution and store reuse happen when the generated command executes.
 
 ## Superseded decisions
 
@@ -71,6 +76,8 @@ explicit replacement ADR:
 8. hides native artifacts or fabricates missing provenance/coverage;
 9. adds a second campaign scheduler or nested retry policy beneath kwdagger;
 10. claims backend capability without a corresponding native acceptance fixture.
+11. requires native resolution, subprocess execution or execution-host access to
+    read configuration, hash nodes, compile a graph or render its commands.
 
 ## Decision status vocabulary
 

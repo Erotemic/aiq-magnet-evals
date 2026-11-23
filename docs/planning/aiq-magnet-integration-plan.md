@@ -3,6 +3,13 @@
 This file contains work that should happen in `aiq-magnet`, not in the core
 `aiq-magnet-evals` package.
 
+**2026-11-22 architectural correction:**
+[ADR-0013](../adrs/0013-offline-command-planning.md) supersedes the original
+scheduling-time preflight requirement. Command construction must work without
+the native runtime or execution host. The MAGNET correction is staged on
+`fix/offline-command-planning`; an already-running campaign retains its
+current code until completion. M3 and M9 below describe the corrected boundary.
+
 Status (2026-09-29): M1-M10 implemented and tested on the MAGNET branch
 `dev/aiq-evals-integration`. Checked items cite their evidence in
 `integration-evidence.md`. One item is explicitly deferred (M1, migrating the
@@ -69,27 +76,36 @@ The node must not own native engine-specific execution logic.
 Use `engine` for `helm`, `olmo_eval`, or `inspect_ai`. Retain `backend` for the
 kwdagger/cmd_queue scheduler (`serial`, `tmux`, etc.).
 
-Status: done. `magnet.backends.aiq_evals.EvaluationNode`; the node runs
-`cli.run_node` and preflights with `cli.resolve_node`, both wrapped identically
-for host or container execution.
+`magnet.backends.aiq_evals.EvaluationNode` renders `cli.run_node` and, for
+leased work, `cli.resolve_node`. Resolution and acquisition run only when the
+generated job executes, wrapped for its host or container environment.
 
-## M3 - Resolve identity before cache assignment
+## M3 - Declared scheduling identity and runtime measurement identity
 
-MAGNET/kwdagger cache keys must consume a resolved `aiq-magnet-evals` measurement
-identity rather than hashing unresolved mutable task paths.
+kwdagger hashes declared work; the evaluator resolves native facts when the
+generated job executes. A scheduling ID does not attest to an unobserved
+execution environment or justify native cache reuse.
 
 Requirements:
 
-- [x] preflight resolution happens before reusable computation identity is
-  assigned, in the node's own execution environment (host or container);
-  the computed `measurement_identity`/`import_identity` cannot be configured;
-- [x] an unresolved mutable input disables reuse;
-- [x] engine/upstream/adapter changes cannot collide (and task-code or
-  imported-content changes schedule new nodes);
-- [x] a stale result marker cannot hide a failed/incomplete `aiq-magnet-evals` run;
-- [x] changing a MAGNET evidence selector does not rerun an unchanged native
+- Construct complete commands with missing target interpreters/packages,
+  subprocess creation forbidden and no serving-catalog query.
+- Resolve measurement/import identities inside the executing job, in its
+  native host/container context. An unresolved mutable input disables native
+  reuse, not command construction.
+- Reach the runtime store lookup even when an outer scheduler output exists.
+  Engine/task/import-content changes affect native identity at execution;
+  they need not change an outer node ID derived from unchanged declarations.
+- Retain native identity checks and artifact validation. A stale result marker
+  cannot hide a failed/incomplete or different native acquisition.
+- Changing a MAGNET evidence selector does not rerun an unchanged native
   evaluation unless it changes native computation; concurrent selector nodes
   execute it once (aiq-magnet-evals ADR-0011).
+
+Staged MAGNET evidence: normal host/container command compilation with native
+imports, catalog queries and subprocess creation blocked; runtime task/import
+change and store-reuse cases; pinned native Inspect and real tmux lease cases.
+No evaluator identity algorithm or existing bundle changes are needed.
 
 ## M4 - Evidence projection
 
@@ -195,10 +211,11 @@ For MAGNET leasing/container integration:
 - [x] propagate cancellation to engine workers/sandboxes;
 - [x] keep secrets in runtime bindings, not hash/manifests/commands;
 - [x] keep scheduler `backend` independent of evaluation `engine`;
-- [x] container execution: preflight and execution both run in the node's
-  container, including a worker interpreter that exists only there.
+- [x] container execution: runtime resolution and execution use the node's
+  container, including a worker interpreter that exists only there. The
+  planning machine need not have that interpreter or container image.
 
-## M9 - Dry-run semantics
+## M9 - Planning and dry-run semantics
 
 `magnet evaluate_new --dry-run` must remain side-effect free:
 
@@ -209,12 +226,14 @@ For MAGNET leasing/container integration:
 - no evidence publication;
 - no verdict.
 
-Static compilation may validate serializable request shape. Runtime resolution
-that executes arbitrary code belongs in a separate preflight worker and must not
-be smuggled into dry-run.
+Static compilation may validate serializable request shape. All command
+construction, including normal scheduling, excludes runtime resolution. Native
+workers are invoked by generated jobs at execution, never by a configuration
+property or a mandatory pre-compilation preparation stage (ADR-0013).
 
-Status: done. A dry run resolves nothing and writes no store, but it does
-reject malformed selectors and coverage policies (E-M9).
+A dry run resolves nothing and writes no store, but rejects malformed selectors
+and coverage policies (E-M9). The staged correction extends the same runtime-free
+construction guarantee to normal scheduling before explicit backend dispatch.
 
 ## M10 - MAGNET integration validation
 

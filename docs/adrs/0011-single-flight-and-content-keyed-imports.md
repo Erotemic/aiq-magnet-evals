@@ -2,6 +2,8 @@
 
 Status: Accepted (2026-09-29). Refines ADR-0002 and ADR-0006. The rule that the
 first valid import seeds the canonical run is superseded by ADR-0012.
+The requirement for import content in a scheduler node ID is superseded by
+[ADR-0013](0013-offline-command-planning.md).
 
 ## Context
 
@@ -49,18 +51,17 @@ computes, without copying or importing an engine, the exact
 `native_artifact_identity` the import will publish. `ensure(import_source=…)`
 reuses only an import of that content for that measurement, stored at
 `imports/<dd>/<digest>/<native_identity>/`. Different content, including an
-edit at the same path, is imported. The first valid result of a measurement
-(executed or imported) also becomes its canonical run, so an import can still
-satisfy later execute-or-reuse requests. A later import never replaces that
-canonical run silently; it lives in its own import slot.
+edit at the same path, is imported. Under ADR-0012 an import never seeds or
+replaces the canonical execution slot; it lives only in its own import slot.
 
 ## Consequences
 
 - MAGNET needs no acquisition node or scheduler support to avoid duplicate
   native work. Concurrent claim projections of one measurement wait for one
   execution (see the MAGNET integration tests).
-- A MAGNET node that imports must carry the import's content identity in its
-  node identity. Otherwise kwdagger would skip it as done after the file
-  changed. `native_source_identity` is public and engine-free for that reason.
+- Import content is checked by the executing acquisition operation. Scheduler
+  command construction must not read native inputs to derive a node identity;
+  the generated job reaches the content-keyed store lookup instead of assuming
+  its previous output proves current native reuse (ADR-0013).
 - Store layout gains `imports/` and `locks/`. Lock files are tiny and may
   remain after release; their content names the last holder for debugging.
