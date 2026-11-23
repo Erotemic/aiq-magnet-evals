@@ -93,11 +93,13 @@ Requirements:
 - Resolve measurement/import identities inside the executing job, in its
   native host/container context. An unresolved mutable input disables native
   reuse, not command construction.
-- Reach the runtime store lookup even when an outer scheduler output exists.
-  Engine/task/import-content changes affect native identity at execution;
-  they need not change an outer node ID derived from unchanged declarations.
-- Retain native identity checks and artifact validation. A stale result marker
-  cannot hide a failed/incomplete or different native acquisition.
+- Completed scheduler outputs use cheap file-existence checks, without native
+  resolution or artifact audits. Undeclared engine/task/import changes require
+  an explicit refresh or a declared revision. Native identity is resolved when
+  an acquisition command actually executes.
+- Retain native identity and artifact validation during acquisition and evidence
+  readout. Invalid evidence is reported there rather than making every completed
+  node pending to audit it on resume.
 - Changing a MAGNET evidence selector does not rerun an unchanged native
   evaluation unless it changes native computation; concurrent selector nodes
   execute it once (aiq-magnet-evals ADR-0011).

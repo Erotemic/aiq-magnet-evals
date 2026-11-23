@@ -29,11 +29,13 @@ or network access. It must still be able to describe the entire workload.
 - A scheduler node ID identifies declared work. It is distinct from the
   evaluator's runtime measurement identity. Explicit caller-supplied revision
   tokens may affect scheduling; observing them is not a compilation prerequisite.
-- Native store lookup and import-content checks occur at execution. Consumers
-  must reach that lookup rather than treating a completed scheduler output as
-  proof that a mutable runtime input has not changed. An import may be pinned
-  to content identified by the executing acquisition operation; snapshot
-  mismatch still prevents publication under ADR-0012.
+- Completed scheduler outputs use ordinary file-existence checks. Do not force
+  completed nodes pending for native resolution or artifact auditing on every
+  resume. Native store lookup and import-content checks occur when an acquisition
+  command actually executes. Undeclared input changes require an explicit
+  refresh or a declared revision; evidence validation is separate readout work.
+  An import may be pinned to content identified by the executing acquisition;
+  snapshot mismatch still prevents publication under ADR-0012.
 - A mandatory preparation phase before compilation, parallel preflight or a
   persistent resolver does not repair this boundary. Command construction must
   work without running any of them. The rule applies to normal scheduling,

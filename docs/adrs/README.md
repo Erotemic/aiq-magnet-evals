@@ -77,7 +77,9 @@ explicit replacement ADR:
 9. adds a second campaign scheduler or nested retry policy beneath kwdagger;
 10. claims backend capability without a corresponding native acceptance fixture.
 11. requires native resolution, subprocess execution or execution-host access to
-    read configuration, hash nodes, compile a graph or render its commands.
+    read configuration, hash nodes, compile a graph or render its commands;
+12. forces completed scheduler nodes pending for native resolution or artifact
+    audits on every resume instead of using cheap output-existence checks.
 
 ## Decision status vocabulary
 

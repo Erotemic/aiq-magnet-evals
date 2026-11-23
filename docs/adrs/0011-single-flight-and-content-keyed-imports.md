@@ -61,7 +61,7 @@ replaces the canonical execution slot; it lives only in its own import slot.
   execution (see the MAGNET integration tests).
 - Import content is checked by the executing acquisition operation. Scheduler
   command construction must not read native inputs to derive a node identity;
-  the generated job reaches the content-keyed store lookup instead of assuming
-  its previous output proves current native reuse (ADR-0013).
+  completed outputs use ordinary file-existence checks. Explicitly refreshing
+  a node reaches the content-keyed store lookup for edited inputs (ADR-0013).
 - Store layout gains `imports/` and `locks/`. Lock files are tiny and may
   remain after release; their content names the last holder for debugging.

@@ -29,6 +29,11 @@ executes. Mandatory pre-compilation preparation is the same boundary violation;
 batching or caching it is not a correction. See
 [ADR-0013](docs/adrs/0013-offline-command-planning.md).
 
+Completed scheduler outputs use cheap file-existence checks. Do not force them
+pending to resolve native identity or audit artifacts on every resume. Native
+store lookup is for acquisition commands that execute; evidence validation and
+explicit refresh are separate operations.
+
 This repository owns evaluation facts and execution mechanics. It does **not**
 own MAGNET claim semantics.
 
